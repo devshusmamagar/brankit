@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
+<style>
+@page { size: 720px 1020px; margin: 0; }
+:root { --gold:#C9A961; --gold-dark:#A07D3F; --gold-light:#E2CC8A; --accent:#D4AF37; --bg:#FAF8F5; --white:#FFFFFF; --surface-alt:#F5F0EB; --text:#1A1A1A; --text-sec:#5D4E37; --text-muted:#8B7D6B; --border:#E8E0D6; }
+html,body { margin:0;padding:0;width:720px;background:var(--bg);color:var(--text);font-family:'Inter',sans-serif; }
+@media screen { html{height:auto;display:flex;justify-content:center;background:#e8e0d6;} body{transform-origin:top center;margin:20px auto;box-shadow:0 4px 24px rgba(0,0,0,0.15);} }
+.cover { width:720px;height:1020px;box-sizing:border-box;break-after:page;overflow:hidden;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;padding:60px; }
+.cover::before { content:'';position:absolute;top:0;left:0;right:0;bottom:0;border:3px solid var(--gold);margin:24px;pointer-events:none; }
+.cover-logo { width:120px;height:auto;margin-bottom:40px;filter:drop-shadow(0 2px 8px rgba(201,169,97,0.3)); }
+.cover-title { font-family:'Playfair Display',Georgia,serif;font-size:48px;font-weight:700;color:var(--text);text-align:center;line-height:1.15;letter-spacing:1px; }
+.cover-subtitle { font-family:'Inter',sans-serif;font-size:16px;font-weight:400;color:var(--text-sec);text-align:center;margin-top:16px;letter-spacing:3px;text-transform:uppercase; }
+.cover-tagline { font-family:'Inter',sans-serif;font-size:13px;color:var(--text-muted);margin-top:24px;letter-spacing:1px; }
+.cover-divider { width:80px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:32px auto; }
+.cover-date { font-size:12px;color:var(--text-muted);margin-top:auto;letter-spacing:2px;padding-bottom:80px; }
+.main-content { padding:56px 60px 40px 60px; }
+.section-tag { font-size:10px;font-weight:600;color:var(--gold-dark);text-transform:uppercase;letter-spacing:3px;margin-bottom:6px; }
+.section-title { font-family:'Playfair Display',Georgia,serif;font-size:28px;font-weight:700;color:var(--text);line-height:1.2;margin-bottom:4px; }
+.divider { width:40px;height:2px;background:var(--gold);margin-bottom:24px; }
+.chapter-header { margin-bottom:24px;break-after:avoid; }
+.body-text { font-size:13px;color:var(--text);line-height:1.65;margin-bottom:14px; }
+.color-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px; }
+.color-card { background:var(--white);border-radius:8px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,0.06);break-inside:avoid; }
+.color-swatch { height:56px; }
+.color-info { padding:8px 10px; }
+.color-name { font-size:11px;font-weight:600;color:var(--text); }
+.color-hex { font-size:10px;color:var(--text-muted);font-family:'Courier New',monospace; }
+.color-role { font-size:9px;color:var(--text-sec); }
+.type-specimen { margin-bottom:20px;padding:20px;background:var(--white);border-radius:8px;break-inside:avoid;box-shadow:0 1px 4px rgba(0,0,0,0.06); }
+.type-label { font-size:10px;color:var(--gold-dark);text-transform:uppercase;letter-spacing:2px;margin-bottom:8px; }
+.img-grid { display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:20px; }
+.img-card { border-radius:8px;overflow:hidden;background:var(--white);box-shadow:0 1px 4px rgba(0,0,0,0.06);break-inside:avoid; }
+.img-card img { width:100%;height:auto;display:block; }
+.img-card .caption { padding:8px 10px;font-size:10px;color:var(--text-sec);font-weight:500; }
+.btn-row { display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px;align-items:center; }
+.btn { padding:10px 24px;border-radius:12px;font-size:13px;font-weight:600;border:none;letter-spacing:0.5px; }
+.btn-primary { background:linear-gradient(135deg,var(--gold-light),var(--gold),var(--gold-dark));color:white; }
+.btn-secondary { background:transparent;border:2px solid var(--gold);color:var(--gold); }
+.btn-tertiary { background:var(--bg);color:var(--text);border:1px solid var(--border); }
+.chip { padding:6px 16px;border-radius:999px;font-size:12px;border:1.5px solid var(--gold);color:var(--gold);background:transparent; }
+.chip-active { background:var(--gold);color:white; }
+.search-bar { display:flex;align-items:center;background:var(--bg);border-radius:999px;padding:10px 16px;gap:8px;max-width:360px;border:1px solid var(--border); }
+.search-bar span { color:var(--text-muted);font-size:13px; }
+.badge { display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:var(--gold);color:white;font-size:11px;font-weight:700; }
+.info-table { width:100%;border-collapse:collapse;margin-bottom:20px;font-size:12px; }
+.info-table th { text-align:left;padding:8px 10px;background:var(--surface-alt);color:var(--text-sec);font-weight:600;border-bottom:1px solid var(--border); }
+.info-table td { padding:8px 10px;border-bottom:1px solid var(--border);color:var(--text); }
+.info-table td:first-child { color:var(--text-sec);font-weight:500; }
+.ending { width:720px;height:1020px;box-sizing:border-box;break-before:page;overflow:hidden;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative; }
+.ending::before { content:'';position:absolute;top:0;left:0;right:0;bottom:0;border:3px solid var(--gold);margin:24px;pointer-events:none; }
+.ending-logo { width:80px;height:auto;margin-bottom:24px;opacity:0.7; }
+.ending-text { font-family:'Playfair Display',Georgia,serif;font-size:20px;color:var(--text-sec); }
+.ending-sub { font-size:12px;color:var(--text-muted);margin-top:8px;letter-spacing:1px; }
+</style>
+</head>
+<body>
+
+<div class="cover">
+    <img class="cover-logo" src="../SHUSMA_Full_Logo_AI.png" alt="SHUSMA Logo">
+    <div class="cover-title">Brand Guidelines</div>
+    <div class="cover-divider"></div>
+    <div class="cover-subtitle">SHUSMA Readymade Garments Trading LLC</div>
+    <div class="cover-tagline">Heritage Luxury Fashion Ecommerce</div>
+    <div class="cover-date">Version 1.0 / August 2026</div>
+</div>
+
+<div class="main-content">
+
+<div class="chapter-header">
+    <div class="section-tag">Chapter 1</div>
+    <div class="section-title">Brand Overview</div>
+    <div class="divider"></div>
+</div>
+<div class="body-text">SHUSMA Readymade Garments Trading LLC is a heritage-luxury fashion brand specializing in premium readymade garments for the UAE and Indian diaspora markets. The brand embodies a philosophy where Victorian-era ornamental design traditions meet contemporary ecommerce excellence, creating a shopping experience that feels both timeless and thoroughly modern. The visual identity draws inspiration from classical tailoring traditions, represented by the ornate mannequin dress form logo mark, while clean sans-serif typography signals a commitment to modern usability and accessibility across all digital touchpoints.</div>
+
+<table class="info-table">
+    <tr><th>Attribute</th><th>Detail</th></tr>
+    <tr><td>Brand Name</td><td>SHUSMA Readymade Garments Trading LLC</td></tr>
+    <tr><td>Arabic Name</td><td>شوسما لتاجر الملابس الجاهزة ش.ذ.م.م</td></tr>
+    <tr><td>Industry</td><td>Fashion / Readymade Garments Ecommerce</td></tr>
+    <tr><td>Market</td><td>UAE / Indian Diaspora</td></tr>
+    <tr><td>Design Philosophy</td><td>Heritage Luxury meets Modern Commerce</td></tr>
+    <tr><td>Primary Channel</td><td>Mobile-first Ecommerce Application</td></tr>
+</table>
+
+<div class="chapter-header">
+    <div class="section-tag">Chapter 2</div>
+    <div class="section-title">Color Palette</div>
+    <div class="divider"></div>
+</div>
+<div class="body-text">The SHUSMA color palette is built around a warm gold foundation that echoes the ornamental details of the brand logo. The primary gold tone provides luxury and warmth, while the cream background creates a soft, inviting canvas. Supporting neutrals ensure readability and hierarchy, with the warm brown text tones maintaining visual cohesion throughout all touchpoints.</div>
+
+<div class="color-grid">
+    <div class="color-card"><div class="color-swatch" style="background:#C9A961"></div><div class="color-info"><div class="color-name">Primary Gold</div><div class="color-hex">#C9A961</div><div class="color-role">CTAs, accents</div></div></div>
+    <div class="color-card"><div class="color-swatch" style="background:#A07D3F"></div><div class="color-info"><div class="color-name">Dark Gold</div><div class="color-hex">#A07D3F</div><div class="color-role">Hover, gradients</div></div></div>
+    <div class="color-card"><div class="color-swatch" style="background:#E2CC8A"></div><div class="color-info"><div class="color-name">Light Gold</div><div class="color-hex">#E2CC8A</div><div class="color-role">Highlights</div></div></div>
+    <div class="color-card"><div class="color-swatch" style="background:#D4AF37"></div><div class="color-info"><div class="color-name">Metallic Gold</div><div class="color-hex">#D4AF37</div><div class="color-role">Special accent</div></div></div>
+    <div class="color-card"><div class="color-swatch" style="background:#FAF8F5;border-bottom:1px solid #E8E0D6"></div><div class="color-info"><div class="color-name">Warm Cream</div><div class="color-hex">#FAF8F5</div><div class="color-role">Page background</div></div></div>
+    <div class="color-card"><div class="color-swatch" style="background:#FFFFFF;border-bottom:1px solid #E8E0D6"></div><div class="color-info"><div class="color-name">White</div><div class="color-hex">#FFFFFF</div><div class="color-role">Cards, content</div></div></div>
+    <div class="color-card"><div class="color-swatch" style="background:#1A1A1A"></div><div class="color-info"><div class="color-name">Near Black</div><div class="color-hex">#1A1A1A</div><div class="color-role">Primary text</div></div></div>
+    <div class="color-card"><div class="color-swatch" style="background:#5D4E37"></div><div class="color-info"><div class="color-name">Warm Brown</div><div class="color-hex">#5D4E37</div><div class="color-role">Secondary text</div></div></div>
+</div>
+
+<div class="chapter-header">
+    <div class="section-tag">Chapter 3</div>
+    <div class="section-title">Typography</div>
+    <div class="divider"></div>
+</div>
+<div class="body-text">The SHUSMA typography system pairs an elegant serif display font with a clean geometric sans-serif for UI elements. Playfair Display creates luxury impact for headlines, while Inter ensures readability across all mobile screen sizes. Arabic content uses Noto Naskh Arabic for the UAE market.</div>
+
+<div class="type-specimen">
+    <div class="type-label">Display: Playfair Display</div>
+    <div style="font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:var(--text);line-height:1.2;margin-bottom:4px;">Elegance Redefined</div>
+    <div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:400;color:var(--text-sec);font-style:italic;margin-bottom:4px;">The Art of Readymade Fashion</div>
+    <div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--gold-dark);">New Collection 2026</div>
+</div>
+
+<div class="type-specimen">
+    <div class="type-label">Body: Inter</div>
+    <div style="font-size:24px;font-weight:700;margin-bottom:2px;">H1 Bold 24px</div>
+    <div style="font-size:20px;font-weight:600;margin-bottom:2px;">H2 SemiBold 20px</div>
+    <div style="font-size:16px;font-weight:500;margin-bottom:2px;">H3 Medium 16px</div>
+    <div style="font-size:14px;font-weight:400;color:var(--text-sec);">Body text 14px for product descriptions and general content throughout the mobile application.</div>
+    <div style="font-size:12px;color:var(--text-muted);">Caption 12px for labels and secondary information.</div>
+</div>
+
+<div class="chapter-header">
+    <div class="section-tag">Chapter 4</div>
+    <div class="section-title">Spacing and Grid</div>
+    <div class="divider"></div>
+</div>
+<div class="body-text">The spacing system uses a 4px base unit with mobile-first approach. Mobile horizontal padding is 16px, vertical section spacing 20px. Product grid: 2 columns mobile, 3 tablet, 4 desktop. Max content width: 1440px centered. 8px baseline grid for vertical rhythm consistency.</div>
+
+<table class="info-table">
+    <tr><th>Token</th><th>Value</th><th>Usage</th></tr>
+    <tr><td>space-1</td><td>4px</td><td>Tight gaps</td></tr>
+    <tr><td>space-4</td><td>16px</td><td>Mobile padding</td></tr>
+    <tr><td>space-6</td><td>24px</td><td>Desktop section gap</td></tr>
+    <tr><td>space-8</td><td>32px</td><td>Major section divider</td></tr>
+    <tr><td>space-16</td><td>64px</td><td>Hero section padding</td></tr>
+</table>
+
+<div class="chapter-header">
+    <div class="section-tag">Chapter 5</div>
+    <div class="section-title">UI Components</div>
+    <div class="divider"></div>
+</div>
+<div class="body-text">Every component follows the brand design tokens and is optimized for touch interaction. Buttons feature 44px+ tap targets, product cards use 3:4 image ratios, and all interactive elements provide gold accent highlights with smooth 200-300ms transitions.</div>
+
+<div class="type-specimen">
+    <div class="type-label">Buttons</div>
+    <div class="btn-row">
+        <div class="btn btn-primary">Shop Now</div>
+        <div class="btn btn-secondary">View Details</div>
+        <div class="btn btn-tertiary">Continue Shopping</div>
+    </div>
+</div>
+
+<div class="type-specimen">
+    <div class="type-label">Category Chips</div>
+    <div class="btn-row">
+        <div class="chip chip-active">All</div>
+        <div class="chip">Women</div>
+        <div class="chip">Men</div>
+        <div class="chip">Kids</div>
+        <div class="chip">New In</div>
+    </div>
+</div>
+
+<div class="type-specimen">
+    <div class="type-label">Search Bar</div>
+    <div class="search-bar"><span>Search for products...</span></div>
+</div>
+
+<div class="chapter-header">
+    <div class="section-tag">Chapter 6</div>
+    <div class="section-title">Brand Imagery</div>
+    <div class="divider"></div>
+</div>
+<div class="body-text">Brand photography follows warm, golden-hour lighting with premium retail aesthetics. All imagery maintains the gold and cream color language and avoids cold or clinical tones. Product photography uses model-less garment shots on cream backgrounds for consistency.</div>
+
+<div class="img-grid">
+    <div class="img-card"><img src="hero-banner-1.png" alt="Hero Banner 1"><div class="caption">Hero Banner — Woman in Gold Silk</div></div>
+    <div class="img-card"><img src="hero-banner-2.png" alt="Hero Banner 2"><div class="caption">Hero Banner — Boutique Display</div></div>
+    <div class="img-card"><img src="category-women.png" alt="Women Category"><div class="caption">Women's Fashion — Mobile Category</div></div>
+    <div class="img-card"><img src="category-men.png" alt="Men Category"><div class="caption">Men's Fashion — Mobile Category</div></div>
+    <div class="img-card"><img src="category-kids.png" alt="Kids Category"><div class="caption">Kids Fashion — Mobile Category</div></div>
+    <div class="img-card"><img src="promo-banner.png" alt="Promo Banner"><div class="caption">Promotional Banner — New Collection</div></div>
+    <div class="img-card"><img src="social-instagram-1.png" alt="Social 1"><div class="caption">Instagram — Flat Lay Garments</div></div>
+    <div class="img-card"><img src="social-instagram-2.png" alt="Social 2"><div class="caption">Instagram — Embroidery Detail</div></div>
+</div>
+
+<div class="chapter-header">
+    <div class="section-tag">Chapter 7</div>
+    <div class="section-title">Application Screens</div>
+    <div class="divider"></div>
+</div>
+<div class="body-text">The SHUSMA ecommerce application is designed mobile-first with a responsive layout that adapts beautifully from 375px mobile screens to 1440px desktop displays. Eight core screens cover the complete shopping journey from discovery to order confirmation.</div>
+
+<table class="info-table">
+    <tr><th>Screen</th><th>Purpose</th><th>Key Features</th></tr>
+    <tr><td>Home</td><td>Discovery and engagement</td><td>Hero banner, categories, trending, new arrivals</td></tr>
+    <tr><td>Product Listing</td><td>Browse and filter</td><td>Filter chips, sort, grid/list toggle</td></tr>
+    <tr><td>Product Detail</td><td>Product information</td><td>Gallery, size/color selector, related items</td></tr>
+    <tr><td>Shopping Cart</td><td>Review and modify</td><td>Qty controls, promo code, order summary</td></tr>
+    <tr><td>Checkout</td><td>Purchase flow</td><td>Address, delivery, payment, COD</td></tr>
+    <tr><td>My Account</td><td>Profile management</td><td>Orders, wishlist, addresses, rewards</td></tr>
+    <tr><td>Order Confirmation</td><td>Post-purchase</td><td>Timeline tracker, share, continue</td></tr>
+    <tr><td>Search Results</td><td>Product discovery</td><td>Keyword highlighting, sort, filters</td></tr>
+</table>
+
+<div class="chapter-header">
+    <div class="section-tag">Chapter 8</div>
+    <div class="section-title">Design System Integration</div>
+    <div class="divider"></div>
+</div>
+<div class="body-text">The SHUSMA design system is packaged as an open-design compatible design system located at open-design/design-systems/shusma/. It includes a DESIGN.md specification, tokens.css with all CSS custom properties, a manifest.json for project configuration, and an interactive components.html showcase. To use it in open-design, select "SHUSMA" from the Design Systems catalog in the Studio.</div>
+<div class="body-text">The design system defines 56 design tokens covering colors, typography, spacing, radius, shadows, and transitions. All tokens are accessible as CSS custom properties for direct use in HTML/CSS prototypes or can be converted to Tailwind CSS v4 format for Next.js and React component development. The component showcase demonstrates every UI element in both default and interactive states.</div>
+
+</div>
+
+<div class="ending">
+    <img class="ending-logo" src="../SHUSMA_Full_Logo_AI.png" alt="SHUSMA">
+    <div class="ending-text">SHUSMA Readymade Garments</div>
+    <div class="ending-sub">Heritage Luxury Fashion</div>
+</div>
+
+</body>
+</html>

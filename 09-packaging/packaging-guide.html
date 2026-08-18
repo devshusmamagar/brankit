@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SHUSMA — Packaging Design Guide | شوسما</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600;700&display=swap');
+  :root {
+    --gold: #C9A961;
+    --dark-gold: #A07D3F;
+    --light-gold: #E2CC8A;
+    --cream: #FAF8F5;
+    --brown: #5D4E37;
+    --dark: #1A1A1A;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', 'Noto Sans Arabic', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    line-height: 1.7;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .cover {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(160deg, var(--dark) 0%, #2a2419 40%, var(--brown) 100%);
+    padding: 60px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%; width: 200%; height: 200%;
+    background: radial-gradient(ellipse at 30% 50%, rgba(201,169,97,0.08) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .cover-ornament { width: 80px; height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 24px auto; }
+  .cover h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(42px, 6vw, 72px);
+    font-weight: 300;
+    color: var(--gold);
+    letter-spacing: 12px;
+    text-transform: uppercase;
+    position: relative; z-index: 1;
+  }
+  .cover h2 {
+    font-family: 'Noto Sans Arabic', sans-serif;
+    font-size: 20px; font-weight: 300;
+    color: var(--light-gold);
+    letter-spacing: 2px;
+    direction: rtl;
+    position: relative; z-index: 1;
+    margin-top: 8px;
+  }
+  .cover .subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px; font-weight: 400;
+    color: rgba(226,204,138,0.6);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    position: relative; z-index: 1;
+  }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
+  section { padding: 80px 0; border-bottom: 1px solid rgba(201,169,97,0.15); }
+  section:last-child { border-bottom: none; }
+  h2.section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px; font-weight: 400;
+    color: var(--brown); margin-bottom: 12px; letter-spacing: 1px;
+  }
+  .section-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px; font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    display: block; margin-bottom: 6px;
+  }
+  .section-desc { color: #8a7e6d; font-size: 14px; max-width: 640px; line-height: 1.8; margin-bottom: 40px; }
+  .image-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; margin-bottom: 40px; }
+  .image-card {
+    background: white; border-radius: 8px; overflow: hidden;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .image-card:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(201,169,97,0.15); }
+  .image-card img { width: 100%; height: 280px; object-fit: cover; display: block; }
+  .image-card .card-label {
+    padding: 16px 20px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px; color: var(--brown); font-weight: 600; letter-spacing: 0.5px;
+  }
+  .image-card .card-label span {
+    display: block; font-family: 'Inter', sans-serif;
+    font-size: 11px; font-weight: 400; color: #a09888; margin-top: 4px; letter-spacing: 0;
+  }
+  .specs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-bottom: 32px; }
+  .spec-card {
+    background: white;
+    border: 1px solid rgba(201,169,97,0.2);
+    border-radius: 8px; padding: 28px;
+    position: relative; overflow: hidden;
+  }
+  .spec-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--light-gold));
+  }
+  .spec-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px; font-weight: 600; color: var(--brown);
+    margin-bottom: 16px; display: flex; align-items: center; gap: 10px;
+  }
+  .spec-card h3 .icon {
+    width: 32px; height: 32px;
+    background: linear-gradient(135deg, var(--gold), var(--dark-gold));
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 14px; color: white; flex-shrink: 0;
+  }
+  .spec-card table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .spec-card table th {
+    text-align: left; font-weight: 600; color: var(--brown);
+    padding: 6px 0; border-bottom: 1px solid rgba(201,169,97,0.15);
+    font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--gold);
+  }
+  .spec-card table td { padding: 8px 0; border-bottom: 1px solid rgba(0,0,0,0.04); vertical-align: top; }
+  .spec-card table td:last-child { color: #6b6256; }
+  .spec-card ul { list-style: none; padding: 0; }
+  .spec-card ul li {
+    padding: 6px 0; padding-left: 18px; position: relative;
+    color: #6b6256; font-size: 13px; line-height: 1.7;
+  }
+  .spec-card ul li::before { content: ''; position: absolute; left: 0; top: 14px; width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+  .color-row { display: flex; flex-wrap: wrap; gap: 20px; margin: 24px 0; }
+  .color-swatch {
+    display: flex; align-items: center; gap: 14px;
+    background: white; border-radius: 8px; padding: 14px 20px;
+    border: 1px solid rgba(0,0,0,0.06); min-width: 280px;
+  }
+  .swatch-circle { width: 48px; height: 48px; border-radius: 50%; flex-shrink: 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  .swatch-info .swatch-name { font-weight: 600; font-size: 13px; color: var(--dark); }
+  .swatch-info .swatch-values { font-size: 11px; color: #8a7e6d; margin-top: 2px; font-family: 'Inter', monospace; }
+  .die-cut {
+    background: white; border: 1px dashed rgba(201,169,97,0.4);
+    border-radius: 8px; padding: 32px; margin: 24px 0; text-align: center;
+  }
+  .die-cut-diagram {
+    border: 2px solid var(--gold); border-radius: 4px;
+    display: inline-block; padding: 20px 40px;
+    position: relative; margin: 16px 0; min-width: 200px;
+  }
+  .die-cut-diagram .dim { font-size: 11px; color: var(--dark-gold); font-weight: 600; position: absolute; }
+  .die-cut-diagram .dim-w { top: -20px; left: 50%; transform: translateX(-50%); }
+  .die-cut-diagram .dim-h { right: -50px; top: 50%; transform: translateY(-50%); writing-mode: vertical-lr; }
+  .die-cut-label { font-family: 'Cormorant Garamond', serif; font-size: 16px; color: var(--brown); margin-top: 12px; }
+  .die-cut-dims { font-size: 12px; color: #8a7e6d; margin-top: 4px; }
+  .placement-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 24px 0; }
+  .placement-item { background: white; border-radius: 8px; padding: 24px; border: 1px solid rgba(0,0,0,0.06); }
+  .placement-item h4 { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--brown); margin-bottom: 12px; }
+  .placement-item p, .placement-item li { font-size: 13px; color: #6b6256; line-height: 1.8; }
+  .placement-item ul { list-style: none; padding: 0; }
+  .placement-item ul li { padding-left: 16px; position: relative; }
+  .placement-item ul li::before { content: '\2192'; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
+  .callout {
+    background: linear-gradient(135deg, rgba(201,169,97,0.06), rgba(201,169,97,0.02));
+    border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0;
+    padding: 20px 24px; margin: 24px 0; font-size: 13px; color: #6b6256; line-height: 1.8;
+  }
+  .callout strong { color: var(--brown); }
+  .callout-warning { background: linear-gradient(135deg, rgba(160,125,63,0.08), rgba(160,125,63,0.03)); border-left-color: var(--dark-gold); }
+  .vendor-table {
+    width: 100%; border-collapse: collapse; background: white;
+    border-radius: 8px; overflow: hidden; font-size: 13px;
+    margin: 24px 0; box-shadow: 0 1px 12px rgba(0,0,0,0.04);
+  }
+  .vendor-table th {
+    background: var(--brown); color: var(--light-gold); font-weight: 500;
+    padding: 14px 20px; text-align: left; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 1.5px;
+  }
+  .vendor-table td { padding: 14px 20px; border-bottom: 1px solid rgba(0,0,0,0.04); color: #6b6256; }
+  .vendor-table tr:last-child td { border-bottom: none; }
+  .sticker-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 24px 0; }
+  .sticker-card {
+    background: white; border-radius: 8px; padding: 24px; text-align: center;
+    border: 1px solid rgba(201,169,97,0.15);
+  }
+  .sticker-card .sticker-preview {
+    width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 16px;
+    border: 2px solid var(--gold); display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif; font-size: 12px; color: var(--gold);
+    font-weight: 600; letter-spacing: 1px;
+  }
+  .sticker-card .sticker-preview.square { border-radius: 8px; }
+  .sticker-card h4 { font-family: 'Cormorant Garamond', serif; font-size: 16px; color: var(--brown); margin-bottom: 8px; }
+  .sticker-card p { font-size: 12px; color: #8a7e6d; line-height: 1.6; }
+  footer {
+    background: var(--dark); padding: 48px 40px; text-align: center;
+    color: rgba(226,204,138,0.5); font-size: 12px; letter-spacing: 1px;
+  }
+  footer .brand { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: var(--gold); letter-spacing: 6px; margin-bottom: 8px; }
+  @media (max-width: 768px) {
+    .container { padding: 0 20px; }
+    .placement-grid { grid-template-columns: 1fr; }
+    section { padding: 48px 0; }
+    .image-card img { height: 200px; }
+    .sticker-grid { grid-template-columns: 1fr; }
+  }
+  @media print {
+    .cover { min-height: auto; padding: 80px 40px; }
+    section { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="subtitle">Brand Standards</div>
+  <div class="cover-ornament"></div>
+  <h1>SHUSMA</h1>
+  <h2>شوسما لتاجر الملابس الجاهزة</h2>
+  <div class="cover-ornament"></div>
+  <div class="subtitle">Packaging Design Guide</div>
+</div>
+
+<!-- 01 OVERVIEW -->
+<section>
+  <div class="container">
+    <span class="section-number">01</span>
+    <h2 class="section-title">Packaging System Overview</h2>
+    <p class="section-desc">
+      The SHUSMA packaging system delivers a luxurious, cohesive unboxing experience reflecting the brand's
+      heritage and craftsmanship. Every touchpoint &mdash; from shipping box to tissue paper &mdash; reinforces
+      premium positioning and creates a memorable brand moment.
+    </p>
+    <div class="image-grid">
+      <div class="image-card">
+        <img src="shopping-bag.png" alt="SHUSMA luxury shopping bag with rope handles on marble surface">
+        <div class="card-label">Shopping Bag<span>Rope handles &middot; Matte lamination &middot; Gold foil logo</span></div>
+      </div>
+      <div class="image-card">
+        <img src="gift-box.png" alt="SHUSMA luxury gift box with gold ribbon and embossed logo">
+        <div class="card-label">Gift Box<span>Cream stock &middot; Gold emboss &middot; Satin ribbon</span></div>
+      </div>
+      <div class="image-card">
+        <img src="shipping-box.png" alt="SHUSMA branded shipping box with custom tape and tissue paper">
+        <div class="card-label">Shipping Box<span>Branded tape &middot; Tissue &middot; Thank you card</span></div>
+      </div>
+      <div class="image-card">
+        <img src="stationery-set.png" alt="SHUSMA thank you card and branded sticker set flat lay">
+        <div class="card-label">Stationery Set<span>Foil cards &middot; Logo seals &middot; Care labels</span></div>
+      </div>
+    </div>
+    <div class="specs-grid">
+      <div class="spec-card">
+        <h3><span class="icon">&#128230;</span> Packaging Hierarchy</h3>
+        <ul>
+          <li><strong>Outer Shipping:</strong> Corrugated mailer with branded tape &mdash; first brand impression upon delivery</li>
+          <li><strong>Inner Box:</strong> Rigid gift box for in-store purchases and premium orders</li>
+          <li><strong>Shopping Bag:</strong> Premium paper bag for retail carry-out, double-walled construction</li>
+          <li><strong>Tissue Paper:</strong> Printed damask pattern, wraps garment inside all packaging</li>
+          <li><strong>Inserts:</strong> Thank you card, care card, branded stickers, return label</li>
+          <li><strong>Garment Bag:</strong> Breathable non-woven for high-value pieces, gold branding</li>
+        </ul>
+      </div>
+      <div class="spec-card">
+        <h3><span class="icon">&#10022;</span> Design Principles</h3>
+        <ul>
+          <li><strong>Restraint:</strong> Minimal external branding &mdash; let materials speak. Logo on one face only</li>
+          <li><strong>Cohesion:</strong> Every element uses the same color palette, typeface, and logo mark</li>
+          <li><strong>Tactile Quality:</strong> Papers, ribbons, and finishes chosen for premium hand-feel</li>
+          <li><strong>Unboxing Journey:</strong> Sequential reveal &mdash; outer, inner, tissue, product, card</li>
+          <li><strong>Cultural Respect:</strong> Arabic brand name شوسما appears with equal prominence</li>
+          <li><strong>Sustainability:</strong> FSC-certified materials, soy-based inks, recyclable components</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 MATERIALS -->
+<section>
+  <div class="container">
+    <span class="section-number">02</span>
+    <h2 class="section-title">Material Specifications</h2>
+    <p class="section-desc">
+      Every material has been selected to convey luxury through touch, weight, and visual finish.
+      All papers must be FSC-certified and sourced from sustainable mills.
+    </p>
+    <div class="specs-grid">
+      <div class="spec-card">
+        <h3><span class="icon">&#128092;</span> Shopping Bag</h3>
+        <table>
+          <tr><th>Property</th><th>Specification</th></tr>
+          <tr><td>Paper Stock</td><td>320gsm luxury art card, white kraft base</td></tr>
+          <tr><td>Finish</td><td>Soft-touch matte lamination (exterior)</td></tr>
+          <tr><td>Logo Treatment</td><td>Gold foil stamping (hot stamp, 1-color foil)</td></tr>
+          <tr><td>Handles</td><td>4mm cotton rope, natural color, knotted inside</td></tr>
+          <tr><td>Reinforcement</td><td>Cardboard base insert, folded edges glued</td></tr>
+          <tr><td>Interior</td><td>Uncoated &mdash; no interior print except subtle brand mark</td></tr>
+        </table>
+      </div>
+      <div class="spec-card">
+        <h3><span class="icon">&#127873;</span> Gift Box</h3>
+        <table>
+          <tr><th>Property</th><th>Specification</th></tr>
+          <tr><td>Box Board</td><td>1200&mu;m rigid greyboard, wrapped in 157gsm art paper</td></tr>
+          <tr><td>Wrap Finish</td><td>Matte lamination with gold foil accents</td></tr>
+          <tr><td>Interior Lining</td><td>Flocked velvet in dark brown (#5D4E37)</td></tr>
+          <tr><td>Magnetic Closure</td><td>Concealed magnet, 15mm width, grade N35</td></tr>
+          <tr><td>Ribbon</td><td>15mm double-faced satin, gold (#C9A961)</td></tr>
+          <tr><td>Hinge</td><td>2mm premium book-binding cloth tape</td></tr>
+        </table>
+      </div>
+      <div class="spec-card">
+        <h3><span class="icon">&#128230;</span> Shipping Box / Mailer</h3>
+        <table>
+          <tr><th>Property</th><th>Specification</th></tr>
+          <tr><td>Corrugated Board</td><td>B-flute, 200gsm kraft liner, ECT-32 rated</td></tr>
+          <tr><td>Exterior Print</td><td>1-color flexo print (dark brown #5D4E37)</td></tr>
+          <tr><td>Branded Tape</td><td>48mm polypropylene, gold pattern print</td></tr>
+          <tr><td>Tissue Paper</td><td>20gsm, gold damask pattern, single wrap</td></tr>
+          <tr><td>Protection</td><td>Biodegradable air pillows (not bubble wrap)</td></tr>
+          <tr><td>Label</td><td>Peel-and-stick shipping label on branded stock</td></tr>
+        </table>
+      </div>
+      <div class="spec-card">
+        <h3><span class="icon">&#9993;</span> Stationery &amp; Inserts</h3>
+        <table>
+          <tr><th>Property</th><th>Specification</th></tr>
+          <tr><td>Card Stock</td><td>350gsm cotton paper, cream (#FAF8F5)</td></tr>
+          <tr><td>Print Method</td><td>Digital offset, CMYK + gold foil spot</td></tr>
+          <tr><td>Sticker Material</td><td>Gloss vinyl with gold foil, kiss-cut on A4 sheet</td></tr>
+          <tr><td>Care Label</td><td>Woven satin label, 25mm width, heat-seal</td></tr>
+          <tr><td>Return Label</td><td>Self-adhesive, 100gsm, perforated tear-off</td></tr>
+          <tr><td>Envelope</td><td>120gsm kraft, gummed flap, no window</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="callout">
+      <strong>Finish Glossary:</strong>
+      <strong>Matte Lamination</strong> &mdash; smooth, non-reflective film for premium feel and scuff resistance.
+      <strong>Gold Foil Stamping</strong> &mdash; heated die transfers metallic foil for brilliant gold effect.
+      <strong>Embossing</strong> &mdash; raised or debossed impression in paper surface creating tactile depth.
+      <strong>Spot UV</strong> &mdash; high-gloss clear coating on specific areas, contrast against matte backgrounds.
+      <strong>Soft-Touch</strong> &mdash; specialized matte laminate with velvety, suede-like texture.
+    </div>
+  </div>
+</section>
+
+<!-- 03 COLORS -->
+<section>
+  <div class="container">
+    <span class="section-number">03</span>
+    <h2 class="section-title">Color Specifications for Print</h2>
+    <p class="section-desc">
+      All packaging produced using CMYK values. Pantone spot colors specified for foil stamping and specialty processes.
+      Always request a press proof before full production run.
+    </p>
+    <div class="color-row">
+      <div class="color-swatch">
+        <div class="swatch-circle" style="background:#C9A961;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Gold &mdash; Primary</div>
+          <div class="swatch-values">CMYK: 15/25/65/5 | Pantone: 871 C</div>
+          <div class="swatch-values">HEX: #C9A961 | Foil: Metallic Gold (Orafoil 403)</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-circle" style="background:#A07D3F;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Dark Gold &mdash; Accent</div>
+          <div class="swatch-values">CMYK: 25/40/80/25 | Pantone: 7320 C</div>
+          <div class="swatch-values">HEX: #A07D3F | Foil: Antique Gold (Orafoil 401)</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-circle" style="background:#E2CC8A;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Light Gold &mdash; Highlight</div>
+          <div class="swatch-values">CMYK: 5/10/40/0 | Pantone: 7405 C</div>
+          <div class="swatch-values">HEX: #E2CC8A | Use: Spot UV accents only</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-circle" style="background:#FAF8F5; border:1px solid #ddd;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Cream &mdash; Base</div>
+          <div class="swatch-values">CMYK: 2/1/3/0 | Pantone: 663 C</div>
+          <div class="swatch-values">HEX: #FAF8F5 | Paper stock color (unprinted)</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-circle" style="background:#5D4E37;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Brown &mdash; Text / Secondary</div>
+          <div class="swatch-values">CMYK: 40/50/65/55 | Pantone: 4625 C</div>
+          <div class="swatch-values">HEX: #5D4E37 | Flexo: 1-color print on kraft</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-circle" style="background:#1A1A1A;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Dark &mdash; Primary Text</div>
+          <div class="swatch-values">CMYK: 70/60/55/85 | Pantone: Black 6 C</div>
+          <div class="swatch-values">HEX: #1A1A1A | Rich black for premium print</div>
+        </div>
+      </div>
+    </div>
+    <div class="callout callout-warning">
+      <strong>&#9888; Critical:</strong> Always convert RGB brand colors to CMYK using the ICC profile of the target
+      printing press. Never rely on automatic conversions. Request a calibrated proof (Fogra39 or Fogra47)
+      and approve color matching before production. Gold foil colors are physical foils, not printed CMYK.
+    </div>
+  </div>
+</section>
+
+<!-- 04 DIE-CUT -->
+<section>
+  <div class="container">
+    <span class="section-number">04</span>
+    <h2 class="section-title">Die-Cut Templates &amp; Dimensions</h2>
+    <p class="section-desc">
+      Production die-lines for each packaging component. All measurements in millimeters (mm).
+      Add 3mm bleed on all cut edges.
+    </p>
+    <div class="specs-grid" style="grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));">
+      <div class="spec-card">
+        <h3><span class="icon">&#128092;</span> Shopping Bag</h3>
+        <div class="die-cut">
+          <div class="die-cut-diagram" style="width:160px;height:220px;"><span class="dim dim-w">280mm</span><span class="dim dim-h">380mm</span></div>
+          <div class="die-cut-label">Large Shopping Bag</div>
+          <div class="die-cut-dims">280W &times; 120D &times; 380H mm | Side gusset: 120mm | Handle drop: 220mm</div>
+        </div>
+        <div class="die-cut">
+          <div class="die-cut-diagram" style="width:120px;height:180px;"><span class="dim dim-w">220mm</span><span class="dim dim-h">300mm</span></div>
+          <div class="die-cut-label">Medium Shopping Bag</div>
+          <div class="die-cut-dims">220W &times; 90D &times; 300H mm | Side gusset: 90mm | Handle drop: 180mm</div>
+        </div>
+      </div>
+      <div class="spec-card">
+        <h3><span class="icon">&#127873;</span> Gift Box</h3>
+        <div class="die-cut">
+          <div class="die-cut-diagram" style="width:180px;height:120px;"><span class="dim dim-w">340mm</span><span class="dim dim-h">240mm</span></div>
+          <div class="die-cut-label">Large Rigid Box (Lid + Base)</div>
+          <div class="die-cut-dims">340W &times; 240D &times; 90H mm | Lid overlap: 15mm | 2mm greyboard</div>
+        </div>
+        <div class="die-cut">
+          <div class="die-cut-diagram" style="width:140px;height:100px;"><span class="dim dim-w">260mm</span><span class="dim dim-h">180mm</span></div>
+          <div class="die-cut-label">Small Rigid Box (Lid + Base)</div>
+          <div class="die-cut-dims">260W &times; 180D &times; 70H mm | Lid overlap: 12mm | Magnetic closure</div>
+        </div>
+      </div>
+      <div class="spec-card">
+        <h3><span class="icon">&#128230;</span> Shipping Box</h3>
+        <div class="die-cut">
+          <div class="die-cut-diagram" style="width:200px;height:130px;"><span class="dim dim-w">400mm</span><span class="dim dim-h">280mm</span></div>
+          <div class="die-cut-label">Standard Mailer Box (FEFCO 0427)</div>
+          <div class="die-cut-dims">400W &times; 280D &times; 100H mm | B-flute | Tuck-in lid</div>
+        </div>
+        <div class="die-cut">
+          <div class="die-cut-diagram" style="width:160px;height:110px;"><span class="dim dim-w">320mm</span><span class="dim dim-h">220mm</span></div>
+          <div class="die-cut-label">Padded Mailer (accessories)</div>
+          <div class="die-cut-dims">320W &times; 220D mm | Flat | Self-seal strip</div>
+        </div>
+      </div>
+      <div class="spec-card">
+        <h3><span class="icon">&#9993;</span> Stationery</h3>
+        <table>
+          <tr><th>Item</th><th>Size (mm)</th></tr>
+          <tr><td>Thank You Card</td><td>140 &times; 100 (folded: 70 &times; 100)</td></tr>
+          <tr><td>Care Card</td><td>90 &times; 60</td></tr>
+          <tr><td>Logo Sticker (round)</td><td>&Oslash;45mm</td></tr>
+          <tr><td>Seal Sticker (round)</td><td>&Oslash;60mm</td></tr>
+          <tr><td>Social Media Sticker</td><td>50 &times; 50</td></tr>
+          <tr><td>Brand Tape</td><td>48mm W &times; 100m roll</td></tr>
+          <tr><td>Tissue Paper Sheet</td><td>500 &times; 700</td></tr>
+          <tr><td>Garment Tag</td><td>50 &times; 90, drill hole &Oslash;5mm</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 BRAND PLACEMENT -->
+<section>
+  <div class="container">
+    <span class="section-number">05</span>
+    <h2 class="section-title">Brand Placement Guidelines</h2>
+    <p class="section-desc">
+      Logo placement ensures brand recognition while maintaining elegance and restraint.
+      The golden ratio (1:1.618) guides positioning of all brand elements on packaging surfaces.
+    </p>
+    <div class="placement-grid">
+      <div class="placement-item">
+        <h4>Shopping Bag &mdash; Front Face</h4>
+        <ul>
+          <li>SHUSMA logo centered, positioned at upper-third of bag face</li>
+          <li>Logo width: 40% of bag width (min 80mm on large bag)</li>
+          <li>Arabic شوسما beneath English logo, 8px gap, 60% of English size</li>
+          <li>Clear space: minimum 25mm on all sides of logo group</li>
+          <li>Gold foil stamp only &mdash; no printed ink on front face</li>
+          <li>Back face: small logo mark bottom-center, 20mm height</li>
+        </ul>
+      </div>
+      <div class="placement-item">
+        <h4>Gift Box &mdash; Lid Surface</h4>
+        <ul>
+          <li>Logo centered on lid, gold foil stamped or embossed</li>
+          <li>Logo width: 35% of lid width</li>
+          <li>Ornamental border frame: 8mm inset from edge, gold foil</li>
+          <li>Corner ornaments: small gold geometric accents at 4 corners</li>
+          <li>Interior lid: flocked velvet, no print</li>
+          <li>Base interior: SHUSMA label bottom-center, debossed</li>
+        </ul>
+      </div>
+      <div class="placement-item">
+        <h4>Shipping Box &mdash; Exterior</h4>
+        <ul>
+          <li>Logo stamp on one broad face only, centered, single-color brown</li>
+          <li>Logo height: 30mm (flexo print, no foil)</li>
+          <li>Arabic name beneath, 10mm height</li>
+          <li>Branded tape: repeating gold pattern with logo every 200mm</li>
+          <li>Tape applied in H-pattern (one lengthwise + two crosswise strips)</li>
+          <li>No printing on flaps or interior</li>
+        </ul>
+      </div>
+      <div class="placement-item">
+        <h4>Tissue Paper &mdash; Pattern</h4>
+        <ul>
+          <li>Gold damask pattern (vector repeat tile, 150mm &times; 150mm)</li>
+          <li>Pattern scale: 20% opacity on cream background</li>
+          <li>Logo integrated subtly into repeat &mdash; once per 2 repeats</li>
+          <li>Sheet size: 500 &times; 700mm, oriented for diagonal fold wrapping</li>
+          <li>Print method: flexo 1-color gold on 20gsm tissue</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 STICKER DESIGNS -->
+<section>
+  <div class="container">
+    <span class="section-number">06</span>
+    <h2 class="section-title">Sticker, Ribbon &amp; Tag Designs</h2>
+    <p class="section-desc">
+      Branded stickers, ribbons, and hang tags complete the packaging experience.
+      Each element reinforces brand recognition while serving a functional purpose.
+    </p>
+    <div class="sticker-grid">
+      <div class="sticker-card">
+        <div class="sticker-preview">SHUSMA</div>
+        <h4>Logo Seal Sticker</h4>
+        <p>&Oslash;60mm round. Gold foil on cream vinyl. Ornate border ring, SHUSMA wordmark center, شوسما below. Used on tissue wrap closure and gift box seal.</p>
+      </div>
+      <div class="sticker-card">
+        <div class="sticker-preview square" style="font-size:9px;">HANDCRAFTED<br>WITH CARE</div>
+        <h4>"Handcrafted with Care" Sticker</h4>
+        <p>50&times;50mm square. Matte gold text on cream. Decorative line art frame. Placed on care card or garment tag. Communicates quality and artisanal values.</p>
+      </div>
+      <div class="sticker-card">
+        <div class="sticker-preview" style="font-size:9px;">@SHUSMA</div>
+        <h4>Social Media Sticker</h4>
+        <p>&Oslash;45mm round. Gold icons for Instagram, TikTok, Snapchat, X. SHUSMA handle text. Encourages unboxing social sharing. Placed on thank you card.</p>
+      </div>
+    </div>
+    <div class=    <div class="specs-grid" style="margin-top:24px;">
+      <div class="spec-card">
+        <h3><span class="icon">&#127872;</span> Ribbon Specifications</h3>
+        <table>
+          <tr><th>Property</th><th>Specification</th></tr>
+          <tr><td>Material</td><td>Double-faced satin, 100% polyester</td></tr>
+          <tr><td>Width</td><td>15mm standard, 25mm for gift wrapping</td></tr>
+          <tr><td>Color</td><td>Gold (#C9A961) dyed to PMS 871 C</td></tr>
+          <tr><td>Length per piece</td><td>600mm (standard bow), 1.2m (gift wrap)</td></tr>
+          <tr><td>Finish</td><td>Soft sheen, no glitter or metallic thread</td></tr>
+        </table>
+      </div>
+      <div class="spec-card">
+        <h3><span class="icon">&#128208;</span> Hang Tag Specifications</h3>
+        <table>
+          <tr><th>Property</th><th>Specification</th></tr>
+          <tr><td>Stock</td><td>450gsm premium uncoated card</td></tr>
+          <tr><td>Size</td><td>50 x 90mm, rounded corners (3mm radius)</td></tr>
+          <tr><td>Print</td><td>Front: gold foil logo + brown text. Back: care symbols + QR</td></tr>
+          <tr><td>Hole</td><td>5mm diameter, 15mm from top edge, centered</td></tr>
+          <tr><td>String</td><td>1mm gold elastic cord, 100mm loop</td></tr>
+          <tr><td>Finish</td><td>Soft-touch matte lamination, front only</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 SUSTAINABILITY -->
+<section>
+  <div class="container">
+    <span class="section-number">07</span>
+    <h2 class="section-title">Environmental &amp; Sustainability Notes</h2>
+    <p class="section-desc">
+      SHUSMA is committed to minimizing environmental impact while maintaining premium quality.
+      All packaging decisions balance luxury presentation with ecological responsibility.
+    </p>
+    <div class="specs-grid">
+      <div class="spec-card">
+        <h3><span class="icon">&#127807;</span> Material Sourcing</h3>
+        <ul>
+          <li><strong>FSC Certification:</strong> All paper and cardboard must carry FSC Chain of Custody certification</li>
+          <li><strong>Recycled Content:</strong> Minimum 30% post-consumer recycled content in corrugated shipping boxes</li>
+          <li><strong>Soy-Based Inks:</strong> All flexo and offset printing uses soy-based or vegetable-based inks</li>
+          <li><strong>Water-Based Coatings:</strong> Aqueous coatings preferred over UV lamination where possible</li>
+          <li><strong>Cotton Rope:</strong> Handle rope from certified organic cotton suppliers</li>
+          <li><strong>Vinyl Reduction:</strong> Transitioning stickers to paper-based alternatives by 2026</li>
+        </ul>
+      </div>
+      <div class="spec-card">
+        <h3><span class="icon">&#9851;</span> Waste &amp; End-of-Life</h3>
+        <ul>
+          <li><strong>Recyclability:</strong> Shopping bags, gift boxes, and tissue paper are fully curbside recyclable</li>
+          <li><strong>Compostable:</strong> Tissue paper and air pillows are home-compostable</li>
+          <li><strong>No Mixed Materials:</strong> Avoid combining non-recyclable elements (foil + lamination on same layer)</li>
+          <li><strong>Right-Sizing:</strong> Offer 3 box sizes to minimize void fill and shipping volume</li>
+          <li><strong>Reusable Bags:</strong> Shopping bag weight and handle quality designed for customer reuse</li>
+          <li><strong>Supplier Audit:</strong> Annual sustainability audit of all packaging vendors</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout">
+      <strong>Sustainability Goal:</strong> Achieve 100% recyclable or compostable packaging by Q4 2026.
+      Eliminate single-use plastic from all packaging by Q2 2026. Current packaging is 85% recyclable by weight.
+    </div>
+  </div>
+</section>
+
+<!-- 08 VENDOR SPECS -->
+<section>
+  <div class="container">
+    <span class="section-number">08</span>
+    <h2 class="section-title">Print Vendor Specifications</h2>
+    <p class="section-desc">
+      Technical requirements for production vendors. Share this section with print partners during onboarding.
+      All vendors must pass a quality audit before first production run.
+    </p>
+    <table class="vendor-table">
+      <tr>
+        <th>Requirement</th>
+        <th>Shopping Bag</th>
+        <th>Gift Box</th>
+        <th>Shipping Box</th>
+        <th>Stationery</th>
+      </tr>
+      <tr><td><strong>Artwork Format</strong></td><td>PDF/X-1a:2001, 300dpi</td><td>PDF/X-1a + die-line AI</td><td>PDF/X-4, vector</td><td>PDF/X-1a:2001, 300dpi</td></tr>
+      <tr><td><strong>Color Profile</strong></td><td>FOGRA39</td><td>FOGRA39</td><td>FOGRA47</td><td>FOGRA39</td></tr>
+      <tr><td><strong>Bleed</strong></td><td>3mm all sides</td><td>3mm + 5mm glue flap</td><td>5mm all sides</td><td>3mm all sides</td></tr>
+      <tr><td><strong>Min Order Qty</strong></td><td>500 units/size</td><td>200 units/size</td><td>1,000 units/size</td><td>1,000 sets</td></tr>
+      <tr><td><strong>Lead Time</strong></td><td>15-20 business days</td><td>20-25 business days</td><td>10-15 business days</td><td>12-18 business days</td></tr>
+      <tr><td><strong>Proof Required</strong></td><td>Wet proof on stock</td><td>Wet proof + dummy</td><td>Digital proof OK</td><td>Wet proof on stock</td></tr>
+      <tr><td><strong>Foil Tool</strong></td><td>Brass die, 1.5mm</td><td>Magnesium + emboss</td><td>N/A</td><td>Brass die, 1mm</td></tr>
+      <tr><td><strong>Packaging</strong></td><td>Bundled 50/pack</td><td>Individual poly-wrap</td><td>Nested 25/pack</td><td>Boxed 250/set</td></tr>
+    </table>
+    <div class="callout callout-warning">
+      <strong>Critical:</strong> First production run requires on-site inspection or video verification.
+      Vendor must provide color density report, foil adhesion test, and dimensional tolerance sheet.
+      Tolerance: plus or minus 2mm on all dimensions, plus or minus 5% on foil coverage.
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="brand">SHUSMA</div>
+  <p>Packaging Design Guide &mdash; Version 1.0 &mdash; Confidential</p>
+  <p style="margin-top:8px; direction:rtl;">شوسما لتاجر الملابس الجاهزة</p>
+</footer>
+
+</body>
+</html>

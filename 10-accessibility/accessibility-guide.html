@@ -1,0 +1,1467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHUSMA Accessibility Guide — WCAG 2.1 AA Compliance</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #C9A961;
+            --dark-gold: #A07D3F;
+            --light-gold: #E2CC8A;
+            --cream: #FAF8F5;
+            --brown: #5D4E37;
+            --dark: #1A1A1A;
+            --sidebar-width: 280px;
+            --content-max-width: 860px;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 2rem;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--cream);
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: var(--dark);
+            color: var(--cream);
+            overflow-y: auto;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            border-right: 2px solid var(--gold);
+        }
+
+        .sidebar-header {
+            padding: 2rem 1.5rem 1.5rem;
+            border-bottom: 1px solid rgba(201, 169, 97, 0.3);
+        }
+
+        .sidebar-brand {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--gold);
+            letter-spacing: 0.15em;
+        }
+
+        .sidebar-subtitle {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            color: rgba(250, 248, 245, 0.55);
+            margin-top: 0.35rem;
+        }
+
+        .sidebar-nav {
+            flex: 1;
+            padding: 1rem 0;
+        }
+
+        .sidebar-nav ul {
+            list-style: none;
+        }
+
+        .sidebar-nav a {
+            display: block;
+            padding: 0.65rem 1.5rem;
+            color: rgba(250, 248, 245, 0.78);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 400;
+            line-height: 1.4;
+            transition: background 0.2s, color 0.2s, border-color 0.2s;
+            border-left: 3px solid transparent;
+        }
+
+        .sidebar-nav a:hover,
+        .sidebar-nav a:focus {
+            background: rgba(201, 169, 97, 0.1);
+            color: var(--gold);
+            border-left-color: var(--gold);
+        }
+
+        .sidebar-nav a:focus-visible {
+            outline: 3px solid var(--gold);
+            outline-offset: -3px;
+        }
+
+        .sidebar-nav .nav-number {
+            display: inline-block;
+            width: 1.8rem;
+            color: var(--gold);
+            font-weight: 600;
+            font-size: 0.75rem;
+        }
+
+        .sidebar-footer {
+            padding: 1rem 1.5rem;
+            border-top: 1px solid rgba(201, 169, 97, 0.3);
+            font-size: 0.7rem;
+            color: rgba(250, 248, 245, 0.4);
+            line-height: 1.5;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            flex: 1;
+            padding: 3rem 3rem 6rem;
+            max-width: calc(var(--sidebar-width) + var(--content-max-width) + 6rem);
+        }
+
+        /* Skip Link */
+        .skip-link {
+            position: absolute;
+            top: -100%;
+            left: 1rem;
+            background: var(--gold);
+            color: var(--dark);
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border-radius: 0 0 4px 4px;
+            z-index: 9999;
+            text-decoration: none;
+            transition: top 0.2s;
+        }
+
+        .skip-link:focus {
+            top: 0;
+            outline: 3px solid var(--dark);
+            outline-offset: 2px;
+        }
+
+        /* Page Header */
+        .page-header {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid var(--light-gold);
+        }
+
+        .page-header h1 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--dark);
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header p {
+            font-size: 1.05rem;
+            color: var(--brown);
+            max-width: 70ch;
+            line-height: 1.6;
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--dark);
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            padding: 0.3rem 0.75rem;
+            border-radius: 3px;
+            margin-bottom: 1rem;
+        }
+
+        /* Sections */
+        .guide-section {
+            margin-bottom: 4rem;
+            scroll-margin-top: 2rem;
+        }
+
+        .guide-section h2 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.35rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--light-gold);
+        }
+
+        .section-number {
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        .guide-section h3 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--brown);
+            margin: 1.75rem 0 0.75rem;
+        }
+
+        .guide-section p,
+        .guide-section li {
+            color: var(--brown);
+            line-height: 1.7;
+            font-size: 0.95rem;
+            max-width: 70ch;
+        }
+
+        .guide-section ul,
+        .guide-section ol {
+            padding-left: 1.5rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .guide-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .guide-section strong {
+            color: var(--dark);
+        }
+
+        /* Tables */
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 1.25rem 0 1.75rem;
+            border: 1px solid var(--light-gold);
+            border-radius: 6px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.88rem;
+        }
+
+        thead {
+            background: var(--dark);
+            color: var(--cream);
+        }
+
+        thead th {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            white-space: nowrap;
+        }
+
+        tbody td {
+            padding: 0.65rem 1rem;
+            border-bottom: 1px solid var(--light-gold);
+            vertical-align: top;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        tbody tr:nth-child(even) {
+            background: rgba(226, 204, 138, 0.12);
+        }
+
+        .swatch {
+            display: inline-block;
+            width: 1.1rem;
+            height: 1.1rem;
+            border-radius: 3px;
+            border: 1px solid rgba(0,0,0,0.15);
+            vertical-align: middle;
+            margin-right: 0.4rem;
+        }
+
+        .pass { color: #2d7d46; font-weight: 600; }
+        .fail { color: #c0392b; font-weight: 600; }
+        .ratio {
+            font-family: 'Inter', monospace;
+            font-weight: 500;
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* Code Blocks */
+        pre {
+            background: var(--dark);
+            color: #e8e4dd;
+            padding: 1.25rem 1.5rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-size: 0.84rem;
+            line-height: 1.65;
+            margin: 1rem 0 1.5rem;
+            border-left: 3px solid var(--gold);
+        }
+
+        code {
+            font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', Consolas, monospace;
+        }
+
+        p code,
+        li code {
+            background: rgba(201, 169, 97, 0.15);
+            color: var(--dark-gold);
+            padding: 0.15em 0.4em;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .code-label {
+            display: block;
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--gold);
+            margin-bottom: 0.4rem;
+        }
+
+        /* Callout Boxes */
+        .callout {
+            padding: 1.1rem 1.25rem;
+            border-radius: 6px;
+            margin: 1.25rem 0;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            max-width: 70ch;
+        }
+
+        .callout-warning {
+            background: #fdf2e9;
+            border-left: 4px solid #e67e22;
+            color: #7d5a29;
+        }
+        .callout-warning strong { color: #a0522d; }
+
+        .callout-rule {
+            background: #fdecea;
+            border-left: 4px solid #c0392b;
+            color: #6b2020;
+        }
+        .callout-rule strong { color: #922b21; }
+
+        .callout-info {
+            background: rgba(201, 169, 97, 0.1);
+            border-left: 4px solid var(--gold);
+            color: var(--brown);
+        }
+
+        /* Focus Styles */
+        a:focus-visible,
+        button:focus-visible,
+        input:focus-visible,
+        select:focus-visible,
+        textarea:focus-visible {
+            outline: 3px solid var(--gold);
+            outline-offset: 2px;
+            box-shadow: 0 0 0 2px var(--dark);
+        }
+
+        /* Checklist */
+        .checklist-table td:first-child {
+            font-weight: 500;
+            color: var(--dark);
+        }
+        .checklist-table .check-cell {
+            text-align: center;
+            width: 4.5rem;
+        }
+
+        /* Mobile */
+        .mobile-toggle {
+            display: none;
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            z-index: 200;
+            width: 44px;
+            height: 44px;
+            background: var(--dark);
+            border: 2px solid var(--gold);
+            border-radius: 6px;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--gold);
+            font-size: 1.3rem;
+        }
+
+        @media (max-width: 900px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+            .sidebar.open { transform: translateX(0); }
+            .mobile-toggle { display: flex !important; }
+            .main-content {
+                margin-left: 0;
+                padding: 3rem 1.25rem 4rem;
+                max-width: 100%;
+            }
+            .page-header h1 { font-size: 1.8rem; }
+            .guide-section h2 { font-size: 1.4rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip Navigation Link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Mobile Sidebar Toggle -->
+    <button class="mobile-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="sidebar-nav">&#9776;</button>
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar-nav" role="navigation" aria-label="Accessibility guide sections">
+        <div class="sidebar-header">
+            <div class="sidebar-brand">SHUSMA</div>
+            <div class="sidebar-subtitle">WCAG 2.1 AA Accessibility Guide</div>
+        </div>
+        <nav class="sidebar-nav" aria-label="Section navigation">
+            <ul role="list">
+                <li><a href="#color-accessibility"><span class="nav-number">01</span> Color Accessibility</a></li>
+                <li><a href="#typography-accessibility"><span class="nav-number">02</span> Typography Accessibility</a></li>
+                <li><a href="#touch-targets"><span class="nav-number">03</span> Touch Targets</a></li>
+                <li><a href="#screen-readers"><span class="nav-number">04</span> Screen Readers</a></li>
+                <li><a href="#keyboard-navigation"><span class="nav-number">05</span> Keyboard Navigation</a></li>
+                <li><a href="#motion-animation"><span class="nav-number">06</span> Motion &amp; Animation</a></li>
+                <li><a href="#form-accessibility"><span class="nav-number">07</span> Form Accessibility</a></li>
+                <li><a href="#image-alt-text"><span class="nav-number">08</span> Image Alt Text</a></li>
+                <li><a href="#arabic-rtl"><span class="nav-number">09</span> Arabic RTL Support</a></li>
+                <li><a href="#testing-checklist"><span class="nav-number">10</span> Testing Checklist</a></li>
+            </ul>
+        </nav>
+        <div class="sidebar-footer">
+            SHUSMA Brand Guidelines<br>
+            Version 1.0 &middot; WCAG 2.1 AA<br>
+            Last updated: 2025
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content" id="main-content" role="main">
+        <header class="page-header">
+            <span class="badge">WCAG 2.1 Level AA</span>
+            <h1>Accessibility Guide</h1>
+            <p>This guide defines every accessibility requirement, pattern, and code standard for the SHUSMA luxury fashion ecommerce platform. It ensures our digital experience is inclusive, perceivable, operable, and robust for every customer &mdash; regardless of ability, device, or language preference.</p>
+        </header>
+
+        <!-- ============================================================ -->
+        <!-- SECTION 1: COLOR ACCESSIBILITY                                  -->
+        <!-- ============================================================ -->
+        <section class="guide-section" id="color-accessibility" aria-labelledby="heading-color">
+            <h2 id="heading-color"><span class="section-number">01.</span> Color Accessibility</h2>
+
+            <p>Color is central to the SHUSMA brand identity, but it must never be the sole means of conveying information. WCAG 2.1 Success Criterion 1.4.3 requires a minimum contrast ratio of 4.5:1 for normal text (below 18px regular or 14px bold) and 3:1 for large text (18px+ regular or 14px+ bold) against its background. WCAG 2.1 SC 1.4.11 additionally requires 3:1 contrast for non-text UI components and graphical objects. Our luxury gold palette demands careful pairing because several combinations fall below these thresholds and must be strictly avoided in production code. Every design decision involving color must reference this section to verify compliance before implementation.</p>
+
+            <div class="callout callout-rule">
+                <strong>Critical Brand Rule:</strong> NEVER use gold <code>#C9A961</code> as text on light backgrounds (cream, white, or light gold). The contrast ratio is only 2.1:1 &mdash; well below the 4.5:1 AA minimum. Gold text <strong>must only</strong> appear on dark backgrounds (#1A1A1A or #5D4E37). For text on light backgrounds, always use brown <code>#5D4E37</code> (8.6:1 on cream) or dark <code>#1A1A1A</code> (16.2:1 on cream).
+            </div>
+
+            <h3>Full Brand Color Contrast Matrix</h3>
+            <p>The table below documents every meaningful foreground/background combination using the six SHUSMA brand colors. Each cell shows the calculated contrast ratio and whether it passes WCAG AA (normal text), AA (large text), or AAA (normal text). Use this table as the authoritative reference when selecting color pairs for any interface element, including buttons, links, headings, form labels, and status indicators.</p>
+
+            <div class="table-wrapper">
+                <table aria-label="SHUSMA brand color contrast ratios and WCAG compliance">
+                    <thead>
+                        <tr>
+                            <th>Foreground</th>
+                            <th>Background</th>
+                            <th>Ratio</th>
+                            <th>AA Normal</th>
+                            <th>AA Large</th>
+                            <th>AAA Normal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="swatch" style="background:#1A1A1A"></span>Dark #1A1A1A</td>
+                            <td><span class="swatch" style="background:#FAF8F5"></span>Cream #FAF8F5</td>
+                            <td class="ratio">16.2:1</td>
+                            <td class="pass">PASS</td>
+                            <td class="pass">PASS</td>
+                            <td class="pass">PASS</td>
+                        </tr>
+                        <tr>
+                            <td><span class="swatch" style="background:#1A1A1A"></span>Dark #1A1A1A</td>
+                            <td><span class="swatch" style="background:#E2CC8A"></span>Light Gold #E2CC8A</td>
+                            <td class="ratio">10.8:1</td>
+                            <td class="pass">PASS</td>
+                            <td class="pass">PASS</td>
+                            <td class="pass">PASS</td>
+                        </tr>
+                        <tr>
+                            <td><span class="swatch" style="background:#1A1A1A"></span>Dark #1A1A1A</td>
+                            <td><span class="swatch" style="background:#C9A961"></span>Gold #C9A961</td>
+                            <td class="ratio">7.1:1</td>
+                            <td class="pass">PASS</td>
+                            <td class="pass">PASS</td>
+                            <td class="pass">PASS</td>
+                        </tr>
+                        <tr>
+                            <td><span class="swatch" style="background:#5D4E37"></span>Brown #5D4E37</td>
+                            <td><span class="swatch" style="background:#FAF8F5"></span>Cream #FAF8F5</td>
+                            <td class="ratio">8.6:1</td>
+                            <td class="pass">PASS</td>
+                            <td class="pass">PASS</td>
+                            <td class="pass">PASS</td>
+                        </tr>
+                        <tr>
+                            <td><span class="swatch" style="background:#5D4E37"></span>Brown #5D4E37</td>
+                            <td><span class="swatch" style="background:#E2CC8A"></span>Light Gold #E2CC8A</td>
+                            <td class="ratio">5.7:1</td>
+                            <td class="pass">PASS</td>
+                            <td class="pass">PASS</td>
+                            <td class="fail">FAIL</td>
+                        </tr>
+                        <tr>
+                            <td><span class="swatch" style="background:#C9A961"></span>Gold #C9A961</td>
+                            <td><span class="swatch" style="background:#1A1A1A"></span>Dark #1A1A1A</td>
+                            <td class="ratio">7.1:1</td>
+                            <td class="pass">PASS</td>
+                            <td class="pass">PASS</td>
+                            <td class="pass">PASS</td>
+                        </tr>
+                        <tr>
+                            <td><span class="swatch" style="background:#C9A961"></span>Gold #C9A961</td>
+                            <td><span class="swatch" style="background:#5D4E37"></span>Brown #5D4E37</td>
+                            <td class="ratio">2.4:1</td>
+                            <td class="fail">FAIL</td>
+                            <td class="fail">FAIL</td>
+                            <td class="fail">FAIL</td>
+                        </tr>
+                        <tr>
+                            <td><span class="swatch" style="background:#C9A961"></span>Gold #C9A961</td>
+                            <td><span class="swatch" style="background:#FAF8F5"></span>Cream #FAF8F5</td>
+                            <td class="ratio">2.1:1</td>
+                            <td class="fail">FAIL</td>
+                            <td class="fail">FAIL</td>
+                            <td class="fail">FAIL</td>
+                        </tr>
+                        <tr>
+                            <td><span class="swatch" style="background:#C9A961"></span>Gold #C9A961</td>
+                            <td><span class="swatch" style="background:#E2CC8A"></span>Light Gold #E2CC8A</td>
+                            <td class="ratio">1.5:1</td>
+                            <td class="fail">FAIL</td>
+                            <td class="fail">FAIL</td>
+                            <td class="fail">FAIL</td>
+                        </tr>
+                        <tr>
+                            <td><span class="swatch" style="background:#E2CC8A"></span>Light Gold #E2CC8A</td>
+                            <td><span class="swatch" style="background:#1A1A1A"></span>Dark #1A1A1A</td>
+                            <td class="ratio">10.8:1</td>
+                            <td class="pass">PASS</td>
+                            <td class="pass">PASS</td>
+                            <td class="pass">PASS</td>
+                        </tr>
+                        <tr>
+                            <td><span class="swatch" style="background:#E2CC8A"></span>Light Gold #E2CC8A</td>
+                            <td><span class="swatch" style="background:#FAF8F5"></span>Cream #FAF8F5</td>
+                            <td class="ratio">1.5:1</td>
+                            <td class="fail">FAIL</td>
+                            <td class="fail">FAIL</td>
+                            <td class="fail">FAIL</td>
+                        </tr>
+                        <tr>
+                            <td><span class="swatch" style="background:#A07D3F"></span>Dark Gold #A07D3F</td>
+                            <td><span class="swatch" style="background:#FAF8F5"></span>Cream #FAF8F5</td>
+                            <td class="ratio">4.9:1</td>
+                            <td class="pass">PASS</td>
+                            <td class="pass">PASS</td>
+                            <td class="fail">FAIL</td>
+                        </tr>
+                        <tr>
+                            <td><span class="swatch" style="background:#A07D3F"></span>Dark Gold #A07D3F</td>
+                            <td><span class="swatch" style="background:#E2CC8A"></span>Light Gold #E2CC8A</td>
+                            <td class="ratio">3.3:1</td>
+                            <td class="fail">FAIL</td>
+                            <td class="pass">PASS</td>
+                            <td class="fail">FAIL</td>
+                        </tr>
+                        <tr>
+                            <td><span class="swatch" style="background:#A07D3F"></span>Dark Gold #A07D3F</td>
+                            <td><span class="swatch" style="background:#1A1A1A"></span>Dark #1A1A1A</td>
+                            <td class="ratio">3.3:1</td>
+                            <td class="fail">FAIL</td>
+                            <td class="pass">PASS</td>
+                            <td class="fail">FAIL</td>
+                        </tr>
+                        <tr>
+                            <td><span class="swatch" style="background:#FAF8F5"></span>Cream #FAF8F5</td>
+                            <td><span class="swatch" style="background:#1A1A1A"></span>Dark #1A1A1A</td>
+                            <td class="ratio">16.2:1</td>
+                            <td class="pass">PASS</td>
+                            <td class="pass">PASS</td>
+                            <td class="pass">PASS</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Approved Color Pairings for SHUSMA Interfaces</h3>
+            <p>Based on the contrast analysis above, the following pairings are approved for production use. Any combination not listed here that appears in the matrix as FAIL must be avoided entirely, including in marketing banners, promotional overlays, and third-party integrations. Design QA must flag any unapproved pairing during visual review sprints. Color combinations used for decorative purposes only (borders, background fills, ornamental elements) where no text or meaningful content is placed are acceptable even at low contrast, provided the decorative nature is confirmed.</p>
+            <ul>
+                <li><strong>Body text on light pages:</strong> Brown <code>#5D4E37</code> on Cream <code>#FAF8F5</code> (8.6:1) &mdash; primary body text throughout the site</li>
+                <li><strong>Headings on light pages:</strong> Dark <code>#1A1A1A</code> on Cream <code>#FAF8F5</code> (16.2:1) &mdash; maximum readability for all heading levels</li>
+                <li><strong>Gold text on dark sections:</strong> Gold <code>#C9A961</code> on Dark <code>#1A1A1A</code> (7.1:1) &mdash; hero banners, footers, dark-themed pages</li>
+                <li><strong>CTA button text:</strong> Cream <code>#FAF8F5</code> or Dark <code>#1A1A1A</code> on Dark Gold <code>#A07D3F</code> &mdash; primary action buttons</li>
+                <li><strong>Decorative accents only:</strong> Gold <code>#C9A961</code> and Light Gold <code>#E2CC8A</code> for borders, dividers, ornamental fills where no text is present</li>
+            </ul>
+
+            <div class="callout callout-info">
+                <strong>Remember:</strong> WCAG SC 1.4.1 (Use of Color) requires that color is never the <em>only</em> visual means of conveying information. Error states, success confirmations, required field markers, and stock availability indicators must all include non-color cues such as text labels, icons, or pattern indicators alongside any color coding used in the interface.
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SECTION 2: TYPOGRAPHY ACCESSIBILITY                             -->
+        <!-- ============================================================ -->
+        <section class="guide-section" id="typography-accessibility" aria-labelledby="heading-typo">
+            <h2 id="heading-typo"><span class="section-number">02.</span> Typography Accessibility</h2>
+
+            <p>Typography in the SHUSMA digital experience must balance the brand's luxury aesthetic with the functional requirements of WCAG 2.1 Success Criteria 1.4.4 (Resize Text), 1.4.8 (Visual Presentation), and 1.4.12 (Text Spacing). Every customer must be able to read product descriptions, pricing, and navigation labels without strain, including users with low vision who rely on browser zoom or custom font sizes. Our type system uses two families &mdash; Playfair Display for editorial headings and Inter for body and UI text &mdash; both selected for their excellent legibility at screen resolutions and their comprehensive support for Latin, Arabic, and extended character sets required by our multilingual audience.</p>
+
+            <h3>Minimum Font Sizes</h3>
+            <p>The base body font size for the SHUSMA website must be set to <code>16px</code> (or <code>1rem</code>) as the default. This is the minimum acceptable size for paragraph text, product descriptions, form labels, and any content that users need to read comfortably. The absolute minimum font size anywhere on the site is <code>12px</code>, and this is reserved exclusively for captions, legal disclaimers, and metadata such as &ldquo;SKU: SH-2024-AB12&rdquo; beneath a product title. Even at 12px, the text must pass the 4.5:1 contrast ratio requirement against its background. Navigation items, button labels, and interactive element text must never fall below 14px to ensure readability across devices and viewport sizes.</p>
+
+            <div class="callout callout-warning">
+                <strong>Thin Weight Restriction:</strong> Never use font-weight 300 (thin/light) at sizes below 14px. Thin weights below this threshold fail to maintain sufficient stroke contrast against backgrounds, especially on mobile devices with varying pixel densities and subpixel rendering differences. At 14px and above, weight 300 is permitted for decorative subheadings only, never for essential UI text, labels, or data values.
+            </div>
+
+            <h3>Line Height and Spacing</h3>
+            <p>All body text must use a minimum line-height of <code>1.5</code> (150% of the font size). For headings, a line-height of <code>1.2</code> is acceptable since the larger text provides inherent line spacing. Paragraph spacing must be at least <code>1.5em</code> between consecutive blocks of text, and letter-spacing should remain at the font's default value for body copy. The maximum line length for readable paragraphs must not exceed <code>70ch</code> (approximately 70 characters). Beyond this width, readers lose their place when moving to the next line, causing fatigue and reduced comprehension. Set <code>max-width: 70ch</code> on all content containers that hold prose text, including product descriptions, blog posts, and FAQ answers.</p>
+
+            <p>WCAG 1.4.12 requires that when users override text spacing (line height to 1.5, paragraph spacing to 2em, letter spacing to 0.12em, word spacing to 0.16em), no content is lost or truncated. Test this by applying these overrides in your browser's developer tools and verifying that all product cards, modals, and navigation menus reflow without clipping. The SHUSMA layout must use flexible containers and relative units (rem, em, ch) rather than fixed pixel heights to accommodate these overrides gracefully.</p>
+
+            <h3>Responsive Type Scale</h3>
+            <p>Use a modular type scale that increases proportionally across breakpoints. The recommended scale for SHUSMA is: body 16px/1rem, small 14px/0.875rem, caption 12px/0.75rem, large 18px/1.125rem, h3 20px/1.25rem, h2 24px/1.5rem, h1 32px/2rem on desktop, scaling to 40px/2.5rem for hero headlines. Always use <code>rem</code> units so the entire scale respects the user's browser font-size setting and zoom level. Avoid <code>px</code> for font-size declarations throughout the CSS codebase.</p>
+
+            <span class="code-label">CSS &mdash; Typography Base System</span>
+<pre><code>/* SHUSMA Typography System */
+:root {
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-body: 'Inter', -apple-system, sans-serif;
+  --fs-body: 1rem;       /* 16px base */
+  --fs-small: 0.875rem;  /* 14px - minimum for UI text */
+  --fs-caption: 0.75rem; /* 12px - absolute minimum, captions only */
+  --lh-body: 1.5;        /* minimum line-height for body text */
+  --lh-heading: 1.2;
+  --max-line: 70ch;      /* max readable line width */
+  --spacing-para: 1.5em; /* paragraph spacing */
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--brown);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  line-height: var(--lh-heading);
+  color: var(--dark);
+}
+
+p, .prose {
+  max-width: var(--max-line);
+  margin-bottom: var(--spacing-para);
+}
+
+/* NEVER use thin weight below 14px */
+.caption, .metadata {
+  font-size: var(--fs-caption);
+  font-weight: 400; /* not 300 */
+  line-height: 1.5;
+  color: var(--brown);
+}</code></pre>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SECTION 3: TOUCH TARGETS                                      -->
+        <!-- ============================================================ -->
+        <section class="guide-section" id="touch-targets" aria-labelledby="heading-touch">
+            <h2 id="heading-touch"><span class="section-number">03.</span> Touch Targets</h2>
+
+            <p>WCAG 2.1 Success Criterion 2.5.5 (Target Size) requires that the touch target for any pointer input is at least 44 by 44 CSS pixels, with exceptions only when an equivalent link with a sufficient target size is available on the same page. For a luxury ecommerce platform like SHUSMA, this requirement directly impacts how we design product cards, navigation links, size selectors, quantity controls, and every button from &ldquo;Add to Cart&rdquo; to &ldquo;Wishlist.&rdquo; Inadequate touch targets cause frustration, mis-taps, and abandoned purchases, particularly for users with motor impairments, those using touch devices with precision challenges such as gloves or tremors, and anyone navigating on small mobile screens while multitasking.</p>
+
+            <h3>Minimum Dimensions and Spacing</h3>
+            <p>Every interactive element &mdash; buttons, links, checkboxes, radio buttons, dropdown triggers, icon buttons, and product card click areas &mdash; must measure at least <code>44px &times; 44px</code>. This dimension applies to the visible, clickable area, not the visual icon or text label within it. For example, a wishlist heart icon may visually render at 20px, but its tap area must be padded to at least 44px in each direction. When tappable items are placed adjacent to one another, maintain a minimum of <code>8px</code> spacing between the edges of their touch targets to prevent accidental activation of a neighboring control during imprecise taps.</p>
+
+            <h3>Product Card Tap Area</h3>
+            <p>On collection pages and search results, the entire product card must be tappable to navigate to the product detail page. The card itself should be at least 160px wide with no internal interactive elements that could conflict with the card's tap target. If a quick-add button or wishlist icon is placed inside the card, it must have its own distinct 44px target and be positioned with enough visual separation that users can reliably tap either the card or the embedded control. Use <code>padding</code> or explicit <code>min-height</code> values on the card to ensure the touch area extends fully, and test with actual finger input on physical devices rather than relying solely on mouse clicks during development and QA.</p>
+
+            <h3>Add-to-Cart Button Sizing for Mobile</h3>
+            <p>The &ldquo;Add to Cart&rdquo; button is the most critical touch target on any product detail page. On mobile viewports, this button must span the full width of the content area (minus standard padding) and have a minimum height of 48px. The recommended height is <code>52px</code> to provide a comfortable, forgiving tap area that accommodates thumb reach. The button's font size must be at least 16px to prevent iOS Safari from triggering automatic zoom on focus, which disrupts the shopping experience and requires users to zoom back out manually. Secondary actions like &ldquo;Add to Wishlist&rdquo; must be at least 44px tall and visually distinct from the primary CTA. Quantity increment and decrement controls must each meet the 44px minimum and include clear plus/minus labels alongside any icon.</p>
+
+            <span class="code-label">CSS &mdash; Touch Target Standards</span>
+<pre><code>/* SHUSMA Touch Target Standards */
+
+/* Minimum touch target for all interactive elements */
+button, a, [role="button"],
+input[type="checkbox"],
+input[type="radio"],
+select {
+  min-width: 44px;
+  min-height: 44px;
+  margin: 4px; /* 8px gap between adjacent targets */
+}
+
+/* Product card - full card is tappable */
+.product-card {
+  position: relative;
+  min-height: 44px;
+  cursor: pointer;
+}
+
+/* Wishlist icon with expanded tap area */
+.wishlist-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+}
+
+.wishlist-btn svg {
+  width: 20px; /* visual size */
+  height: 20px;
+  pointer-events: none; /* click passes to button */
+}
+
+/* Add to Cart - mobile optimized */
+.add-to-cart {
+  width: 100%;
+  min-height: 52px; /* exceeds 44px minimum */
+  font-size: 16px; /* prevents iOS zoom */
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* Quantity controls */
+.qty-btn {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}</code></pre>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SECTION 4: SCREEN READERS                                     -->
+        <!-- ============================================================ -->
+        <section class="guide-section" id="screen-readers" aria-labelledby="heading-sr">
+            <h2 id="heading-sr"><span class="section-number">04.</span> Screen Readers</h2>
+
+            <p>Screen reader support is essential for SHUSMA's ecommerce platform because blind and low-vision customers must be able to browse collections, examine product details, select sizes and colors, add items to their cart, and complete checkout independently. WCAG 2.1 Success Criteria 1.1.1 (Non-text Content), 1.3.1 (Info and Relationships), 4.1.2 (Name, Role, Value), and 4.1.3 (Status Messages) all govern how we structure HTML and ARIA markup to ensure assistive technologies can parse and communicate every interface element accurately. A luxury fashion site is inherently visual, which makes semantic markup and descriptive alternatives even more critical for creating an equitable shopping experience.</p>
+
+            <h3>ARIA Labels for Brand Icons</h3>
+            <p>Decorative icons that convey no information must use <code>aria-hidden="true"</code> to prevent screen readers from announcing meaningless content. Functional icons &mdash; such as the search icon, cart icon, account icon, and close button &mdash; must have accessible names via <code>aria-label</code>, <code>aria-labelledby</code>, or a visually hidden text node. For example, a cart icon in the header must include <code>aria-label="Shopping cart, 3 items"</code> that dynamically updates when items are added or removed via JavaScript. Brand-specific icons that serve as links (like a SHUSMA monogram linking to the homepage) must use <code>aria-label="SHUSMA - Home"</code> rather than relying solely on the logo image's alt text, because the link's purpose must be clear even if the image fails to load.</p>
+
+            <h3>Product Image Alt Text Patterns</h3>
+            <p>Product images require descriptive alt text that communicates what the image shows and its relevance to the purchase decision. A standard product photo on a detail page should follow the pattern: <code>[Brand] [Product Name] in [Color], [Descriptive detail]</code>. For example: <code>alt="SHUSMA Silk Blazer in Midnight Blue, front view showing notch lapel and single-button closure"</code>. Thumbnail images in carousels can use shorter descriptions: <code>alt="Silk Blazer - side view"</code>. When the same product is shown in multiple angles, each angle should be distinctly identified. Grouped product images (e.g., a model wearing the full outfit) should describe the context: <code>alt="Model wearing the SHUSMA Silk Blazer paired with Tailored Trousers at a gallery event"</code>.</p>
+
+            <h3>Skip Navigation and Landmark Regions</h3>
+            <p>Every page must include a skip navigation link as the first focusable element, allowing keyboard users to bypass the header and navigation and jump directly to the main content area. The SHUSMA site must use semantic HTML5 landmark elements &mdash; <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;aside&gt;</code>, and <code>&lt;footer&gt;</code> &mdash; to create a predictable page structure that screen readers can announce and navigate between. Each landmark should have a unique accessible name where multiple instances exist (e.g., <code>&lt;nav aria-label="Main navigation"&gt;</code> vs. <code>&lt;nav aria-label="Footer navigation"&gt;</code>). The search region should use <code>&lt;search aria-label="Product search"&gt;</code> per the HTML5.2 specification.</p>
+
+            <h3>Live Regions for Cart Updates</h3>
+            <p>When a user adds an item to the cart, changes quantity, or removes an item, the cart count and subtotal must update without requiring a page reload. These dynamic changes must be communicated to screen reader users via ARIA live regions. Use <code>aria-live="polite"</code> on the cart summary container so that updates are announced after the current speech output finishes. For critical alerts (e.g., &ldquo;Item added to cart&rdquo; confirmation or &ldquo;Out of stock&rdquo; error), use <code>aria-live="assertive"</code> to interrupt immediately. Apply <code>role="status"</code> to toast notifications that appear after actions like adding to wishlist or applying a promo code.</p>
+
+            <span class="code-label">HTML &mdash; Skip Link, Landmarks, ARIA Labels</span>
+<pre><code>&lt;!-- Skip Navigation Link (first element in body) --&gt;
+&lt;a href="#main-content" class="skip-link"&gt;
+  Skip to main content
+&lt;/a&gt;
+
+&lt;!-- Header with landmarks and ARIA --&gt;
+&lt;header role="banner"&gt;
+  &lt;a href="/" aria-label="SHUSMA - Home"&gt;
+    &lt;img src="/logo.svg" alt="" aria-hidden="true"
+         width="120" height="40"&gt;
+    &lt;span class="visually-hidden"&gt;SHUSMA&lt;/span&gt;
+  &lt;/a&gt;
+
+  &lt;nav aria-label="Main navigation"&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href="/collections"&gt;Collections&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="/new-arrivals"&gt;New Arrivals&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/nav&gt;
+
+  &lt;!-- Cart icon with dynamic accessible label --&gt;
+  &lt;a href="/cart" aria-label="Shopping cart, 0 items"
+     id="cart-link"&gt;
+    &lt;svg aria-hidden="true" focusable="false"&gt;...&lt;/svg&gt;
+  &lt;/a&gt;
+&lt;/header&gt;
+
+&lt;!-- Main content with landmark --&gt;
+&lt;main id="main-content" role="main"
+      aria-label="Product catalog"&gt;
+  ...
+&lt;/main&gt;
+
+&lt;!-- Cart live region (polite announcements) --&gt;
+&lt;div aria-live="polite" aria-atomic="true"
+     class="visually-hidden" id="cart-announcer"&gt;
+&lt;/div&gt;
+
+&lt;!-- Toast notification --&gt;
+&lt;div role="status" aria-live="assertive"
+     class="toast" id="add-to-cart-toast"&gt;
+  Silk Blazer added to your cart
+&lt;/div&gt;
+
+&lt;!-- Visually hidden utility class --&gt;
+&lt;style&gt;
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0, 0, 0, 0); white-space: nowrap;
+  border: 0;
+}
+&lt;/style&gt;</code></pre>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SECTION 5: KEYBOARD NAVIGATION                                -->
+        <!-- ============================================================ -->
+        <section class="guide-section" id="keyboard-navigation" aria-labelledby="heading-kb">
+            <h2 id="heading-kb"><span class="section-number">05.</span> Keyboard Navigation</h2>
+
+            <p>Full keyboard operability is a foundational WCAG 2.1 requirement (SC 2.1.1, 2.1.2, 2.4.3, 2.4.7) and is particularly critical for an ecommerce platform where every interaction &mdash; from browsing products to entering payment details &mdash; must be achievable without a mouse. Keyboard-only users include people with motor impairments, screen reader users who navigate by tab and arrow keys, power users who prefer keyboard shortcuts for efficiency, and developers debugging the interface. The SHUSMA site must provide a visible, high-contrast focus indicator on every interactive element, a logical tab order that follows the visual layout, and keyboard equivalents for all mouse-dependent interactions such as dropdown menus, carousels, product image zoom, and modal dialogs.</p>
+
+            <h3>Gold Focus Outline</h3>
+            <p>The SHUSMA focus indicator uses a <code>3px solid</code> outline in gold <code>#C9A961</code>, which provides a contrast ratio of 7.1:1 against the dark <code>#1A1A1A</code> header and footer backgrounds. Against the cream <code>#FAF8F5</code> background, the gold outline alone provides only 2.1:1 contrast, which falls below the 3:1 non-text contrast requirement (SC 1.4.11). To compensate, we add a <code>2px</code> dark <code>#1A1A1A</code> box-shadow offset behind the gold outline, ensuring the focus state is clearly perceivable on all backgrounds including the cream primary background. This dual-layer approach meets WCAG requirements while maintaining brand consistency. The focus indicator must use <code>:focus-visible</code> rather than <code>:focus</code> to avoid showing outlines on mouse clicks while preserving them for keyboard navigation.</p>
+
+            <h3>Tab Order and Focus Management</h3>
+            <p>The default tab order must follow the visual reading order: top to bottom, left to right (or right to left for Arabic content). Do not use <code>tabindex</code> values greater than 0, as they disrupt the natural tab sequence and create confusing experiences for assistive technology users. When a modal dialog opens (such as a size guide, quick-view product overlay, or promo code popup), focus must move into the modal and be trapped there until the user closes it. When the modal closes, focus must return to the element that triggered it. Use the <code>inert</code> attribute on the background content to prevent keyboard access while a modal is open, or manage focus programmatically with <code>focus()</code> calls. The Escape key must always close any open modal, dropdown, or expanded menu.</p>
+
+            <h3>Keyboard Shortcuts</h3>
+            <p>The SHUSMA site must not implement custom single-key keyboard shortcuts (WCAG SC 2.1.4), as these can conflict with assistive technology commands. If any keyboard shortcuts are provided, they must use modifier keys (e.g., Ctrl+K for search, Escape to close) and must be documented in an accessible help panel reachable from the footer. The search field should activate with <code>/</code> only when no input or textarea is currently focused. Carousel widgets must support arrow keys for navigating between slides, and product image galleries must allow keyboard users to cycle through thumbnails with arrow keys and open zoom views with Enter or Space.</p>
+
+            <span class="code-label">CSS &mdash; Focus Styles</span>
+<pre><code>/* SHUSMA Focus Indicator System */
+
+/* Remove default outline globally */
+*:focus {
+  outline: none;
+}
+
+/* Visible focus for keyboard navigation only */
+*:focus-visible {
+  outline: 3px solid #C9A961;
+  outline-offset: 2px;
+  /* Dark shadow ensures visibility on cream background */
+  box-shadow: 0 0 0 2px #1A1A1A;
+}
+
+/* On dark backgrounds, shadow not needed */
+.dark-section *:focus-visible {
+  box-shadow: none;
+  outline-offset: 3px;
+}
+
+/* Skip link focus state */
+.skip-link:focus {
+  top: 0;
+  outline: 3px solid #FAF8F5;
+  outline-offset: 2px;
+}
+
+/* No focus ring on mouse click */
+.product-card:focus:not(:focus-visible) {
+  outline: none;
+  box-shadow: none;
+}
+
+/* Modal focus trap indicator */
+.modal[open] *:focus-visible {
+  outline: 3px solid #C9A961;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px #FAF8F5;
+}</code></pre>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SECTION 6: MOTION AND ANIMATION                              -->
+        <!-- ============================================================ -->
+        <section class="guide-section" id="motion-animation" aria-labelledby="heading-motion">
+            <h2 id="heading-motion"><span class="section-number">06.</span> Motion &amp; Animation</h2>
+
+            <p>WCAG 2.1 Success Criterion 2.3.3 (Animation from Interactions) requires that users can disable non-essential motion triggered by their interactions. Additionally, SC 2.2.2 (Pause, Stop, Hide) requires that auto-playing content lasting more than 5 seconds can be paused or stopped. For the SHUSMA luxury fashion brand, animations such as gold shimmer effects on hero text, parallax scrolling on lookbook pages, loading spinners, and auto-advancing product carousels all fall under these requirements. Users with vestibular disorders, photosensitive epilepsy, or motion sensitivity can experience nausea, dizziness, or headaches from animated content, making these accommodations both a compliance requirement and an ethical imperative for an inclusive luxury brand.</p>
+
+            <h3>prefers-reduced-motion Implementation</h3>
+            <p>The <code>prefers-reduced-motion: reduce</code> media query must be respected at the CSS level to disable or significantly simplify all non-essential animations. When this preference is active, the SHUSMA site must: instantly show all content that would normally animate in (no fade-ins, slide-ins, or scale transitions), remove the gold shimmer effect from hero headlines and decorative text, disable parallax scrolling on lookbook and campaign pages, replace carousel auto-advance with manual-only navigation, and eliminate hover-triggered micro-animations on product cards. Essential functional transitions like focus indicator appearance should remain but can be reduced to an instant state change. JavaScript-driven animations must also check this preference using <code>window.matchMedia('(prefers-reduced-motion: reduce)')</code> and skip or simplify animation sequences accordingly.</p>
+
+            <h3>Loading Spinner Alternatives</h3>
+            <p>Loading spinners present accessibility challenges because screen readers cannot perceive rotating visual elements, and some users find continuous spinning distracting or harmful. The SHUSMA site must supplement or replace visual spinners with accessible text indicators. When a page section or product image is loading, include a visually hidden text node: <code>&lt;div role="status" aria-live="polite" class="visually-hidden"&gt;Loading product details...&lt;/div&gt;</code>. For skeleton screens (preferred over spinners for modern luxury aesthetics), add <code>aria-busy="true"</code> on the container and use <code>role="status"</code> for announcements. Progress bars for operations like checkout processing must include both a visual bar and an accessible text percentage or step description.</p>
+
+            <h3>Carousel Auto-Play Controls</h3>
+            <p>Any carousel that auto-advances (e.g., hero banner rotation, editorial lookbook slider) must provide visible pause, play, previous, and next controls. The auto-advance must pause when the user hovers over or focuses on the carousel, and must not resume automatically after manual interaction &mdash; the user must explicitly press play to restart. The carousel must expose the current slide number and total slide count accessibly, using <code>aria-roledescription="carousel"</code> on the container and <code>aria-roledescription="slide"</code> with <code>aria-label="Slide X of Y"</code> on each slide. When auto-play is disabled via <code>prefers-reduced-motion: reduce</code>, the carousel must default to a static state.</p>
+
+            <span class="code-label">CSS &mdash; Reduced Motion Support</span>
+<pre><code>/* Default: full animations enabled */
+.hero-title {
+  background: linear-gradient(
+    90deg, #C9A961 0%, #E2CC8A 50%, #C9A961 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gold-shimmer 3s linear infinite;
+}
+
+@keyframes gold-shimmer {
+  0%   { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+.product-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(26, 26, 26, 0.12);
+}
+
+.fade-in {
+  opacity: 0; transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+/* ── Reduced Motion: disable all non-essential ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .hero-title {
+    animation: none;
+    background: none;
+    -webkit-text-fill-color: #C9A961;
+    color: #C9A961;
+  }
+
+  .product-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .fade-in {
+    opacity: 1; transform: none; transition: none;
+  }
+}</code></pre>
+
+            <span class="code-label">JavaScript &mdash; Motion Preference Check</span>
+<pre><code>// Check reduced motion preference in JavaScript
+const prefersReducedMotion = window.matchMedia(
+  '(prefers-reduced-motion: reduce)'
+);
+
+function initCarousel(element) {
+  const shouldAutoPlay = !prefersReducedMotion.matches;
+  const carousel = new Carousel(element, {
+    autoPlay: shouldAutoPlay
+  });
+
+  // React to runtime preference changes
+  prefersReducedMotion.addEventListener('change', (e) =&gt; {
+    if (e.matches) {
+      carousel.stopAutoPlay();
+    } else {
+      carousel.startAutoPlay();
+    }
+  });
+
+  return carousel;
+}</code></pre>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SECTION 7: FORM ACCESSIBILITY                                 -->
+        <!-- ============================================================ -->
+        <section class="guide-section" id="form-accessibility" aria-labelledby="heading-form">
+            <h2 id="heading-form"><span class="section-number">07.</span> Form Accessibility</h2>
+
+            <p>Forms are the backbone of the SHUSMA ecommerce experience &mdash; from newsletter signups and search fields to product customization and multi-step checkout. WCAG 2.1 Success Criteria 1.3.1 (Info and Relationships), 1.3.5 (Identify Input Purpose), 3.2.2 (On Input), 3.3.1 (Error Identification), 3.3.2 (Labels or Instructions), 3.3.3 (Error Suggestion), and 4.1.2 (Name, Role, Value) all apply directly to form design and implementation. Every input must have a visible, programmatically associated label; every error must be specific, actionable, and linked to its field; and the entire checkout flow must be operable by keyboard and screen reader without any ambiguity about what information is required or what went wrong during submission.</p>
+
+            <h3>Labels and Input Association</h3>
+            <p>Every form input must have an associated <code>&lt;label&gt;</code> element using the <code>for</code> attribute that matches the input's <code>id</code>. Placeholder text must never serve as the sole label for an input, because placeholders disappear when users start typing and are not reliably announced by all screen readers. If visual design requires a floating label inside the field, implement it as a positioned <code>&lt;label&gt;</code> element that moves above the input on focus or when the field has a value, maintaining its programmatic association at all times. Required fields must be indicated with the word &ldquo;required&rdquo; in the label text or via <code>aria-required="true"</code>, not by color alone. The asterisk convention may be used visually but must be supplemented with screen-reader-accessible text.</p>
+
+            <h3>Error Messages with aria-describedby</h3>
+            <p>When form validation fails, error messages must be displayed adjacent to the relevant field and linked programmatically using <code>aria-describedby</code>. The error container's <code>id</code> must be referenced in the input's <code>aria-describedby</code> attribute, and the input must receive <code>aria-invalid="true"</code>. Error text must be specific and actionable &mdash; instead of &ldquo;Invalid email,&rdquo; use &ldquo;Please enter a valid email address, such as name@example.com.&rdquo; Instead of &ldquo;Required,&rdquo; use &ldquo;Please select a size before adding to cart.&rdquo; Errors must be announced by screen readers via the <code>aria-describedby</code> association and, for dynamically displayed errors, via an <code>aria-live="assertive"</code> region that announces the error immediately upon form submission.</p>
+
+            <h3>Autocomplete Attributes</h3>
+            <p>WCAG SC 1.3.5 requires that inputs intended for specific types of data include appropriate <code>autocomplete</code> attributes. This enables browsers and password managers to autofill information accurately, which is especially valuable during checkout where users must enter shipping and billing details. Use standard HTML autocomplete tokens: <code>autocomplete="given-name"</code>, <code>autocomplete="family-name"</code>, <code>autocomplete="email"</code>, <code>autocomplete="street-address"</code>, <code>autocomplete="cc-number"</code>, etc. The SHUSMA checkout form must support these attributes on all personal information and payment fields. For the newsletter signup in the footer, use <code>autocomplete="email"</code> to allow quick subscription without retyping.</p>
+
+            <h3>Multi-Step Checkout and Color Pickers</h3>
+            <p>The SHUSMA checkout flow uses a multi-step wizard pattern (Shipping &rarr; Payment &rarr; Review). Each step must function as a distinct section with its own heading, and a progress indicator must communicate the current step, total steps, and completed steps using <code>aria-current="step"</code> on the active step and visual plus programmatic indicators for completed steps. Users must be able to navigate back to previous steps without losing entered data. For product color selection, implement the color picker as a set of radio buttons with <code>role="radiogroup"</code> and <code>aria-label</code> on the group. Each color swatch must be an actual <code>&lt;input type="radio"&gt;</code> (visually styled as a circle) with a label that names the color (e.g., &ldquo;Midnight Blue,&rdquo; &ldquo;Champagne Gold&rdquo;), never relying on color swatches alone without text labels.</p>
+
+            <span class="code-label">HTML &mdash; Accessible Form Pattern</span>
+<pre><code>&lt;!-- SHUSMA Email Signup with Error Handling --&gt;
+&lt;form novalidate&gt;
+  &lt;div class="form-group"&gt;
+    &lt;label for="newsletter-email"&gt;
+      Email address
+      &lt;span aria-hidden="true"&gt; *&lt;/span&gt;
+      &lt;span class="visually-hidden"&gt; (required)&lt;/span&gt;
+    &lt;/label&gt;
+    &lt;input
+      type="email"
+      id="newsletter-email"
+      name="email"
+      autocomplete="email"
+      aria-required="true"
+      aria-describedby="email-error"
+      aria-invalid="false"
+    &gt;
+    &lt;span id="email-error" class="error-message"
+          role="alert"&gt;&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;button type="submit"&gt;Subscribe&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;!-- Product Color Picker (Radiogroup) --&gt;
+&lt;fieldset&gt;
+  &lt;legend&gt;Color: &lt;span id="color-label"&gt;Midnight Blue&lt;/span&gt;&lt;/legend&gt;
+  &lt;div role="radiogroup" aria-labelledby="color-label"&gt;
+    &lt;label class="color-swatch-label"&gt;
+      &lt;input type="radio" name="color" value="midnight-blue"
+             checked aria-label="Midnight Blue"&gt;
+      &lt;span class="swatch" style="background:#1a2744"&gt;&lt;/span&gt;
+    &lt;/label&gt;
+    &lt;label class="color-swatch-label"&gt;
+      &lt;input type="radio" name="color" value="champagne-gold"
+             aria-label="Champagne Gold"&gt;
+      &lt;span class="swatch" style="background:#C9A961"&gt;&lt;/span&gt;
+    &lt;/label&gt;
+  &lt;/div&gt;
+&lt;/fieldset&gt;</code></pre>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SECTION 8: IMAGE ALT TEXT                                     -->
+        <!-- ============================================================ -->
+        <section class="guide-section" id="image-alt-text" aria-labelledby="heading-alt">
+            <h2 id="heading-alt"><span class="section-number">08.</span> Image Alt Text</h2>
+
+            <p>Images are the primary medium through which SHUSMA communicates product quality, craftsmanship, and brand aspiration. For users who cannot see these images &mdash; including blind users, users with low vision using screen magnifiers, users on slow connections who have disabled images, and search engine crawlers &mdash; alternative text is the only way to understand what is depicted. WCAG 2.1 SC 1.1.1 (Non-text Content) requires that every image that conveys meaning has a text alternative, and that purely decorative images are marked so that assistive technologies ignore them. On an ecommerce site, missing or poor alt text directly impacts sales because customers cannot make informed purchase decisions without understanding the products they are viewing.</p>
+
+            <h3>Product Photography Alt Text Patterns</h3>
+            <p>Product images on detail pages are the highest-priority alt text on the site. Each image must describe the product, its key visible features, and the angle shown. Use the pattern: <code>[Product Name] in [Color], [view angle] showing [key detail]</code>. For example, a main product image might read: <code>alt="SHUSMA Hand-Stitched Leather Tote in Cognac Brown, front view showing structured silhouette, rolled top handles, and gold-tone clasp"</code>. Additional gallery images at different angles should identify the view clearly: <code>alt="Hand-Stitched Leather Tote - interior view showing suede lining and zip pocket"</code>. Close-up detail shots should name the specific feature: <code>alt="Detail of hand-stitched leather panel on the SHUSMA tote bag"</code>. Group shots showing multiple products must list each item.</p>
+
+            <h3>Lifestyle and Editorial Images</h3>
+            <p>Lifestyle images &mdash; such as lookbook photos, campaign imagery, and editorial content &mdash; require descriptive alt text that captures the scene, the products being worn or used, and relevant contextual information. For example: <code>alt="Model wearing the SHUSMA Silk Blazer and Tailored Trousers standing in a sunlit gallery with abstract art in the background"</code>. If a lifestyle image conveys a brand message beyond the products shown (e.g., a campaign about sustainability), include that context: <code>alt="Close-up of organic cotton fabric draped over a craftsman's hands, illustrating SHUSMA's commitment to sustainable artisan production"</code>. Avoid subjective language like &ldquo;beautiful&rdquo; or &ldquo;stunning&rdquo; in alt text &mdash; focus on objective, observable content.</p>
+
+            <h3>Decorative SVGs and the SHUSMA Logo</h3>
+            <p>Decorative SVGs &mdash; including ornamental dividers, background patterns, abstract gold flourishes, and geometric accents &mdash; must be marked with <code>aria-hidden="true"</code> and have an empty <code>alt=""</code> attribute if wrapped in an <code>&lt;img&gt;</code> tag. Inline SVGs used decoratively must include <code>aria-hidden="true"</code> and must not have <code>&lt;title&gt;</code> or <code>&lt;desc&gt;</code> elements that would cause screen readers to announce them. The SHUSMA logo, when used as a link to the homepage, must have <code>alt="SHUSMA"</code>. When the logo appears in a non-interactive context (email footer, print receipt), it should also use <code>alt="SHUSMA"</code>. Never leave logo alt text empty unless the logo is purely decorative.</p>
+
+            <span class="code-label">HTML &mdash; Image Alt Text Examples</span>
+<pre><code>&lt;!-- SHUSMA Logo --&gt;
+&lt;a href="/" aria-label="SHUSMA - Go to homepage"&gt;
+  &lt;img src="/images/shusma-logo.svg"
+       alt="SHUSMA" width="120" height="40"&gt;
+&lt;/a&gt;
+
+&lt;!-- Main Product Image --&gt;
+&lt;img src="/products/silk-blazer-main.jpg"
+     alt="SHUSMA Silk Blazer in Midnight Blue, front view
+          showing notch lapel, single-button closure, and
+          subtle sheen fabric texture"
+     loading="eager" width="800" height="1000"&gt;
+
+&lt;!-- Product Detail / Close-up --&gt;
+&lt;img src="/products/silk-blazer-detail.jpg"
+     alt="Close-up of SHUSMA Silk Blazer fabric texture
+          showing woven pattern and stitching at lapel"
+     loading="lazy" width="800" height="800"&gt;
+
+&lt;!-- Lifestyle / Campaign Image --&gt;
+&lt;img src="/editorial/aw24-campaign.jpg"
+     alt="Model wearing SHUSMA Silk Blazer and Tailored
+          Trousers in an elegant marble-floored gallery"
+     loading="lazy" width="1200" height="800"&gt;
+
+&lt;!-- Decorative SVG (gold divider) --&gt;
+&lt;svg class="divider-flourish" aria-hidden="true"
+     width="200" height="20" viewBox="0 0 200 20"&gt;
+  &lt;path d="M10 10 Q100 0 190 10" stroke="#C9A961"
+        fill="none"/&gt;
+&lt;/svg&gt;
+
+&lt;!-- Decorative background pattern --&gt;
+&lt;img src="/patterns/gold-damask.png"
+     alt="" role="presentation" aria-hidden="true"&gt;</code></pre>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SECTION 9: ARABIC RTL SUPPORT                                 -->
+        <!-- ============================================================ -->
+        <section class="guide-section" id="arabic-rtl" aria-labelledby="heading-rtl">
+            <h2 id="heading-rtl"><span class="section-number">09.</span> Arabic RTL Support</h2>
+
+            <p>SHUSMA serves customers across the Middle East and North Africa region, making Arabic language support a core requirement rather than an afterthought. Arabic is a right-to-left (RTL) script, which requires mirroring of the entire layout &mdash; navigation moves to the right, text alignment flips, icons that imply directionality must be mirrored, and content flows from right to left. WCAG 2.1 SC 3.1.1 (Language of Page) and SC 3.1.2 (Language of Parts) require that the language of all content is programmatically determinable, which means every Arabic page must declare <code>lang="ar" dir="rtl"</code> on the <code>&lt;html&gt;</code> element. Any English passages within Arabic content (brand names, product codes, prices) must be marked with <code>lang="en" dir="ltr"</code> so screen readers switch pronunciation and text direction correctly.</p>
+
+            <h3>Logical CSS Properties</h3>
+            <p>The SHUSMA CSS codebase must use logical properties instead of physical directional properties to support bidirectional layouts without maintaining separate stylesheets. Replace <code>margin-left</code> with <code>margin-inline-start</code>, <code>padding-right</code> with <code>padding-inline-end</code>, <code>border-left</code> with <code>border-inline-start</code>, <code>text-align: left</code> with <code>text-align: start</code>, and <code>float: left</code> with <code>float: inline-start</code>. This approach ensures that when <code>dir="rtl"</code> is set on the page, all layout calculations automatically flip without additional CSS. Physical properties should only be used in rare cases where a specific side must remain fixed regardless of text direction (e.g., a fixed sidebar that always appears on one side for consistency).</p>
+
+            <h3>Mirroring Layout and Icons</h3>
+            <p>The entire page layout must mirror when switching between LTR (English) and RTL (Arabic). The header navigation moves from the left to the right, the shopping cart icon moves to the left of the header, sidebar panels slide in from the right, and breadcrumb separators flip direction. Icons that imply directionality &mdash; arrow icons in carousels, chevrons in dropdowns, back/forward navigation arrows &mdash; must be mirrored using CSS <code>transform: scaleX(-1)</code> within RTL contexts. Product image carousels must reverse their swipe and arrow-key directions in RTL mode, and the visual order of product variant thumbnails must mirror to follow natural reading flow.</p>
+
+            <h3>Mixed English/Arabic Content Handling</h3>
+            <p>Product pages frequently mix Arabic descriptions with English brand names, prices in USD or SAR, size labels (S, M, L, XL), and material terms. Each language segment must be wrapped in the appropriate <code>&lt;span lang="en" dir="ltr"&gt;</code> or <code>&lt;span lang="ar" dir="rtl"&gt;</code> element. Numbers and prices should use <code>dir="ltr"</code> even within Arabic text, as numerals always read left-to-right. The SHUSMA brand name should always appear in its Latin form within English-marked spans. Form inputs must handle RTL text entry correctly, including right-aligned placeholder text, RTL cursor movement, and proper text selection behavior for bilingual users.</p>
+
+            <span class="code-label">HTML &amp; CSS &mdash; RTL Setup</span>
+<pre><code>&lt;!-- Arabic page setup --&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang="ar" dir="rtl"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;SHUSMA - المجموعات&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;!-- Mixed content example --&gt;
+  &lt;p&gt;
+    حقيبة &lt;span lang="en" dir="ltr"&gt;SHUSMA&lt;/span&gt;
+    من الجلد الطبيعي
+    &lt;span lang="en" dir="ltr"&gt;SAR 2,450&lt;/span&gt;
+  &lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+
+&lt;!-- CSS: Logical properties --&gt;
+&lt;style&gt;
+/* Use logical properties for bidirectional support */
+.nav-item {
+  padding-inline-start: 1rem;
+  padding-inline-end: 1rem;
+  border-inline-start: 3px solid #C9A961;
+  margin-inline-end: 0.5rem;
+  text-align: start;
+}
+
+.product-card {
+  margin-inline-end: 1.5rem;
+  border-inline-end: 1px solid #E2CC8A;
+}
+
+/* Mirror directional icons in RTL */
+[dir="rtl"] .icon-arrow-right {
+  transform: scaleX(-1);
+}
+
+[dir="rtl"] .icon-arrow-left {
+  transform: scaleX(-1);
+}
+
+/* Sidebar positioning */
+.sidebar {
+  inset-inline-start: 0;
+  /* In LTR: left: 0; In RTL: right: 0; */
+}
+
+.main-content {
+  margin-inline-start: var(--sidebar-width);
+}
+&lt;/style&gt;</code></pre>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SECTION 10: TESTING CHECKLIST                                -->
+        <!-- ============================================================ -->
+        <section class="guide-section" id="testing-checklist" aria-labelledby="heading-checklist">
+            <h2 id="heading-checklist"><span class="section-number">10.</span> Testing Checklist</h2>
+
+            <p>This WCAG 2.1 Level AA testing checklist is specifically designed for the SHUSMA ecommerce platform and covers the full user journey from homepage browsing through product discovery, cart management, checkout, and order confirmation. Each item maps to one or more WCAG 2.1 success criteria and should be tested during every release cycle. Use the Pass/Fail columns to document results. Any failed item must be resolved before the release ships to production. The checklist should be completed by at least two testers: one using keyboard-only navigation and one using a screen reader (VoiceOver on macOS/iOS, NVDA on Windows, or TalkBack on Android). Additionally, automated tools (axe-core, Lighthouse) should be run as a first pass, but automated results alone do not constitute compliance.</p>
+
+            <div class="table-wrapper" style="margin-bottom: 1.5rem;">
+                <table class="checklist-table" aria-label="WCAG 2.1 AA testing checklist for SHUSMA ecommerce">
+                    <thead>
+                        <tr>
+                            <th style="width:5%">#</th>
+                            <th>Checklist Item</th>
+                            <th style="width:5%">Pass</th>
+                            <th style="width:5%">Fail</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Page has a valid <code>lang</code> attribute (&ldquo;en&rdquo; or &ldquo;ar&rdquo;) on the <code>&lt;html&gt;</code> element</td>
+                            <td class="check-cell">&#9633;</td>
+                            <td class="check-cell">&#9633;</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Page title is descriptive and unique per page (e.g., &ldquo;Silk Blazer | SHUSMA&rdquo;)</td>
+                            <td class="check-cell">&#9633;</td>
+                            <td class="check-cell">&#9633;</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Skip navigation link is present as the first focusable element and works correctly</td>
+                            <td class="check-cell">&#9633;</td>
+                            <td class="check-cell">&#9633;</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>All landmark regions (<code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;footer&gt;</code>) are present with unique <code>aria-label</code> attributes</td>
+                            <td class="check-cell">&#9633;</td>
+                            <td class="check-cell">&#9633;</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Heading hierarchy is logical (h1 &rarr; h2 &rarr; h3) with no skipped levels on any page</td>
+                            <td class="check-cell">&#9633;</td>
+                            <td class="check-cell">&#9633;</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>All body text on light backgrounds uses brown #5D4E37 or dark #1A1A1A (never gold #C9A961)</td>
+                            <td class="check-cell">&#9633;</td>
+                            <td class="check-cell">&#9633;</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>All text passes WCAG AA 4.5:1 contrast ratio (3:1 for large text 18px+)</td>
+                            <td class="check-cell">&#9633;</td>
+                            <td class="check-cell">&#9633;</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>Color is never the sole means of conveying information (errors, status, required fields)</td>
+                            <td class="check-cell">&#9633;</td>
+                            <td class="check-cell">&#9633;</td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>Body text is 16px minimum; no text is below 12px; UI text is 14px minimum</td>
+                            <td class="check-cell">&#9633;</td>
+                            <td class="check-cell">&#9633;</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>Line height is 1.5+ for body text; max line length is 70ch or less</td>
+                            <td class="check-cell">&#9633;</td>
+                            <td class="check-cell">&#9633;</td>
+                        </tr>
+                        <tr>
+                            <td>11</td>
+                            <td>Font weight 300 (thin) is never used below 14px font size</td>
+                            <td class="check-cell">&#9633;</td>
+                            <td class="check-cell">&#9633;</td>
+                        </tr>
+                        <tr>
+                            <td>12</td>
+                            <td>All interactive elements have minimum 44&times;44px touch targets</td>
+                            <td class="check-cell">&#9633;</td>
+                            <td class="check-cell">&#9633;</td>
+                        </tr>
+                        <tr>
+                            <td>13</td>
+                            <td>Adjacent tappable elements have at least 8px spacing between them</td>
+                            <td class="check-cell">&#9633;</td>
+                            <td class="check-cell">&#9633;</td>
+                        </tr>
+                        <tr>
+                            <td>14</td>
+                            <td>Add-to-Cart button is full-width on mobile with 52px minimum height and 16px+ font</td>
+                            <td class="check-cell">&#9633;</td>
+                            <td class="check-cell">&#9633;</td>
+                        </tr>
+                        <tr>
+                            <td>15</td>
+                            <td>Every image with meaning has descriptive alt text; decorative images have <code>alt=""</code> or <code>aria-hidden="true"</code></td>
+                            <td class="check-cell">&#9633;</td>
+                            <td class="check-cell">&#9633;</td>
+                        </tr>
+                        <tr>
+                            <td>16</td>
+                            <td>Product images follow the SHUSMA alt text pattern: [Product] in [Color], [angle] showing [detail]</td>
+                            <td class="check-cell">&#9633;</td>
+                            <td class="check-cell">&#9633;</td>
+                        </tr>
+                        <tr>
+                            <td>17</td>
+                            <td>SHUSMA logo uses <code>alt="SHUSMA"</code> and is wrapped in a link with <code>aria-label</code></td>
+                            <td class="check-cell">&#9633;</td>
+                            <td class="check-cell">&#9633;</td>
+                        </tr>
+                        <tr>
+                            <td>18</td>
+                            <td>Decorative SVGs have <code>aria-hidden="true"</code> with no <code>&lt;title&gt;</code> or <code>&lt;desc&gt;</code></td>
+                            <td class="check-cell">&#9633;</td>
+                            <td class="check-cell">&#9633;</td>
+                        </tr>
+                        <tr>
+                            <td>19</td>
+                            <td>All form inputs have visible <code>&lt;label&gt;</code> elements linked via <code>for</code>/<code>id</code></td>
+                            <td class="check-cell">&#9633;</td>
+                            <td class="check-cell">&#9633;</td>
+                        </tr>
+                        <tr>
+                            <td>20</td>
+                            <td>Form error messages are linked via <code>aria-describedby</code> with <code>aria-invalid="true"</code> on the input</td>
+                            <td class="check-cell">&#9633;</td>
+                            <td class="check-cell">&#9633;</td>
+                        </tr>
+                        <tr>
+                            <td>21</td>
+                            <td>Error messages are specific and actionable (not just &ldquo;Invalid&rdquo; or &ldquo;Required&rdquo;)</td>
+                            <td class="check-cell">&#9633;</td>
+                            <td class="check-cell">&#9633;</td>
+                        </tr>
+                        <tr>
+                            <td>22</td>
+                            <td>Checkout form fields have appropriate <code>autocomplete</code> attributes (name, email, address, cc)</td>
+                            <td class="check-cell">&#9633;</td>
+                            <td class="check-cell">&#9633;</td>
+                        </tr>
+                        <tr>
+                            <td>23</td>
+                            <td>Color picker uses radio buttons with text labels naming each color (not swatches alone)</td>
+                            <td class="check-cell">&#9633;</td>
+                            <td class="check-cell">&#9633;</td>
+                        </tr>
+                        <tr>
+                            <td>24</td>
+                            <td>Cart updates (add/remove/quantity change) are announced via <code>aria-live</code> regions</td>
+                            <td class="check-cell">&#9633;</td>
+                            <td class="check-cell">&#9633;</td>
+                        </tr>
+                        <tr>
+                            <td>25</td>
+                            <td>Every interactive element has a visible gold (#C9A961) 3px focus outline with dark shadow on cream</td>
+                            <td class="check-cell">&#9633;</td>
+                            <td class="check-cell">&#9633;</td>
+                        </tr>
+                        <tr>
+                            <td>26</td>
+                            <td>Tab order follows visual layout; no <code>tabindex &gt; 0</code> is used</td>
+                            <td class="check-cell">&#9633;</td>
+                            <td class="check-cell">&#9633;</td>
+                        </tr>
+                        <tr>
+                            <td>27</td>
+                            <td>Modals trap focus, return focus on close, and close with Escape key</td>
+                            <td class="check-cell">&#9633;</td>
+                            <td class="check-cell">&#9633;</td>
+                        </tr>
+                        <tr>
+                            <td>28</td>
+                            <td>Carousels support arrow key navigation, have pause/play controls, and show slide X of Y</td>
+                            <td class="check-cell">&#9633;</td>
+                            <td class="check-cell">&#9633;</td>
+                        </tr>
+                        <tr>
+                            <td>29</td>
+                            <td>All animations respect <code>prefers-reduced-motion: reduce</code> (shimmer, parallax, auto-play disabled)</td>
+                            <td class="check-cell">&#9633;</td>
+                            <td class="check-cell">&#9633;</td>
+                        </tr>
+                        <tr>
+                            <td>30</td>
+                            <td>Loading states include accessible text (role=&quot;status&quot;) alongside any visual spinner or skeleton</td>
+                            <td class="check-cell">&#9633;</td>
+                            <td class="check-cell">&#9633;</td>
+                        </tr>
+                        <tr>
+                            <td>31</td>
+                            <td>Arabic pages use <code>lang=&quot;ar&quot; dir=&quot;rtl&quot;</code>; English passages within Arabic use <code>lang=&quot;en&quot; dir=&quot;ltr&quot;</code></td>
+                            <td class="check-cell">&#9633;</td>
+                            <td class="check-cell">&#9633;</td>
+                        </tr>
+                        <tr>
+                            <td>32</td>
+                            <td>CSS uses logical properties (<code>margin-inline-start</code>, <code>padding-inline-end</code>, <code>text-align: start</code>)</td>
+                            <td class="check-cell">&#9633;</td>
+                            <td class="check-cell">&#9633;</td>
+                        </tr>
+                        <tr>
+                            <td>33</td>
+                            <td>Directional icons (arrows, chevrons) are mirrored with <code>transform: scaleX(-1)</code> in RTL contexts</td>
+                            <td class="check-cell">&#9633;</td>
+                            <td class="check-cell">&#9633;</td>
+                        </tr>
+                        <tr>
+                            <td>34</td>
+                            <td>Page remains usable at 200% browser zoom with no horizontal scrolling or content overlap</td>
+                            <td class="check-cell">&#9633;</td>
+                            <td class="check-cell">&#9633;</td>
+                        </tr>
+                        <tr>
+                            <td>35</td>
+                            <td>Multi-step checkout shows progress with <code>aria-current=&quot;step&quot;</code> and allows back navigation without data loss</td>
+                            <td class="check-cell">&#9633;</td>
+                            <td class="check-cell">&#9633;</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="callout callout-info">
+                <strong>Testing Protocol:</strong> Complete this checklist during every sprint QA cycle. Use automated tools (axe-core via browser extension, Lighthouse accessibility audit) as a first-pass scan, then manually test all 35 items. At minimum, perform one full test run with keyboard-only navigation (Tab, Shift+Tab, Enter, Space, Escape, arrow keys) and one with a screen reader (VoiceOver + Safari on macOS, NVDA + Firefox on Windows, or TalkBack + Chrome on Android). Document all failures with screenshots, the WCAG criterion violated, and the specific page/element affected. Failures must be triaged and resolved before the release is approved for production deployment.
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Mobile sidebar toggle script -->
+    <script>
+        const toggle = document.querySelector('.mobile-toggle');
+        const sidebar = document.getElementById('sidebar-nav');
+        if (toggle && sidebar) {
+            toggle.addEventListener('click', function() {
+                const isOpen = sidebar.classList.toggle('open');
+                toggle.setAttribute('aria-expanded', isOpen);
+            });
+            // Close sidebar when clicking a link on mobile
+            sidebar.querySelectorAll('a').forEach(function(link) {
+                link.addEventListener('click', function() {
+                    sidebar.classList.remove('open');
+                    toggle.setAttribute('aria-expanded', 'false');
+                });
+            });
+        }
+    </script>
+</body>
+</html>

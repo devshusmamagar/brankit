@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>500 — Server Error | SHUSMA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #C9A961;
+            --dark-gold: #A07D3F;
+            --light-gold: #E2CC8A;
+            --cream: #FAF8F5;
+            --brown: #5D4E37;
+            --dark: #1A1A1A;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--brown);
+            color: var(--cream);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Gold ornate pattern overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9A961' fill-opacity='0.05'%3E%3Cpath d='M40 0C40 0 42 4 40 8C38 12 40 16 40 16C40 16 42 12 40 8C38 4 40 0 40 0Z'/%3E%3Cpath d='M0 40C0 40 4 42 8 40C12 38 16 40 16 40C16 40 12 42 8 40C4 38 0 40 0 40Z'/%3E%3Cpath d='M80 40C80 40 76 42 72 40C68 38 64 40 64 40C64 40 68 42 72 40C76 38 80 40 80 40Z'/%3E%3Cpath d='M40 80C40 80 38 76 40 72C42 68 40 64 40 64C40 64 38 68 40 72C42 76 40 80 40 80Z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Radial glow */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(201,169,97,0.06) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 2rem 1.5rem;
+            max-width: 580px;
+            width: 100%;
+        }
+
+        /* Gold accent border card */
+        .card {
+            border: 1px solid rgba(201,169,97,0.25);
+            padding: 3rem 2rem;
+            position: relative;
+            background: rgba(201,169,97,0.03);
+        }
+
+        /* Corner accents on card */
+        .card::before,
+        .card::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border-color: var(--gold);
+            border-style: solid;
+            opacity: 0.5;
+        }
+
+        .card::before {
+            top: -1px;
+            left: -1px;
+            border-width: 2px 0 0 2px;
+        }
+
+        .card::after {
+            bottom: -1px;
+            right: -1px;
+            border-width: 0 2px 2px 0;
+        }
+
+        /* Logo */
+        .logo {
+            margin-bottom: 1.5rem;
+        }
+
+        .logo svg {
+            width: 48px;
+            height: 56px;
+        }
+
+        /* 500 Number */
+        .error-number {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(72px, 18vw, 120px);
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 0.75rem;
+            color: var(--gold);
+            opacity: 0.3;
+            position: relative;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 0.3; transform: translateY(0); }
+        }
+
+        /* Decorative line */
+        .gold-line {
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            margin: 0 auto 1.5rem;
+        }
+
+        /* Heading */
+        .error-heading {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.5rem, 5vw, 2rem);
+            font-weight: 500;
+            color: var(--cream);
+            margin-bottom: 0.75rem;
+        }
+
+        /* Subtext */
+        .error-subtext {
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(0.8125rem, 2.5vw, 0.9375rem);
+            color: var(--cream);
+            opacity: 0.6;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            max-width: 380px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Ornament divider */
+        .divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .divider-line {
+            width: 30px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(201,169,97,0.4));
+        }
+
+        .divider-line:last-child {
+            background: linear-gradient(90deg, rgba(201,169,97,0.4), transparent);
+        }
+
+        .divider-icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        .divider-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Buttons */
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 36px;
+            background: linear-gradient(135deg, var(--gold), var(--dark-gold));
+            color: var(--cream);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8125rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: none;
+            border-radius: 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 260px;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, var(--dark-gold), var(--brown));
+            transform: translateY(-1px);
+            box-shadow: 0 4px 20px rgba(201, 169, 97, 0.25);
+        }
+
+        .btn-primary svg {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-primary:hover svg {
+            transform: rotate(180deg);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 13px 36px;
+            background: transparent;
+            color: var(--gold);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8125rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: 1px solid rgba(201,169,97,0.4);
+            border-radius: 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 260px;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--gold);
+            color: var(--cream);
+            background: rgba(201,169,97,0.1);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Subtle pulse animation on icon */
+        .pulse-icon {
+            animation: pulse 2s ease-in-out infinite;
+            margin-bottom: 1.5rem;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.05); }
+        }
+
+        .pulse-icon svg {
+            width: 40px;
+            height: 40px;
+            color: var(--gold);
+        }
+
+        /* Footer text */
+        .footer-text {
+            margin-top: 2rem;
+            font-size: 0.6875rem;
+            color: var(--cream);
+            opacity: 0.3;
+            letter-spacing: 0.05em;
+        }
+
+        /* Responsive */
+        @media (min-width: 480px) {
+            .btn-group {
+                flex-direction: row;
+                justify-content: center;
+            }
+
+            .btn-primary, .btn-secondary {
+                width: auto;
+            }
+
+            .card {
+                padding: 3.5rem 3rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                padding: 3rem 2rem;
+            }
+
+            .card {
+                padding: 4rem 3.5rem;
+            }
+
+            .card::before, .card::after {
+                width: 40px;
+                height: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="card">
+            <!-- Logo -->
+            <div class="logo">
+                <svg viewBox="0 0 64 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 4C8 2 9 1 11 1H28" stroke="#C9A961" stroke-width="2" fill="none" stroke-linecap="round"/>
+                    <path d="M8 4V72C8 74 9 76 11 76H28" stroke="#C9A961" stroke-width="2" fill="none" stroke-linecap="round"/>
+                    <path d="M28 1C30 1 31 2 31 4C31 6 29 7 27 6.5" stroke="#C9A961" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                    <path d="M31 4C31 2.5 32.5 1.5 34 2" stroke="#C9A961" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+                    <path d="M28 76C30 76 31 75 31 73C31 71 29 70 27 70.5" stroke="#C9A961" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                    <path d="M31 73C31 74.5 32.5 75.5 34 75" stroke="#C9A961" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+                    <line x1="32" y1="10" x2="32" y2="16" stroke="#C9A961" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="36" y1="10" x2="36" y2="16" stroke="#C9A961" stroke-width="2" stroke-linecap="round"/>
+                    <ellipse cx="34" cy="7" rx="4" ry="4.5" stroke="#C9A961" stroke-width="1.5" fill="none"/>
+                    <path d="M28 16C30 16 32 18 32 22V28" stroke="#C9A961" stroke-width="2" fill="none" stroke-linecap="round"/>
+                    <path d="M40 16C38 16 36 18 36 22V28" stroke="#C9A961" stroke-width="2" fill="none" stroke-linecap="round"/>
+                    <path d="M28 28C26 30 22 38 20 52" stroke="#C9A961" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+                    <path d="M40 28C42 30 46 38 48 52" stroke="#C9A961" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+                    <path d="M20 52C20 56 22 60 28 62" stroke="#C9A961" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+                    <path d="M48 52C48 56 46 60 40 62" stroke="#C9A961" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+                    <line x1="28" y1="62" x2="26" y2="70" stroke="#C9A961" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="40" y1="62" x2="42" y2="70" stroke="#C9A961" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="24" y1="70" x2="44" y2="70" stroke="#C9A961" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </div>
+
+            <!-- Pulse Warning Icon -->
+            <div class="pulse-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 9v4"/>
+                    <path d="M12 17h.01"/>
+                    <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
+                </svg>
+            </div>
+
+            <!-- Error Number -->
+            <div class="error-number">500</div>
+
+            <!-- Gold Line -->
+            <div class="gold-line"></div>
+
+            <!-- Heading -->
+            <h1 class="error-heading">Something Went Wrong</h1>
+
+            <!-- Subtext -->
+            <p class="error-subtext">
+                We're experiencing a temporary issue with our servers. 
+                Our team has been notified and is working to resolve this. 
+                Please try again in a moment.
+            </p>
+
+            <!-- Divider -->
+            <div class="divider">
+                <span class="divider-line"></span>
+                <span class="divider-icon">
+                    <svg viewBox="0 0 20 20" fill="none" stroke="#C9A961" stroke-width="1" stroke-linecap="round">
+                        <path d="M10 2L12 8H18L13 12L15 18L10 14L5 18L7 12L2 8H8L10 2Z"/>
+                    </svg>
+                </span>
+                <span class="divider-line"></span>
+            </div>
+
+            <!-- Buttons -->
+            <div class="btn-group">
+                <button class="btn-primary" onclick="window.location.reload()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="23 4 23 10 17 10"></polyline>
+                        <path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"></path>
+                    </svg>
+                    Try Again
+                </button>
+                <a href="/contact" class="btn-secondary">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                    Contact Support
+                </a>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <p class="footer-text">SHUSMA &mdash; Error Reference: #500-<span id="errorRef"></span></p>
+    </div>
+
+    <script>
+        // Generate random error reference
+        document.getElementById('errorRef').textContent = 
+            Math.random().toString(36).substring(2, 8).toUpperCase();
+    </script>
+
+</body>
+</html>

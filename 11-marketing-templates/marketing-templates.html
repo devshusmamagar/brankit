@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SHUSMA شوسما — Marketing Templates</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500;600&family=Noto+Kufi+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #C9A961;
+  --dark-gold: #A07D3F;
+  --light-gold: #E2CC8A;
+  --cream: #FAF8F5;
+  --brown: #5D4E37;
+  --dark: #1A1A1A;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--cream);
+  color: var(--brown);
+  line-height: 1.7;
+}
+
+/* ========== COVER ========== */
+.cover {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(160deg, var(--dark) 0%, #2a2118 40%, var(--brown) 100%);
+  text-align: center;
+  padding: 60px 40px;
+  position: relative;
+}
+
+.cover::before {
+  content: '';
+  position: absolute;
+  top: 40px; left: 40px; right: 40px; bottom: 40px;
+  border: 1px solid var(--gold);
+  opacity: 0.3;
+}
+
+.cover::after {
+  content: '';
+  position: absolute;
+  top: 50px; left: 50px; right: 50px; bottom: 50px;
+  border: 1px solid var(--gold);
+  opacity: 0.15;
+}
+
+.cover-ornament { font-size: 48px; color: var(--gold); margin-bottom: 30px; letter-spacing: 20px; opacity: 0.6; }
+.cover h1 { font-family: 'Playfair Display', serif; font-size: 72px; font-weight: 400; color: var(--gold); letter-spacing: 18px; text-transform: uppercase; }
+.cover .arabic { font-family: 'Noto Kufi Arabic', sans-serif; font-size: 48px; color: var(--light-gold); margin: 10px 0 30px; }
+.cover .subtitle { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: var(--light-gold); letter-spacing: 8px; text-transform: uppercase; opacity: 0.8; }
+
+/* ========== SECTIONS ========== */
+.section { max-width: 1200px; margin: 0 auto; padding: 80px 60px; }
+
+.section-divider { display: flex; align-items: center; gap: 20px; max-width: 300px; margin: 0 auto; padding-bottom: 40px; }
+.section-divider .line { flex: 1; height: 1px; background: var(--gold); opacity: 0.4; }
+.section-divider .diamond { width: 8px; height: 8px; background: var(--gold); transform: rotate(45deg); opacity: 0.6; }
+
+.section-title { font-family: 'Playfair Display', serif; font-size: 42px; color: var(--dark); text-align: center; margin-bottom: 10px; font-weight: 400; letter-spacing: 2px; }
+.section-subtitle { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--dark-gold); text-align: center; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 50px; }
+
+.template-section { margin-bottom: 80px; }
+.template-label {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 3px; color: var(--dark-gold); margin-bottom: 8px;
+}
+.template-title {
+  font-family: 'Playfair Display', serif; font-size: 28px; color: var(--dark); margin-bottom: 30px;
+}
+
+/* ========== MOCKUP CONTAINERS ========== */
+.mockup-row { display: flex; gap: 24px; margin-bottom: 20px; flex-wrap: wrap; }
+.mockup-frame {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 30px rgba(0,0,0,0.08);
+  border: 1px solid rgba(201,169,97,0.12);
+}
+.mockup-frame .frame-label {
+  background: var(--dark);
+  color: var(--gold);
+  font-size: 11px;
+  padding: 8px 16px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* ========== 1. SALE ANNOUNCEMENT BANNER ========== */
+.sale-banner {
+  background: linear-gradient(135deg, var(--dark) 0%, #2a2015 50%, var(--brown) 100%);
+  padding: 50px 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+
+.sale-banner::before {
+  content: '';
+  position: absolute;
+  top: 15px; left: 15px; right: 15px; bottom: 15px;
+  border: 1px solid var(--gold);
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.sale-banner .sale-text { flex: 1; z-index: 1; }
+.sale-banner .sale-pre {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  color: var(--light-gold);
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.sale-banner .sale-main {
+  font-family: 'Playfair Display', serif;
+  font-size: 56px;
+  color: var(--gold);
+  font-weight: 400;
+  line-height: 1.1;
+}
+.sale-banner .sale-off {
+  font-family: 'Playfair Display', serif;
+  font-size: 72px;
+  color: var(--light-gold);
+  font-weight: 600;
+  margin: 10px 0;
+}
+.sale-banner .sale-desc {
+  font-size: 14px;
+  color: var(--light-gold);
+  opacity: 0.7;
+  margin-top: 10px;
+}
+.sale-banner .sale-cta {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--dark);
+  padding: 12px 32px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-decoration: none;
+  margin-top: 20px;
+}
+
+.sale-banner .sale-decor {
+  position: absolute;
+  right: 60px;
+  font-size: 180px;
+  color: var(--gold);
+  opacity: 0.06;
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  line-height: 1;
+  pointer-events: none;
+}
+
+/* Mobile banner variant */
+.sale-banner-mobile {
+  background: linear-gradient(180deg, var(--dark) 0%, var(--brown) 100%);
+  padding: 40px 30px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.sale-banner-mobile::before {
+  content: '';
+  position: absolute;
+  top: 12px; left: 12px; right: 12px; bottom: 12px;
+  border: 1px solid var(--gold);
+  opacity: 0.25;
+}
+
+.sale-banner-mobile .mobile-pre {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px;
+  color: var(--light-gold);
+  letter-spacing: 5px;
+  text-transform: uppercase;
+}
+.sale-banner-mobile .mobile-main {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  color: var(--gold);
+  margin: 8px 0;
+}
+.sale-banner-mobile .mobile-off {
+  font-family: 'Playfair Display', serif;
+  font-size: 48px;
+  color: var(--light-gold);
+  font-weight: 600;
+}
+.sale-banner-mobile .mobile-cta {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--dark);
+  padding: 10px 28px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-top: 16px;
+  text-decoration: none;
+}
+
+/* ========== 2. LOYALTY PROGRAM CARD ========== */
+.loyalty-card {
+  background: linear-gradient(145deg, var(--dark) 0%, #2a2015 100%);
+  border-radius: 16px;
+  padding: 40px;
+  position: relative;
+  overflow: hidden;
+  max-width: 480px;
+}
+
+.loyalty-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--dark-gold), var(--gold), var(--light-gold), var(--gold), var(--dark-gold));
+}
+
+.loyalty-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--dark-gold), var(--gold), var(--light-gold), var(--gold), var(--dark-gold));
+}
+
+.loyalty-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
+.loyalty-brand { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--gold); letter-spacing: 4px; }
+.loyalty-tier { background: var(--gold); color: var(--dark); padding: 4px 14px; border-radius: 20px; font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; }
+
+.loyalty-member { font-size: 12px; color: var(--light-gold); opacity: 0.6; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
+.loyalty-name { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--cream); margin-bottom: 25px; }
+
+.loyalty-points { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 25px; }
+.loyalty-pts-label { font-size: 11px; color: var(--light-gold); opacity: 0.5; text-transform: uppercase; letter-spacing: 2px; }
+.loyalty-pts-value { font-family: 'Playfair Display', serif; font-size: 42px; color: var(--gold); line-height: 1; }
+.loyalty-pts-next { font-size: 12px; color: var(--light-gold); opacity: 0.5; text-align: right; }
+
+.loyalty-progress { height: 3px; background: rgba(201,169,97,0.2); border-radius: 3px; margin-bottom: 25px; }
+.loyalty-progress-fill { height: 100%; width: 65%; background: linear-gradient(90deg, var(--dark-gold), var(--gold), var(--light-gold)); border-radius: 3px; }
+
+.loyalty-benefits { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; text-align: center; }
+.loyalty-benefit-icon { font-size: 20px; color: var(--gold); margin-bottom: 6px; }
+.loyalty-benefit-label { font-size: 10px; color: var(--light-gold); opacity: 0.6; text-transform: uppercase; letter-spacing: 1px; }
+
+.loyalty-card-pattern {
+  position: absolute;
+  right: -40px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 200px;
+  height: 200px;
+  border: 1px solid rgba(201,169,97,0.08);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.loyalty-card-pattern::after {
+  content: '';
+  position: absolute;
+  right: -30px;
+  top: -30px;
+  width: 200px;
+  height: 200px;
+  border: 1px solid rgba(201,169,97,0.05);
+  border-radius: 50%;
+}
+
+/* ========== 3. GIFT CARD ========== */
+.gift-card-mockup {
+  width: 380px;
+  height: 240px;
+  background: linear-gradient(145deg, var(--dark) 0%, #2a2015 60%, var(--brown) 100%);
+  border-radius: 16px;
+  padding: 30px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+}
+
+.gift-card-mockup::before {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border: 1px solid var(--gold);
+  border-radius: 12px;
+  opacity: 0.3;
+}
+
+.gift-card-mockup::after {
+  content: '✦';
+  position: absolute;
+  right: 25px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 80px;
+  color: var(--gold);
+  opacity: 0.08;
+}
+
+.gift-card-top { display: flex; justify-content: space-between; align-items: center; }
+.gift-card-brand { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--gold); letter-spacing: 4px; }
+.gift-card-label { font-family: 'Cormorant Garamond', serif; font-size: 12px; color: var(--light-gold); letter-spacing: 4px; text-transform: uppercase; opacity: 0.6; }
+
+.gift-card-amount {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px;
+  color: var(--light-gold);
+  opacity: 0.5;
+  letter-spacing: 2px;
+}
+.gift-card-amount span {
+  font-size: 36px;
+  color: var(--gold);
+  display: block;
+  opacity: 1;
+  margin-top: 2px;
+}
+
+.gift-card-bottom { display: flex; justify-content: space-between; align-items: flex-end; }
+.gift-card-code {
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  color: var(--light-gold);
+  opacity: 0.5;
+  letter-spacing: 2px;
+}
+.gift-card-pin {
+  font-size: 10px;
+  color: var(--light-gold);
+  opacity: 0.4;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ========== 4. LOOKBOOK COVER ========== */
+.lookbook-cover {
+  width: 320px;
+  height: 440px;
+  background: var(--cream);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.12);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.lookbook-cover::before {
+  content: '';
+  position: absolute;
+  inset: 20px;
+  border: 1px solid var(--gold);
+  opacity: 0.4;
+}
+
+.lookbook-cover::after {
+  content: '';
+  position: absolute;
+  inset: 26px;
+  border: 1px solid var(--gold);
+  opacity: 0.15;
+}
+
+.lookbook-season {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 12px;
+  color: var(--dark-gold);
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.lookbook-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  color: var(--dark);
+  text-align: center;
+  line-height: 1.2;
+  letter-spacing: 2px;
+  margin-bottom: 15px;
+}
+
+.lookbook-ornament {
+  color: var(--gold);
+  font-size: 16px;
+  letter-spacing: 12px;
+  margin: 15px 0;
+}
+
+.lookbook-brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  color: var(--dark-gold);
+  letter-spacing: 8px;
+  text-transform: uppercase;
+}
+
+.lookbook-ar {
+  font-family: 'Noto Kufi Arabic', sans-serif;
+  font-size: 18px;
+  color: var(--dark-gold);
+  margin-top: 6px;
+  opacity: 0.6;
+}
+
+.lookbook-year {
+  font-size: 11px;
+  color: var(--brown);
+  letter-spacing: 4px;
+  margin-top: 30px;
+  opacity: 0.5;
+}
+
+/* ========== 5. EVENT INVITATION ========== */
+.event-invite {
+  width: 500px;
+  background: var(--dark);
+  padding: 50px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.event-invite::before {
+  content: '';
+  position: absolute;
+  inset: 12px;
+  border: 1px solid var(--gold);
+  opacity: 0.25;
+}
+
+.event-invite::after {
+  content: '';
+  position: absolute;
+  inset: 18px;
+  border: 1px solid var(--gold);
+  opacity: 0.1;
+}
+
+.event-pre {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px;
+  color: var(--gold);
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.event-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  color: var(--cream);
+  line-height: 1.3;
+  margin-bottom: 8px;
+}
+
+.event-ar {
+  font-family: 'Noto Kufi Arabic', sans-serif;
+  font-size: 20px;
+  color: var(--gold);
+  opacity: 0.6;
+  margin-bottom: 30px;
+}
+
+.event-ornament {
+  color: var(--gold);
+  font-size: 14px;
+  letter-spacing: 16px;
+  margin: 20px 0;
+}
+
+.event-details { margin: 25px 0; }
+.event-detail-row {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  align-items: center;
+  margin: 10px 0;
+  font-size: 14px;
+}
+.event-detail-label {
+  color: var(--gold);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  min-width: 70px;
+}
+.event-detail-value {
+  color: var(--cream);
+  font-size: 14px;
+}
+
+.event-rsvp {
+  display: inline-block;
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  padding: 10px 30px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-top: 15px;
+  cursor: pointer;
+}
+
+/* ========== 6. QR CODE CARD ========== */
+.qr-card {
+  width: 300px;
+  background: white;
+  border-radius: 16px;
+  padding: 30px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  border: 1px solid rgba(201,169,97,0.2);
+}
+
+.qr-card-brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  color: var(--dark);
+  letter-spacing: 4px;
+  margin-bottom: 4px;
+}
+
+.qr-card-sub {
+  font-size: 11px;
+  color: var(--dark-gold);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.qr-placeholder {
+  width: 140px;
+  height: 140px;
+  background: var(--cream);
+  border: 2px solid var(--gold);
+  border-radius: 12px;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.qr-placeholder .qr-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 3px;
+  width: 90px;
+}
+.qr-placeholder .qr-cell {
+  width: 100%;
+  aspect-ratio: 1;
+  background: var(--dark);
+  border-radius: 1px;
+}
+.qr-placeholder .qr-cell.empty { background: transparent; }
+
+.qr-card-msg {
+  font-size: 13px;
+  color: var(--brown);
+  margin-bottom: 15px;
+}
+
+.qr-card-url {
+  font-size: 11px;
+  color: var(--dark-gold);
+  letter-spacing: 1px;
+}
+
+/* ========== 7. PRICE TAG ========== */
+.price-tag {
+  width: 180px;
+  background: white;
+  border-radius: 4px;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+.price-tag::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--gold);
+}
+
+.price-tag-brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 12px;
+  color: var(--dark-gold);
+  letter-spacing: 3px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.price-tag-item {
+  font-size: 11px;
+  color: var(--brown);
+  margin-bottom: 12px;
+  opacity: 0.7;
+}
+
+.price-tag-price {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  color: var(--dark);
+  margin-bottom: 5px;
+}
+
+.price-tag-currency {
+  font-size: 12px;
+  color: var(--dark-gold);
+  letter-spacing: 2px;
+}
+
+.price-tag-hole {
+  width: 12px;
+  height: 12px;
+  border: 1.5px solid var(--gold);
+  border-radius: 50%;
+  margin: 15px auto 0;
+  opacity: 0.4;
+}
+
+/* ========== 8. STORE SIGNAGE ========== */
+.store-signage {
+  width: 100%;
+  background: var(--dark);
+  padding: 60px 80px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.store-signage::before {
+  content: '';
+  position: absolute;
+  inset: 20px;
+  border: 1px solid var(--gold);
+  opacity: 0.2;
+}
+
+.store-signage-gold-bar {
+  width: 80px;
+  height: 2px;
+  background: var(--gold);
+  margin: 0 auto 30px;
+}
+
+.store-signage .sign-brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 64px;
+  color: var(--gold);
+  letter-spacing: 16px;
+  margin-bottom: 5px;
+}
+
+.store-signage .sign-ar {
+  font-family: 'Noto Kufi Arabic', sans-serif;
+  font-size: 28px;
+  color: var(--light-gold);
+  opacity: 0.5;
+  margin-bottom: 25px;
+}
+
+.store-signage .sign-tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  color: var(--cream);
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+.store-signage .sign-hours {
+  font-size: 12px;
+  color: var(--light-gold);
+  opacity: 0.4;
+  margin-top: 30px;
+  letter-spacing: 2px;
+}
+
+/* ========== GENERATED IMAGE PREVIEW ========== */
+.generated-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin: 40px 0;
+}
+
+.generated-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+  border: 1px solid rgba(201,169,97,0.15);
+}
+
+.generated-card img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.generated-card .gen-info {
+  padding: 16px 20px;
+}
+
+.generated-card .gen-info h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 15px;
+  color: var(--dark);
+  margin-bottom: 4px;
+}
+
+.generated-card .gen-info p {
+  font-size: 12px;
+  color: var(--brown);
+  opacity: 0.6;
+}
+
+/* ========== FOOTER ========== */
+.footer {
+  background: var(--dark);
+  padding: 60px;
+  text-align: center;
+}
+.footer h2 { font-family: 'Playfair Display', serif; font-size: 36px; color: var(--gold); letter-spacing: 8px; }
+.footer .ar { font-family: 'Noto Kufi Arabic', sans-serif; font-size: 24px; color: var(--light-gold); opacity: 0.6; margin-bottom: 30px; }
+.footer p { font-size: 12px; color: var(--gold); opacity: 0.4; letter-spacing: 3px; text-transform: uppercase; }
+
+/* ========== COLOR BAR ========== */
+.color-bar { display: flex; height: 6px; width: 100%; position: fixed; top: 0; left: 0; z-index: 1000; }
+.color-bar span { flex: 1; }
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 900px) {
+  .section { padding: 60px 30px; }
+  .generated-grid { grid-template-columns: 1fr; }
+  .cover h1 { font-size: 42px; }
+  .sale-banner { flex-direction: column; text-align: center; padding: 40px 30px; }
+  .sale-banner .sale-decor { display: none; }
+  .event-invite { width: 100%; }
+  .mockup-row { flex-direction: column; align-items: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- Color Bar -->
+<div class="color-bar">
+  <span style="background:#C9A961"></span>
+  <span style="background:#A07D3F"></span>
+  <span style="background:#E2CC8A"></span>
+  <span style="background:#FAF8F5"></span>
+  <span style="background:#5D4E37"></span>
+  <span style="background:#1A1A1A"></span>
+</div>
+
+<!-- ============ COVER ============ -->
+<div class="cover">
+  <div class="cover-ornament">✦ ✦ ✦</div>
+  <h1>SHUSMA</h1>
+  <div class="arabic">شوسما</div>
+  <div class="subtitle">Marketing Templates</div>
+</div>
+
+<!-- ============ GENERATED MARKETING IMAGES ============ -->
+<div class="section">
+  <div class="section-divider"><div class="line"></div><div class="diamond"></div><div class="line"></div></div>
+  <h2 class="section-title">Generated Marketing Assets</h2>
+  <p class="section-subtitle">AI-generated campaign visuals</p>
+
+  <div class="generated-grid">
+    <div class="generated-card">
+      <img src="sale-banner.png" alt="Sale Banner">
+      <div class="gen-info">
+        <h4>Sale Announcement Banner</h4>
+        <p>Seasonal sale with gold ornamental design</p>
+      </div>
+    </div>
+    <div class="generated-card">
+      <img src="gift-card.png" alt="Gift Card">
+      <div class="gen-info">
+        <h4>Gift Card Design</h4>
+        <p>Premium metallic gold on marble</p>
+      </div>
+    </div>
+    <div class="generated-card">
+      <img src="lookbook-cover.png" alt="Lookbook Cover" style="aspect-ratio:3/4; object-fit:cover;">
+      <div class="gen-info">
+        <h4>Lookbook Cover</h4>
+        <p>Magazine-style editorial cover</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 1. SALE ANNOUNCEMENT BANNER ============ -->
+<div class="section" style="background:white;">
+  <div class="template-section">
+    <div class="template-label">Template 01</div>
+    <h3 class="template-title">Sale Announcement Banner</h3>
+
+    <p style="font-size:14px; color:var(--brown); margin-bottom:20px; opacity:0.7;">Multi-format sale banners for web, mobile, and desktop display advertising.</p>
+
+    <!-- Desktop -->
+    <div class="mockup-frame" style="margin-bottom:20px;">
+      <div class="frame-label">Desktop — 1200 × 400px</div>
+      <div class="sale-banner">
+        <div class="sale-text">
+          <div class="sale-pre">Exclusive Seasonal Event</div>
+          <div class="sale-main">The SHUSMA<br>Sale</div>
+          <div class="sale-off">30% OFF</div>
+          <div class="sale-desc">Selected collections · Limited time only</div>
+          <a href="#" class="sale-cta">Shop Now →</a>
+        </div>
+        <div class="sale-decor">%</div>
+      </div>
+    </div>
+
+    <!-- Mobile -->
+    <div class="mockup-frame" style="max-width:400px;">
+      <div class="frame-label">Mobile — 375 × 280px</div>
+      <div class="sale-banner-mobile">
+        <div class="mobile-pre">Exclusive</div>
+        <div class="mobile-main">SHUSMA Sale</div>
+        <div class="mobile-off">30% OFF</div>
+        <a href="#" class="mobile-cta">Shop Now →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 2. LOYALTY PROGRAM CARD ============ -->
+<div class="section">
+  <div class="template-section">
+    <div class="template-label">Template 02</div>
+    <h3 class="template-title">Loyalty Program Card</h3>
+
+    <p style="font-size:14px; color:var(--brown); margin-bottom:20px; opacity:0.7;">Premium membership card design with tiered rewards and points tracker.</p>
+
+    <div class="mockup-row">
+      <div class="mockup-frame">
+        <div class="frame-label">Gold Tier Member Card</div>
+        <div style="padding:30px; background:var(--cream);">
+          <div class="loyalty-card">
+            <div class="loyalty-header">
+              <div class="loyalty-brand">SHUSMA</div>
+              <div class="loyalty-tier">✦ Gold Tier</div>
+            </div>
+            <div class="loyalty-member">Member Since 2023</div>
+            <div class="loyalty-name">Fatima Al-Rashid</div>
+            <div class="loyalty-points">
+              <div>
+                <div class="loyalty-pts-label">Reward Points</div>
+                <div class="loyalty-pts-value">4,250</div>
+              </div>
+              <div class="loyalty-pts-next">1,750 pts to Platinum</div>
+            </div>
+            <div class="loyalty-progress">
+              <div class="loyalty-progress-fill"></div>
+            </div>
+            <div class="loyalty-benefits">
+              <div>
+                <div class="loyalty-benefit-icon">✦</div>
+                <div class="loyalty-benefit-label">Early Access</div>
+              </div>
+              <div>
+                <div class="loyalty-benefit-icon">✦</div>
+                <div class="loyalty-benefit-label">Free Shipping</div>
+              </div>
+              <div>
+                <div class="loyalty-benefit-icon">✦</div>
+                <div class="loyalty-benefit-label">10% Off</div>
+              </div>
+            </div>
+            <div class="loyalty-card-pattern"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 3. GIFT CARD ============ -->
+<div class="section" style="background:white;">
+  <div class="template-section">
+    <div class="template-label">Template 03</div>
+    <h3 class="template-title">Gift Card Design</h3>
+
+    <p style="font-size:14px; color:var(--brown); margin-bottom:20px; opacity:0.7;">Physical and digital gift card with premium gold aesthetic.</p>
+
+    <div class="mockup-frame" style="display:inline-block;">
+      <div class="frame-label">Physical Gift Card — 3.5 × 2.25 in</div>
+      <div style="padding:30px; background:var(--cream); display:flex; gap:20px; flex-wrap:wrap; align-items:center;">
+        <div class="gift-card-mockup">
+          <div class="gift-card-top">
+            <div class="gift-card-brand">SHUSMA</div>
+            <div class="gift-card-label">Gift Card</div>
+          </div>
+          <div class="gift-card-amount">
+            GIFT VALUE
+            <span>SAR 500</span>
+          </div>
+          <div class="gift-card-bottom">
+            <div class="gift-card-code">SHUS-XXXX-XXXX-XXXX</div>
+            <div class="gift-card-pin">PIN: ••••</div>
+          </div>
+        </div>
+
+        <div class="gift-card-mockup" style="background: linear-gradient(145deg, var(--cream) 0%, #f0ebe0 100%);">
+          <div class="gift-card-top">
+            <div class="gift-card-brand" style="color:var(--dark-gold);">شوسما</div>
+            <div class="gift-card-label" style="color:var(--brown);">بطاقة هدية</div>
+          </div>
+          <div class="gift-card-amount" style="color:var(--dark-gold);">
+            قيمة البطاقة
+            <span style="color:var(--dark-gold);">٥٠٠ ر.س</span>
+          </div>
+          <div class="gift-card-bottom">
+            <div class="gift-card-code" style="color:var(--brown);">SHUS-XXXX-XXXX-XXXX</div>
+            <div class="gift-card-pin" style="color:var(--brown);">PIN: ••••</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 4. LOOKBOOK COVER ============ -->
+<div class="section">
+  <div class="template-section">
+    <div class="template-label">Template 04</div>
+    <h3 class="template-title">Lookbook Cover</h3>
+
+    <p style="font-size:14px; color:var(--brown); margin-bottom:20px; opacity:0.7;">Seasonal lookbook / catalog cover with elegant typography system.</p>
+
+    <div class="mockup-frame" style="display:inline-block;">
+      <div class="frame-label">Lookbook Cover — 8 × 11 in</div>
+      <div style="padding:30px; background:var(--cream); display:flex; gap:30px; flex-wrap:wrap; align-items:flex-start;">
+        <div class="lookbook-cover">
+          <div class="lookbook-season">Spring / Summer 2025</div>
+          <div class="lookbook-ornament">✦ ✦ ✦</div>
+          <div class="lookbook-title">The Art of<br>Elegance</div>
+          <div class="lookbook-ornament">✦ ✦ ✦</div>
+          <div class="lookbook-brand">SHUSMA</div>
+          <div class="lookbook-ar">شوسما</div>
+          <div class="lookbook-year">COLLECTION LOOKBOOK</div>
+        </div>
+
+        <div class="lookbook-cover" style="background:var(--dark);">
+          <div class="lookbook-season" style="color:var(--gold);">Autumn / Winter 2025</div>
+          <div class="lookbook-ornament" style="color:var(--light-gold);">✦ ✦ ✦</div>
+          <div class="lookbook-title" style="color:var(--gold);">Golden<br>Horizons</div>
+          <div class="lookbook-ornament" style="color:var(--light-gold);">✦ ✦ ✦</div>
+          <div class="lookbook-brand" style="color:var(--light-gold);">SHUSMA</div>
+          <div class="lookbook-ar" style="color:var(--light-gold);">شوسما</div>
+          <div class="lookbook-year" style="color:var(--gold);">COLLECTION LOOKBOOK</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 5. EVENT INVITATION ============ -->
+<div class="section" style="background:white;">
+  <div class="template-section">
+    <div class="template-label">Template 05</div>
+    <h3 class="template-title">Event Invitation — Fashion Show</h3>
+
+    <p style="font-size:14px; color:var(--brown); margin-bottom:20px; opacity:0.7;">Exclusive fashion show invitation with formal event details.</p>
+
+    <div class="mockup-frame" style="display:inline-block;">
+      <div class="frame-label">Print Invitation — 5 × 7 in</div>
+      <div style="padding:30px; background:var(--cream); display:flex; justify-content:center;">
+        <div class="event-invite">
+          <div class="event-pre">You Are Cordially Invited</div>
+          <div class="event-title">An Evening of<br>Elegance</div>
+          <div class="event-ar">دعوة حصرية</div>
+          <div class="event-ornament">✦ ✦ ✦</div>
+          <div class="event-details">
+            <div class="event-detail-row">
+              <span class="event-detail-label">Date</span>
+              <span class="event-detail-value">Saturday, 15 March 2025</span>
+            </div>
+            <div class="event-detail-row">
+              <span class="event-detail-label">Time</span>
+              <span class="event-detail-value">7:30 PM — Doors Open at 7:00 PM</span>
+            </div>
+            <div class="event-detail-row">
+              <span class="event-detail-label">Venue</span>
+              <span class="event-detail-value">The Ritz-Carlton, Riyadh</span>
+            </div>
+            <div class="event-detail-row">
+              <span class="event-detail-label">Dress Code</span>
+              <span class="event-detail-value">Black Tie / Evening Wear</span>
+            </div>
+          </div>
+          <div class="event-ornament">✦ ✦ ✦</div>
+          <div class="event-rsvp">R S V P</div>
+          <div style="margin-top:15px;">
+            <span style="font-family:'Playfair Display',serif; font-size:14px; color:var(--gold); letter-spacing:4px;">SHUSMA</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 6. QR CODE PROMOTIONAL CARD ============ -->
+<div class="section">
+  <div class="template-section">
+    <div class="template-label">Template 06</div>
+    <h3 class="template-title">QR Code Promotional Card</h3>
+
+    <p style="font-size:14px; color:var(--brown); margin-bottom:20px; opacity:0.7;">In-store and packaging insert card with QR code for digital engagement.</p>
+
+    <div class="mockup-frame" style="display:inline-block;">
+      <div class="frame-label">Promo Card — 3.5 × 5 in</div>
+      <div style="padding:30px; background:var(--cream); display:flex; gap:24px; flex-wrap:wrap; justify-content:center;">
+        <div class="qr-card">
+          <div class="qr-card-brand">SHUSMA</div>
+          <div class="qr-card-sub">Discover More</div>
+          <div class="qr-placeholder">
+            <div class="qr-grid">
+              <div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell empty"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell"></div>
+              <div class="qr-cell"></div><div class="qr-cell empty"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell empty"></div><div class="qr-cell"></div><div class="qr-cell"></div>
+              <div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell empty"></div><div class="qr-cell empty"></div><div class="qr-cell empty"></div><div class="qr-cell"></div><div class="qr-cell"></div>
+              <div class="qr-cell empty"></div><div class="qr-cell"></div><div class="qr-cell empty"></div><div class="qr-cell"></div><div class="qr-cell empty"></div><div class="qr-cell"></div><div class="qr-cell empty"></div>
+              <div class="qr-cell"></div><div class="qr-cell empty"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell empty"></div><div class="qr-cell"></div><div class="qr-cell"></div>
+              <div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell empty"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell"></div>
+              <div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell empty"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell"></div>
+            </div>
+          </div>
+          <div class="qr-card-msg">Scan to explore the<br>new collection &amp; exclusive offers</div>
+          <div class="qr-card-url">shusma.com/new-arrivals</div>
+        </div>
+
+        <div class="qr-card" style="background:var(--dark); border-color:rgba(201,169,97,0.3);">
+          <div class="qr-card-brand" style="color:var(--gold);">شوسما</div>
+          <div class="qr-card-sub" style="color:var(--light-gold);">اكتشف المزيد</div>
+          <div class="qr-placeholder" style="border-color:var(--gold); background:rgba(201,169,97,0.08);">
+            <div class="qr-grid">
+              <div class="qr-cell" style="background:var(--gold)"></div><div class="qr-cell" style="background:var(--gold)"></div><div class="qr-cell" style="background:var(--gold)"></div><div class="qr-cell empty"></div><div class="qr-cell" style="background:var(--gold)"></div><div class="qr-cell" style="background:var(--gold)"></div><div class="qr-cell" style="background:var(--gold)"></div>
+              <div class="qr-cell" style="background:var(--gold)"></div><div class="qr-cell empty"></div><div class="qr-cell" style="background:var(--gold)"></div><div class="qr-cell" style="background:var(--gold)"></div><div class="qr-cell empty"></div><div class="qr-cell" style="background:var(--gold)"></div><div class="qr-cell" style="background:var(--gold)"></div>
+              <div class="qr-cell" style="background:var(--gold)"></div><div class="qr-cell" style="background:var(--gold)"></div><div class="qr-cell empty"></div><div class="qr-cell empty"></div><div class="qr-cell empty"></div><div class="qr-cell" style="background:var(--gold)"></div><div class="qr-cell" style="background:var(--gold)"></div>
+              <div class="qr-cell empty"></div><div class="qr-cell" style="background:var(--gold)"></div><div class="qr-cell empty"></div><div class="qr-cell" style="background:var(--gold)"></div><div class="qr-cell empty"></div><div class="qr-cell" style="background:var(--gold)"></div><div class="qr-cell empty"></div>
+              <div class="qr-cell" style="background:var(--gold)"></div><div class="qr-cell empty"></div><div class="qr-cell" style="background:var(--gold)"></div><div class="qr-cell" style="background:var(--gold)"></div><div class="qr-cell empty"></div><div class="qr-cell" style="background:var(--gold)"></div><div class="qr-cell" style="background:var(--gold)"></div>
+              <div class="qr-cell" style="background:var(--gold)"></div><div class="qr-cell" style="background:var(--gold)"></div><div class="qr-cell" style="background:var(--gold)"></div><div class="qr-cell empty"></div><div class="qr-cell" style="background:var(--gold)"></div><div class="qr-cell" style="background:var(--gold)"></div><div class="qr-cell" style="background:var(--gold)"></div>
+              <div class="qr-cell" style="background:var(--gold)"></div><div class="qr-cell" style="background:var(--gold)"></div><div class="qr-cell" style="background:var(--gold)"></div><div class="qr-cell empty"></div><div class="qr-cell" style="background:var(--gold)"></div><div class="qr-cell" style="background:var(--gold)"></div><div class="qr-cell" style="background:var(--gold)"></div>
+            </div>
+          </div>
+          <div class="qr-card-msg" style="color:var(--cream);">امسح لاستكشاف المجموعة<br>الجديدة والعروض الحصرية</div>
+          <div class="qr-card-url" style="color:var(--gold);">shusma.com/new-arrivals</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 7. PRICE TAG ============ -->
+<div class="section" style="background:white;">
+  <div class="template-section">
+    <div class="template-label">Template 07</div>
+    <h3 class="template-title">Price Tag Design</h3>
+
+    <p style="font-size:14px; color:var(--brown); margin-bottom:20px; opacity:0.7;">In-store product price tags with brand identity elements.</p>
+
+    <div class="mockup-frame" style="display:inline-block;">
+      <div class="frame-label">Product Price Tag — 2.25 × 3.5 in</div>
+      <div style="padding:30px; background:var(--cream); display:flex; gap:20px; flex-wrap:wrap; align-items:flex-start;">
+        <div class="price-tag">
+          <div class="price-tag-brand">SHUSMA</div>
+          <div class="price-tag-item">Evening Gown — Gold Leaf</div>
+          <div class="price-tag-price">SAR 2,450</div>
+          <div class="price-tag-currency">Saudi Riyal</div>
+          <div class="price-tag-hole"></div>
+        </div>
+
+        <div class="price-tag" style="background:var(--dark);">
+          <div class="price-tag-brand" style="color:var(--gold);">شوسما</div>
+          <div class="price-tag-item" style="color:var(--cream); opacity:0.5;">عباية — ذهبي</div>
+          <div class="price-tag-price" style="color:var(--gold);">SAR 1,890</div>
+          <div class="price-tag-currency" style="color:var(--light-gold);">ريال سعودي</div>
+          <div class="price-tag-hole" style="border-color:var(--gold);"></div>
+        </div>
+
+        <div class="price-tag">
+          <div class="price-tag-brand">SHUSMA</div>
+          <div class="price-tag-item">Silk Scarf — Ivory</div>
+          <div class="price-tag-price">SAR 680</div>
+          <div class="price-tag-currency">Saudi Riyal</div>
+          <div class="price-tag-hole"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 8. STORE SIGNAGE ============ -->
+<div class="section">
+  <div class="template-section">
+    <div class="template-label">Template 08</div>
+    <h3 class="template-title">Store Signage Concept</h3>
+
+    <p style="font-size:14px; color:var(--brown); margin-bottom:20px; opacity:0.7;">Exterior and interior storefront signage with brand presence.</p>
+
+    <div class="mockup-frame">
+      <div class="frame-label">Storefront Signage — Variable Width</div>
+      <div class="store-signage">
+        <div class="store-signage-gold-bar"></div>
+        <div class="sign-brand">SHUSMA</div>
+        <div class="sign-ar">شوسما</div>
+        <div class="store-signage-gold-bar"></div>
+        <div class="sign-tagline">Luxury Fashion · Timeless Elegance</div>
+        <div class="sign-hours">OPEN DAILY 10:00 AM — 10:00 PM</div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:20px; flex-wrap:wrap;">
+      <div class="mockup-frame" style="flex:1; min-width:280px;">
+        <div class="frame-label">Window Decal</div>
+        <div style="background:var(--dark); padding:40px; text-align:center; position:relative;">
+          <div style="font-family:'Cormorant Garamond',serif; font-size:13px; color:var(--gold); letter-spacing:6px; text-transform:uppercase;">Now Open</div>
+          <div style="font-family:'Playfair Display',serif; font-size:28px; color:var(--cream); margin:10px 0; letter-spacing:4px;">New Collection</div>
+          <div style="font-size:12px; color:var(--light-gold); opacity:0.5; letter-spacing:2px;">Spring / Summer 2025</div>
+        </div>
+      </div>
+
+      <div class="mockup-frame" style="flex:1; min-width:280px;">
+        <div class="frame-label">In-Store Welcome Sign</div>
+        <div style="background:var(--cream); padding:40px; text-align:center; border:1px solid rgba(201,169,97,0.2);">
+          <div style="font-family:'Playfair Display',serif; font-size:28px; color:var(--dark); letter-spacing:4px; margin-bottom:5px;">SHUSMA</div>
+          <div style="font-family:'Noto Kufi Arabic',sans-serif; font-size:18px; color:var(--dark-gold);">مرحباً بكم</div>
+          <div style="width:50px; height:1px; background:var(--gold); margin:15px auto;"></div>
+          <div style="font-family:'Cormorant Garamond',serif; font-size:14px; color:var(--brown); letter-spacing:3px; text-transform:uppercase;">Welcome</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ FOOTER ============ -->
+<div class="footer">
+  <h2>SHUSMA</h2>
+  <div class="ar">شوسما</div>
+  <p>Marketing Templates &bull; Confidential &bull; All Rights Reserved</p>
+</div>
+
+</body>
+</html>

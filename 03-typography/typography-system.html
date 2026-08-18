@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SHUSMA — Typography System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600;700&family=Noto+Serif+Arabic:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-gold: #C9A961;
+      --color-gold-dark: #A07D3F;
+      --color-gold-light: #E2CC8A;
+      --color-cream: #FAF8F5;
+      --color-brown: #5D4E37;
+      --color-dark: #1A1A1A;
+      --color-white: #FFFFFF;
+      --g100: #F5F5F5; --g200: #E8E8E8; --g300: #D4D4D4;
+      --g400: #A3A3A3; --g500: #737373; --g600: #525252;
+      --err: #DC2626; --ok: #16A34A;
+      --fh: 'Playfair Display', Georgia, 'Times New Roman', serif;
+      --fb: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --fa: 'Noto Sans Arabic', 'Segoe UI', Tahoma, sans-serif;
+      --fah: 'Noto Serif Arabic', 'Times New Roman', serif;
+      --fm: 'SF Mono', 'Fira Code', monospace;
+      --txs: 0.75rem; --tsm: 0.875rem; --tbase: 1rem;
+      --tlg: 1.125rem; --txl: 1.25rem; --t2xl: 1.5rem;
+      --t3xl: 1.875rem; --t4xl: 2.25rem; --t5xl: 3rem;
+      --t6xl: 3.75rem; --t7xl: 4.5rem;
+      --sw: 280px; --sg: 4rem; --pp: 2.5rem;
+    }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; -webkit-font-smoothing:antialiased; }
+    body { font-family:var(--fb); font-size:var(--tbase); font-weight:400; line-height:1.5; color:var(--color-dark); background:var(--color-cream); }
+    .sb { position:fixed; top:0; left:0; width:var(--sw); height:100vh; background:var(--color-dark); color:var(--color-cream); overflow-y:auto; z-index:1000; padding:2.5rem 0 2rem; border-right:1px solid rgba(201,169,97,.15); transition:transform .3s; }
+    .sb::-webkit-scrollbar { width:3px; } .sb::-webkit-scrollbar-thumb { background:var(--color-gold-dark); border-radius:10px; }
+    .sbb { padding:0 2rem 2rem; border-bottom:1px solid rgba(201,169,97,.15); margin-bottom:1.5rem; }
+    .sbb h2 { font-family:var(--fh); font-size:var(--t2xl); font-weight:700; color:var(--color-gold); letter-spacing:.05em; }
+    .sbb span { font-size:var(--txs); color:var(--g400); letter-spacing:.1em; text-transform:uppercase; }
+    .sbn { list-style:none; padding:0 1rem; }
+    .sbn li a { display:flex; align-items:center; gap:.75rem; padding:.6rem 1rem; color:var(--g400); text-decoration:none; font-size:var(--tsm); font-weight:500; letter-spacing:.025em; border-radius:8px; transition:all .2s; border-left:2px solid transparent; }
+    .sbn li a:hover, .sbn li a.active { color:var(--color-gold); background:rgba(201,169,97,.08); border-left-color:var(--color-gold); }
+    .sbn .nn { font-family:var(--fm); font-size:var(--txs); color:var(--color-gold-dark); min-width:1.5rem; }
+    .sbn li a:hover .nn { color:var(--color-gold); }
+    .mc { margin-left:var(--sw); padding:var(--pp); }
+    .ph { text-align:center; padding:4rem 0 3rem; border-bottom:1px solid var(--color-gold-light); margin-bottom:var(--sg); position:relative; }
+    .ph::before { content:''; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:300px; height:300px; background:radial-gradient(circle,rgba(201,169,97,.06) 0%,transparent 70%); pointer-events:none; }
+    .ph .ov { font-size:var(--txs); font-weight:600; letter-spacing:.15em; text-transform:uppercase; color:var(--color-gold-dark); margin-bottom:1rem; display:block; }
+    .ph h1 { font-family:var(--fh); font-size:var(--t5xl); font-weight:300; color:var(--color-dark); letter-spacing:-.02em; line-height:1.15; margin-bottom:.75rem; }
+    .ph h1 em { font-style:italic; color:var(--color-gold); }
+    .ph .sub { font-size:var(--tlg); color:var(--color-brown); max-width:600px; margin:0 auto 1.5rem; line-height:1.65; }
+    .ph .bar { font-family:var(--fah); font-size:var(--txl); color:var(--color-gold-dark); direction:rtl; line-height:1.65; }
+    .sec { margin-bottom:var(--sg); scroll-margin-top:2rem; }
+    .sh { display:flex; align-items:center; gap:1rem; margin-bottom:2rem; padding-bottom:1rem; border-bottom:1px solid var(--g200); }
+    .sn2 { font-family:var(--fm); font-size:var(--txs); font-weight:600; color:var(--color-gold); background:rgba(201,169,97,.1); border:1px solid rgba(201,169,97,.25); padding:.35rem .7rem; border-radius:6px; letter-spacing:.05em; }
+    .sh h2 { font-family:var(--fh); font-size:var(--t2xl); font-weight:600; color:var(--color-dark); }
+    .sh .sd { font-size:var(--tsm); color:var(--g500); margin-left:auto; font-style:italic; }
+    .sc { background:#fff; border:1px solid var(--g200); border-radius:12px; padding:2rem; margin-bottom:1.5rem; transition:box-shadow .25s,border-color .25s; }
+    .sc:hover { box-shadow:0 8px 30px rgba(201,169,97,.1); border-color:var(--color-gold-light); }
+    .sl { font-family:var(--fm); font-size:var(--txs); color:var(--color-gold-dark); letter-spacing:.05em; text-transform:uppercase; margin-bottom:1rem; display:flex; align-items:center; gap:.5rem; }
+    .sl::before { content:''; width:8px; height:8px; background:var(--color-gold); border-radius:2px; display:inline-block; flex-shrink:0; }
+    .smt { display:flex; gap:.75rem; flex-wrap:wrap; margin-top:.75rem; padding-top:.75rem; border-top:1px dashed var(--g200); }
+    .smt span { font-family:var(--fm); font-size:11px; color:var(--g500); background:var(--g100); padding:.2rem .5rem; border-radius:4px; }
+    .g2 { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; }
+    .g3 { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
+    .btn { display:inline-flex; align-items:center; justify-content:center; gap:.5rem; font-family:var(--fb); font-weight:600; letter-spacing:.025em; text-transform:uppercase; border:none; border-radius:4px; cursor:pointer; transition:all .25s; text-decoration:none; }
+    .bp { background:var(--color-gold); color:#fff; padding:.875rem 2rem; font-size:var(--tsm); } .bp:hover { background:var(--color-gold-dark); }
+    .bsec { background:transparent; color:var(--color-dark); padding:.8rem 2rem; font-size:var(--tsm); border:1.5px solid var(--color-dark); border-radius:4px; } .bsec:hover { background:var(--color-dark); color:#fff; }
+    .bgh { background:transparent; color:var(--color-gold-dark); padding:.8rem 1.5rem; font-size:var(--tsm); border-bottom:1.5px solid var(--color-gold-dark); border-radius:0; } .bgh:hover { background:rgba(201,169,97,.06); }
+    .bsm { padding:.5rem 1.25rem; font-size:var(--txs); } .blg { padding:1.1rem 2.5rem; font-size:var(--tbase); }
+    .fg { margin-bottom:1.5rem; }
+    .fl2 { display:block; font-size:var(--tsm); font-weight:500; color:var(--color-dark); margin-bottom:.5rem; letter-spacing:.025em; }
+    .fi { width:100%; max-width:400px; padding:.75rem 1rem; font-family:var(--fb); font-size:var(--tbase); color:var(--color-dark); background:#fff; border:1.5px solid var(--g300); border-radius:6px; outline:none; transition:border-color .2s; }
+    .fi::placeholder { color:var(--g400); } .fi:focus { border-color:var(--color-gold); } .fi.err { border-color:var(--err); }
+    .fhint { font-size:var(--txs); color:var(--g500); margin-top:.35rem; }
+    .ferr { font-size:var(--txs); color:var(--err); margin-top:.35rem; font-weight:500; }
+    .rr { display:flex; gap:2rem; align-items:flex-end; overflow-x:auto; padding-bottom:1rem; }
+    .rf { flex-shrink:0; background:#fff; border:1px solid var(--g200); border-radius:10px; padding:1.5rem; }
+    .rf .rfl { font-family:var(--fm); font-size:10px; color:var(--color-gold-dark); letter-spacing:.1em; text-transform:uppercase; margin-bottom:1rem; text-align:center; }
+    .rfm { width:220px; } .rft { width:320px; } .rfd { width:480px; }
+    .cb2 { background:var(--color-dark); color:#E2CC8A; border-radius:12px; padding:2rem; overflow-x:auto; position:relative; margin-top:2rem; }
+    .cb2 pre { font-family:var(--fm); font-size:13px; line-height:1.7; white-space:pre; }
+    .cb2 .cpb { position:absolute; top:1rem; right:1rem; background:rgba(201,169,97,.15); border:1px solid rgba(201,169,97,.3); color:var(--color-gold); font-family:var(--fm); font-size:11px; padding:.4rem .8rem; border-radius:6px; cursor:pointer; letter-spacing:.05em; text-transform:uppercase; }
+    .cb2 .cpb:hover { background:rgba(201,169,97,.3); }
+    .dv { height:1px; background:linear-gradient(to right,transparent,var(--color-gold-light),transparent); margin:3rem 0; }
+    .bdg { display:inline-block; font-size:var(--txs); font-weight:600; letter-spacing:.05em; text-transform:uppercase; padding:.3rem .75rem; border-radius:3px; }
+    .bdg-s { background:var(--color-gold); color:#fff; } .bdg-n { background:var(--color-dark); color:var(--color-gold); }
+    .bdg-l { background:transparent; color:var(--color-gold-dark); border:1px solid var(--color-gold); }
+    .pm { background:#fff; border:1px solid var(--g200); border-radius:10px; padding:1.5rem; max-width:300px; }
+    .pm .pmt { font-family:var(--fh); font-size:var(--tlg); font-weight:500; color:var(--color-dark); margin-bottom:.25rem; }
+    .pm .pmc { font-size:var(--txs); color:var(--g500); letter-spacing:.05em; text-transform:uppercase; margin-bottom:.75rem; }
+    .pm .pmp { display:flex; align-items:center; gap:.75rem; margin-bottom:.5rem; }
+    .pm .prc { font-size:var(--txl); font-weight:700; color:var(--color-dark); }
+    .pm .pro { font-size:var(--tsm); color:var(--g400); text-decoration:line-through; }
+    .pm .prd { font-size:var(--txs); font-weight:600; color:var(--err); }
+    .pm .pmr { display:flex; align-items:center; gap:.35rem; font-size:var(--tsm); color:var(--g500); }
+    .pm .pmr .sts { color:var(--color-gold); letter-spacing:2px; }
+    .ars { direction:rtl; text-align:right; } .ars .sl { direction:ltr; text-align:left; }
+    .pft { text-align:center; padding:3rem 0 2rem; border-top:1px solid var(--color-gold-light); margin-top:2rem; }
+    .pft p { font-family:var(--fh); font-size:var(--tsm); color:var(--color-gold-dark); letter-spacing:.05em; }
+    .mtb { display:none; position:fixed; top:1rem; left:1rem; z-index:1100; background:var(--color-dark); color:var(--color-gold); border:1px solid var(--color-gold-dark); width:44px; height:44px; border-radius:8px; font-size:1.3rem; cursor:pointer; align-items:center; justify-content:center; }
+    .sov { display:none; position:fixed; inset:0; background:rgba(0,0,0,.5); z-index:999; }
+    .nvm { display:flex; align-items:center; gap:2rem; flex-wrap:wrap; }
+    .nvm a { text-decoration:none; color:var(--color-dark); font-size:var(--tsm); font-weight:500; letter-spacing:.025em; transition:color .2s; }
+    .nvm a:hover { color:var(--color-gold); }
+    .nvm .anv { color:var(--color-gold); font-weight:600; border-bottom:2px solid var(--color-gold); padding-bottom:.25rem; }
+    .bcm { display:flex; align-items:center; gap:.5rem; flex-wrap:wrap; }
+    .bcm span, .bcm a { font-size:var(--txs); letter-spacing:.025em; } .bcm span { color:var(--g400); }
+    .bcm a { color:var(--color-brown); text-decoration:none; } .bcm .cur { color:var(--color-dark); font-weight:500; }
+    .tbs { display:flex; border-bottom:1px solid var(--g200); flex-wrap:wrap; }
+    .tbs button { font-family:var(--fb); font-size:var(--tsm); font-weight:500; letter-spacing:.025em; padding:.75rem 1.5rem; background:none; border:none; color:var(--g500); cursor:pointer; border-bottom:2px solid transparent; margin-bottom:-1px; transition:all .2s; }
+    .tbs .atb { color:var(--color-dark); border-bottom-color:var(--color-gold); font-weight:600; } .tbs button:hover { color:var(--color-dark); }
+    .sci { display:flex; align-items:baseline; gap:1.5rem; padding:.75rem 0; border-bottom:1px solid var(--g100); } .sci:last-child { border-bottom:none; }
+    .sci .scz { font-family:var(--fm); font-size:11px; color:var(--g400); min-width:80px; text-align:right; }
+    .sci .scn { font-family:var(--fm); font-size:11px; color:var(--color-gold-dark); min-width:80px; }
+    .sci .scl { flex:1; }
+    .dk { background:var(--color-dark); border-radius:12px; padding:2rem; margin-bottom:1.5rem; } .dk .sl { color:var(--color-gold-light); } .dk .sl::before { background:var(--color-gold-light); }
+    .crow { display:flex; border-radius:10px; overflow:hidden; margin-bottom:1rem; border:1px solid var(--g200); }
+    .csw { flex:1; padding:1.25rem 1.5rem; display:flex; flex-direction:column; justify-content:center; }
+    @media(max-width:1024px) { .sb { transform:translateX(-100%); } .sb.open { transform:translateX(0); } .mtb { display:flex; } .sov.open { display:block; } .mc { margin-left:0; } .g2,.g3 { grid-template-columns:1fr; } .sh { flex-direction:column; align-items:flex-start; gap:.5rem; } .sh .sd { margin-left:0; } .rfd { width:340px; } .rft { width:280px; } }
+    @media(max-width:600px) { :root { --pp:1.25rem; --sg:3rem; } .ph h1 { font-size:var(--t3xl); } .sc { padding:1.25rem; } .rfd { width:260px; } .rft { width:220px; } .rfm { width:180px; } }
+  </style>
+</head>
+<body>
+  <button class=mtb onclick=toggleSidebar() aria-label="Toggle menu">☰</button>
+  <div class=sov id=sidebarOverlay onclick=toggleSidebar()></div>
+  <aside class=sb id=sidebar>
+    <div class=sbb><h2>SHUSMA</h2><span>Typography System</span></div>
+    <ul class=sbn>
+      <li><a href=#s1 class=active><span class=nn>01</span> Heading Styles</a></li>
+      <li><a href=#s2><span class=nn>02</span> Body Text</a></li>
+      <li><a href=#s3><span class=nn>03</span> Font Stacks</a></li>
+      <li><a href=#s4><span class=nn>04</span> Type Scale</a></li>
+      <li><a href=#s5><span class=nn>05</span> Font Weights</a></li>
+      <li><a href=#s6><span class=nn>06</span> Line Height & Spacing</a></li>
+      <li><a href=#s7><span class=nn>07</span> Responsive Typography</a></li>
+      <li><a href=#s8><span class=nn>08</span> Text Color Combos</a></li>
+      <li><a href=#s9><span class=nn>09</span> Button Typography</a></li>
+      <li><a href=#s10><span class=nn>10</span> Navigation Typography</a></li>
+      <li><a href=#s11><span class=nn>11</span> Form Typography</a></li>
+      <li><a href=#s12><span class=nn>12</span> Ecommerce Typography</a></li>
+      <li><a href=#s13><span class=nn>13</span> Arabic RTL Typography</a></li>
+      <li><a href=#s14><span class=nn>14</span> CSS Variables</a></li>
+    </ul>
+  </aside>
+  <main class=mc>
+    <header class=ph>
+      <span class=ov>Brand Guidelines &mdash; Section 03</span>
+      <h1>Typography <em>System</em></h1>
+      <p class=sub>A comprehensive reference for the SHUSMA typographic hierarchy, covering English and Arabic across all digital touchpoints.</p>
+      <p class=bar>شوسما لتجار الملابس الجاهزة ش.ذ.م.م</p>
+    </header>
+
+    <!-- ═══ 01 HEADING STYLES ═══ -->
+    <section class=sec id=s1>
+      <div class=sh><span class=sn2>01</span><h2>Heading Styles</h2><span class=sd>H1 &ndash; H6 &bull; English &amp; Arabic</span></div>
+      <div class=sc>
+        <div class=sl>H1 &mdash; Hero / Page Title</div>
+        <h1 style="font-family:var(--fh);font-size:var(--t5xl);font-weight:300;color:var(--color-dark);line-height:1.15;letter-spacing:-.02em">Discover the New Collection</h1>
+        <div class=smt><span>Playfair Display</span><span>48px / 3rem</span><span>Weight 300</span><span>Line-height 1.15</span><span>Letter-spacing -0.02em</span></div>
+      </div>
+      <div class=sc>
+        <div class=sl>H2 &mdash; Section Title</div>
+        <h2 style="font-family:var(--fh);font-size:var(--t4xl);font-weight:400;color:var(--color-dark);line-height:1.15;letter-spacing:-.02em">Women&rsquo;s Evening Wear</h2>
+        <div class=smt><span>Playfair Display</span><span>36px / 2.25rem</span><span>Weight 400</span><span>Line-height 1.15</span></div>
+      </div>
+      <div class=sc>
+        <div class=sl>H3 &mdash; Subsection Title</div>
+        <h3 style="font-family:var(--fh);font-size:var(--t2xl);font-weight:600;color:var(--color-dark);line-height:1.3">Featured Abayas</h3>
+        <div class=smt><span>Playfair Display</span><span>24px / 1.5rem</span><span>Weight 600</span><span>Line-height 1.3</span></div>
+      </div>
+      <div class=sc>
+        <div class=sl>H4 &mdash; Card Title</div>
+        <h4 style="font-family:var(--fh);font-size:var(--txl);font-weight:500;color:var(--color-dark);line-height:1.3">Best Sellers This Week</h4>
+        <div class=smt><span>Playfair Display</span><span>20px / 1.25rem</span><span>Weight 500</span><span>Line-height 1.3</span></div>
+      </div>
+      <div class=sc>
+        <div class=sl>H5 &mdash; Widget Title</div>
+        <h5 style="font-family:var(--fh);font-size:var(--tlg);font-weight:600;color:var(--color-dark);line-height:1.4">Filter by Category</h5>
+        <div class=smt><span>Playfair Display</span><span>18px / 1.125rem</span><span>Weight 600</span><span>Line-height 1.4</span></div>
+      </div>
+      <div class=sc>
+        <div class=sl>H6 &mdash; Caption Heading</div>
+        <h6 style="font-family:var(--fb);font-size:var(--tsm);font-weight:600;color:var(--color-dark);line-height:1.4;letter-spacing:.05em;text-transform:uppercase">Related Products</h6>
+        <div class=smt><span>Inter</span><span>14px / 0.875rem</span><span>Weight 600</span><span>Uppercase</span><span>Letter-spacing 0.05em</span></div>
+      </div>
+      <div class=dv></div>
+      <div class=sc>
+        <div class=sl>H1 &mdash; Arabic Hero</div>
+        <h1 style="font-family:var(--fah);font-size:var(--t5xl);font-weight:300;color:var(--color-dark);line-height:1.15;direction:rtl">اكتشفي المجموعة الجديدة</h1>
+        <div class=smt><span>Noto Serif Arabic</span><span>48px</span><span>Weight 300</span><span>RTL direction</span></div>
+      </div>
+    </section>
+
+    <!-- ═══ 02 BODY TEXT ═══ -->
+    <section class=sec id=s2>
+      <div class=sh><span class=sn2>02</span><h2>Body Text</h2><span class=sd>Regular &bull; Small &bull; Caption &bull; Overline</span></div>
+      <div class=sc>
+        <div class=sl>Body Regular &mdash; Primary paragraph text</div>
+        <p style="font-family:var(--fb);font-size:var(--tbase);font-weight:400;color:var(--color-dark);line-height:1.65;max-width:600px">At SHUSMA, we believe that fashion is a form of self-expression. Our carefully curated collection of readymade garments combines timeless elegance with contemporary design, offering pieces that transcend seasons and trends.</p>
+        <div class=smt><span>Inter</span><span>16px / 1rem</span><span>Weight 400</span><span>Line-height 1.65</span></div>
+      </div>
+      <div class=sc>
+        <div class=sl>Body Small &mdash; Secondary / supporting text</div>
+        <p style="font-family:var(--fb);font-size:var(--tsm);font-weight:400;color:var(--g500);line-height:1.5;max-width:550px">Free shipping on orders over AED 200. Easy returns within 14 days. Premium quality guaranteed on every garment.</p>
+        <div class=smt><span>Inter</span><span>14px / 0.875rem</span><span>Weight 400</span><span>Color Gray-500</span><span>Line-height 1.5</span></div>
+      </div>
+      <div class=sc>
+        <div class=sl>Caption &mdash; Tertiary / metadata text</div>
+        <p style="font-family:var(--fb);font-size:var(--txs);font-weight:400;color:var(--g400);line-height:1.5">Last updated: December 2024 &bull; Model wears size M &bull; Fabric: 100% Silk</p>
+        <div class=smt><span>Inter</span><span>12px / 0.75rem</span><span>Weight 400</span><span>Color Gray-400</span></div>
+      </div>
+      <div class=sc>
+        <div class=sl>Overline &mdash; Label above headings</div>
+        <p style="font-family:var(--fb);font-size:var(--txs);font-weight:600;color:var(--color-gold-dark);line-height:1;letter-spacing:.15em;text-transform:uppercase">New Season</p>
+        <div class=smt><span>Inter</span><span>12px</span><span>Weight 600</span><span>Uppercase</span><span>Letter-spacing 0.15em</span><span>Color Gold-Dark</span></div>
+      </div>
+    </section>
+
+    <!-- ═══ 03 FONT STACKS ═══ -->
+    <section class=sec id=s3>
+      <div class=sh><span class=sn2>03</span><h2>Font Stacks</h2><span class=sd>Primary, Secondary, Arabic &amp; Mono</span></div>
+      <div class=g2>
+        <div class=sc>
+          <div class=sl>Primary &mdash; Playfair Display</div>
+          <p style="font-family:var(--fh);font-size:2rem;font-weight:400">Playfair Display</p>
+          <p style="font-family:var(--fh);font-size:1rem;font-style:italic;color:var(--color-brown);margin-top:.5rem">The quick brown fox jumps over the lazy dog</p>
+          <div class=smt><span>Google Fonts</span><span>Serif</span><span>English H1&ndash;H4</span><span>Weights: 300&ndash;700 + Italics</span></div>
+        </div>
+        <div class=sc>
+          <div class=sl>Secondary &mdash; Inter</div>
+          <p style="font-family:var(--fb);font-size:2rem;font-weight:400">Inter</p>
+          <p style="font-family:var(--fb);font-size:1rem;color:var(--color-brown);margin-top:.5rem">The quick brown fox jumps over the lazy dog</p>
+          <div class=smt><span>Google Fonts</span><span>Sans-serif</span><span>Body, UI elements</span><span>Weights: 300&ndash;700</span></div>
+        </div>
+        <div class=sc>
+          <div class=sl>Arabic Heading &mdash; Noto Serif Arabic</div>
+          <p style="font-family:var(--fah);font-size:2rem;font-weight:400">Noto Serif Arabic</p>
+          <p style="font-family:var(--fah);font-size:1.25rem;color:var(--color-brown);margin-top:.5rem;direction:rtl">الملابس الجاهزة للنساء</p>
+          <div class=smt><span>Google Fonts</span><span>Serif</span><span>Arabic H1&ndash;H4</span><span>Weights: 300&ndash;700</span></div>
+        </div>
+        <div class=sc>
+          <div class=sl>Arabic Body &mdash; Noto Sans Arabic</div>
+          <p style="font-family:var(--fa);font-size:2rem;font-weight:400">Noto Sans Arabic</p>
+          <p style="font-family:var(--fa);font-size:1rem;color:var(--color-brown);margin-top:.5rem;direction:rtl">تسوقي الآن واحصلي على أفضل العروض</p>
+          <div class=smt><span>Google Fonts</span><span>Sans-serif</span><span>Arabic body, UI</span><span>Weights: 300&ndash;700</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 04 TYPE SCALE ═══ -->
+    <section class=sec id=s4>
+      <div class=sh><span class=sn2>04</span><h2>Type Scale</h2><span class=sd>Modular scale 12px to 72px</span></div>
+      <div style="background:#fff;border:1px solid var(--g200);border-radius:12px;padding:1.5rem 2rem">
+        <div class=sci><span class=scz>72px / 4.5rem</span><span class=scn>--t7xl</span><span class=scl style="font-family:var(--fh);font-size:var(--t7xl);font-weight:300;line-height:1.3">Elegance Reimagined</span></div>
+        <div class=sci><span class=scz>60px / 3.75rem</span><span class=scn>--t6xl</span><span class=scl style="font-family:var(--fh);font-size:var(--t6xl);font-weight:300;line-height:1.3">New Arrivals</span></div>
+        <div class=sci><span class=scz>48px / 3rem</span><span class=scn>--t5xl</span><span class=scl style="font-family:var(--fh);font-size:var(--t5xl);font-weight:300;line-height:1.3">The Collection</span></div>
+        <div class=sci><span class=scz>36px / 2.25rem</span><span class=scn>--t4xl</span><span class=scl style="font-family:var(--fh);font-size:var(--t4xl);font-weight:400;line-height:1.3">Luxury Fashion</span></div>
+        <div class=sci><span class=scz>30px / 1.875rem</span><span class=scn>--t3xl</span><span class=scl style="font-family:var(--fh);font-size:var(--t3xl);font-weight:400;line-height:1.3">Evening Dresses</span></div>
+        <div class=sci><span class=scz>24px / 1.5rem</span><span class=scn>--t2xl</span><span class=scl style="font-family:var(--fh);font-size:var(--t2xl);font-weight:600;line-height:1.3">Featured Items</span></div>
+        <div class=sci><span class=scz>20px / 1.25rem</span><span class=scn>--txl</span><span class=scl style="font-family:var(--fh);font-size:var(--txl);font-weight:500;line-height:1.3">Product Category</span></div>
+        <div class=sci><span class=scz>18px / 1.125rem</span><span class=scn>--tlg</span><span class=scl style="font-family:var(--fh);font-size:var(--tlg);font-weight:600;line-height:1.3">Card Headline</span></div>
+        <div class=sci><span class=scz>16px / 1rem</span><span class=scn>--tbase</span><span class=scl style="font-family:var(--fb);font-size:var(--tbase);font-weight:400;line-height:1.3">Body text paragraph</span></div>
+        <div class=sci><span class=scz>14px / 0.875rem</span><span class=scn>--tsm</span><span class=scl style="font-family:var(--fb);font-size:var(--tsm);font-weight:400;line-height:1.3">Secondary description text</span></div>
+        <div class=sci><span class=scz>12px / 0.75rem</span><span class=scn>--txs</span><span class=scl style="font-family:var(--fb);font-size:var(--txs);font-weight:400;line-height:1.3">Caption metadata label</span></div>
+      </div>
+    </section>
+
+    <!-- ═══ 05 FONT WEIGHTS ═══ -->
+    <section class=sec id=s5>
+      <div class=sh><span class=sn2>05</span><h2>Font Weights</h2><span class=sd>Light 300 &ndash; Bold 700</span></div>
+      <div class=g3>
+        <div class=sc><div class=sl>Weight 300 &mdash; Light</div><p style="font-family:var(--fh);font-size:1.75rem;font-weight:300;line-height:1.3">The Elegance of Fashion</p><div class=smt><span>Playfair Display</span><span>300</span></div></div>
+        <div class=sc><div class=sl>Weight 400 &mdash; Regular</div><p style="font-family:var(--fh);font-size:1.75rem;font-weight:400;line-height:1.3">The Elegance of Fashion</p><div class=smt><span>Playfair Display</span><span>400</span></div></div>
+        <div class=sc><div class=sl>Weight 500 &mdash; Medium</div><p style="font-family:var(--fh);font-size:1.75rem;font-weight:500;line-height:1.3">The Elegance of Fashion</p><div class=smt><span>Playfair Display</span><span>500</span></div></div>
+      </div>
+      <div class=g3 style="margin-top:1.5rem">
+        <div class=sc><div class=sl>Weight 600 &mdash; Semi Bold</div><p style="font-family:var(--fh);font-size:1.75rem;font-weight:600;line-height:1.3">The Elegance of Fashion</p><div class=smt><span>Playfair Display</span><span>600</span></div></div>
+        <div class=sc><div class=sl>Weight 700 &mdash; Bold</div><p style="font-family:var(--fh);font-size:1.75rem;font-weight:700;line-height:1.3">The Elegance of Fashion</p><div class=smt><span>Playfair Display</span><span>700</span></div></div>
+        <div class=sc><div class=sl>Italic 400i &mdash; Regular Italic</div><p style="font-family:var(--fh);font-size:1.75rem;font-weight:400;font-style:italic;line-height:1.3">The Elegance of Fashion</p><div class=smt><span>Playfair Display</span><span>400 Italic</span></div></div>
+      </div>
+      <div class=dv></div>
+      <div class=g3>
+        <div class=sc><div class=sl>Inter 300 &mdash; Light</div><p style="font-family:var(--fb);font-size:1.25rem;font-weight:300;line-height:1.5">The Elegance of Fashion</p><div class=smt><span>Inter</span><span>300</span></div></div>
+        <div class=sc><div class=sl>Inter 400 &mdash; Regular</div><p style="font-family:var(--fb);font-size:1.25rem;font-weight:400;line-height:1.5">The Elegance of Fashion</p><div class=smt><span>Inter</span><span>400</span></div></div>
+        <div class=sc><div class=sl>Inter 500 &mdash; Medium</div><p style="font-family:var(--fb);font-size:1.25rem;font-weight:500;line-height:1.5">The Elegance of Fashion</p><div class=smt><span>Inter</span><span>500</span></div></div>
+      </div>
+      <div class=g3 style="margin-top:1.5rem">
+        <div class=sc><div class=sl>Inter 600 &mdash; Semi Bold</div><p style="font-family:var(--fb);font-size:1.25rem;font-weight:600;line-height:1.5">The Elegance of Fashion</p><div class=smt><span>Inter</span><span>600</span></div></div>
+        <div class=sc><div class=sl>Inter 700 &mdash; Bold</div><p style="font-family:var(--fb);font-size:1.25rem;font-weight:700;line-height:1.5">The Elegance of Fashion</p><div class=smt><span>Inter</span><span>700</span></div></div>
+        <div class=sc><div class=sl>Inter 700 &mdash; Uppercase</div><p style="font-family:var(--fb);font-size:1.25rem;font-weight:700;line-height:1.5;letter-spacing:.05em;text-transform:uppercase">The Elegance of Fashion</p><div class=smt><span>Inter</span><span>700 Upper</span><span>0.05em</span></div></div>
+      </div>
+    </section>
+
+
+    <!-- ═══ 06 LINE HEIGHT & SPACING ═══ -->
+    <section class=sec id=s6>
+      <div class=sh><span class=sn2>06</span><h2>Line Height & Letter Spacing</h2><span class=sd>Leading &amp; tracking examples</span></div>
+      <div class=g2>
+        <div class=sc>
+          <div class=sl>Line Height Scale</div>
+          <div style="display:flex;flex-direction:column;gap:1rem">
+            <div><span style="font-family:var(--fm);font-size:11px;color:var(--color-gold-dark)">1.0 &mdash; None</span><p style="font-family:var(--fb);font-size:1rem;color:var(--color-dark);line-height:1;margin-top:.25rem">SHUSMA luxury fashion readymade garments for the modern woman.</p></div>
+            <div><span style="font-family:var(--fm);font-size:11px;color:var(--color-gold-dark)">1.15 &mdash; Tight</span><p style="font-family:var(--fb);font-size:1rem;color:var(--color-dark);line-height:1.15;margin-top:.25rem">SHUSMA luxury fashion readymade garments for the modern woman.</p></div>
+            <div><span style="font-family:var(--fm);font-size:11px;color:var(--color-gold-dark)">1.3 &mdash; Snug</span><p style="font-family:var(--fb);font-size:1rem;color:var(--color-dark);line-height:1.3;margin-top:.25rem">SHUSMA luxury fashion readymade garments for the modern woman.</p></div>
+            <div><span style="font-family:var(--fm);font-size:11px;color:var(--color-gold-dark)">1.5 &mdash; Normal</span><p style="font-family:var(--fb);font-size:1rem;color:var(--color-dark);line-height:1.5;margin-top:.25rem">SHUSMA luxury fashion readymade garments for the modern woman.</p></div>
+            <div><span style="font-family:var(--fm);font-size:11px;color:var(--color-gold-dark)">1.65 &mdash; Relaxed</span><p style="font-family:var(--fb);font-size:1rem;color:var(--color-dark);line-height:1.65;margin-top:.25rem">SHUSMA luxury fashion readymade garments for the modern woman.</p></div>
+            <div><span style="font-family:var(--fm);font-size:11px;color:var(--color-gold-dark)">1.8 &mdash; Loose</span><p style="font-family:var(--fb);font-size:1rem;color:var(--color-dark);line-height:1.8;margin-top:.25rem">SHUSMA luxury fashion readymade garments for the modern woman.</p></div>
+          </div>
+        </div>
+        <div class=sc>
+          <div class=sl>Letter Spacing Scale</div>
+          <div style="display:flex;flex-direction:column;gap:.75rem">
+            <div><span style="font-family:var(--fm);font-size:11px;color:var(--color-gold-dark)">-0.04em &mdash; Tighter</span><p style="font-family:var(--fb);font-size:1rem;font-weight:600;color:var(--color-dark);letter-spacing:-.04em;margin-top:.25rem">LUXURY FASHION</p></div>
+            <div><span style="font-family:var(--fm);font-size:11px;color:var(--color-gold-dark)">-0.02em &mdash; Tight</span><p style="font-family:var(--fb);font-size:1rem;font-weight:600;color:var(--color-dark);letter-spacing:-.02em;margin-top:.25rem">LUXURY FASHION</p></div>
+            <div><span style="font-family:var(--fm);font-size:11px;color:var(--color-gold-dark)">0em &mdash; Normal</span><p style="font-family:var(--fb);font-size:1rem;font-weight:600;color:var(--color-dark);letter-spacing:0;margin-top:.25rem">LUXURY FASHION</p></div>
+            <div><span style="font-family:var(--fm);font-size:11px;color:var(--color-gold-dark)">0.025em &mdash; Wide</span><p style="font-family:var(--fb);font-size:1rem;font-weight:600;color:var(--color-dark);letter-spacing:.025em;margin-top:.25rem">LUXURY FASHION</p></div>
+            <div><span style="font-family:var(--fm);font-size:11px;color:var(--color-gold-dark)">0.05em &mdash; Wider</span><p style="font-family:var(--fb);font-size:1rem;font-weight:600;color:var(--color-dark);letter-spacing:.05em;margin-top:.25rem">LUXURY FASHION</p></div>
+            <div><span style="font-family:var(--fm);font-size:11px;color:var(--color-gold-dark)">0.1em &mdash; Widest</span><p style="font-family:var(--fb);font-size:1rem;font-weight:600;color:var(--color-dark);letter-spacing:.1em;margin-top:.25rem">LUXURY FASHION</p></div>
+            <div><span style="font-family:var(--fm);font-size:11px;color:var(--color-gold-dark)">0.15em &mdash; Overline</span><p style="font-family:var(--fb);font-size:1rem;font-weight:600;color:var(--color-dark);letter-spacing:.15em;text-transform:uppercase;margin-top:.25rem">LUXURY FASHION</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 07 RESPONSIVE ═══ -->
+    <section class=sec id=s7>
+      <div class=sh><span class=sn2>07</span><h2>Responsive Typography</h2><span class=sd>Mobile 375px &bull; Tablet 768px &bull; Desktop 1440px</span></div>
+      <div class=rr>
+        <div class="rf rfm"><div class=rfl>Mobile &mdash; 375px</div><h1 style="font-family:var(--fh);font-size:1.75rem;font-weight:300;line-height:1.15">New Collection</h1><p style="font-family:var(--fb);font-size:.875rem;color:var(--g500);margin-top:.5rem;line-height:1.5">Curated luxury pieces</p></div>
+        <div class="rf rft"><div class=rfl>Tablet &mdash; 768px</div><h1 style="font-family:var(--fh);font-size:2.25rem;font-weight:300;line-height:1.15">New Collection</h1><p style="font-family:var(--fb);font-size:.9375rem;color:var(--g500);margin-top:.5rem;line-height:1.5">Curated luxury pieces for you</p></div>
+        <div class="rf rfd"><div class=rfl>Desktop &mdash; 1440px</div><h1 style="font-family:var(--fh);font-size:3rem;font-weight:300;line-height:1.15">New Collection</h1><p style="font-family:var(--fb);font-size:1.125rem;color:var(--g500);margin-top:.5rem;line-height:1.65">Curated luxury pieces for the discerning woman</p></div>
+      </div>
+      <div style="background:#fff;border:1px solid var(--g200);border-radius:12px;padding:1.5rem 2rem;margin-top:1.5rem">
+        <div class=sl>Responsive Breakpoint Rules</div>
+        <div style="font-family:var(--fm);font-size:12px;color:var(--g600);line-height:1.8;white-space:pre-wrap;background:var(--g100);padding:1.25rem;border-radius:8px">/* Mobile First - Base: 375px */
+H1: 1.75rem (28px)  |  H2: 1.5rem (24px)  |  Body: 0.875rem (14px)
+
+/* Tablet - min-width: 768px */
+H1: 2.25rem (36px)  |  H2: 1.875rem (30px) |  Body: 0.9375rem (15px)
+
+/* Desktop - min-width: 1024px */
+H1: 3rem (48px)    |  H2: 2.25rem (36px)  |  Body: 1rem (16px)
+
+/* Wide - min-width: 1440px */
+H1: 3rem (48px)    |  H2: 2.25rem (36px)  |  Body: 1rem (16px)</div>
+      </div>
+    </section>
+
+    <!-- ═══ 08 TEXT COLOR COMBOS ═══ -->
+    <section class=sec id=s8>
+      <div class=sh><span class=sn2>08</span><h2>Text Color Combinations</h2><span class=sd>Light &amp; dark background pairings</span></div>
+      <div class=sc>
+        <div class=sl>On Light Background (Cream #FAF8F5)</div>
+        <p style="font-family:var(--fh);font-size:1.5rem;font-weight:400;color:var(--color-dark)">Primary &mdash; Dark #1A1A1A</p>
+        <p style="font-family:var(--fh);font-size:1.25rem;font-weight:400;color:var(--color-brown);margin-top:.5rem">Secondary &mdash; Brown #5D4E37</p>
+        <p style="font-family:var(--fb);font-size:1rem;font-weight:400;color:var(--g600);margin-top:.5rem">Tertiary &mdash; Gray-600 #525252</p>
+        <p style="font-family:var(--fb);font-size:.875rem;font-weight:400;color:var(--g500);margin-top:.5rem">Muted &mdash; Gray-500 #737373</p>
+        <p style="font-family:var(--fb);font-size:.875rem;font-weight:600;color:var(--color-gold-dark);margin-top:.5rem">Accent &mdash; Gold-Dark #A07D3F</p>
+        <p style="font-family:var(--fb);font-size:.75rem;font-weight:600;color:var(--color-gold);letter-spacing:.05em;text-transform:uppercase;margin-top:.5rem">Label &mdash; Gold #C9A961</p>
+        <p style="font-family:var(--fb);font-size:.75rem;font-weight:400;color:var(--g400);margin-top:.5rem">Disabled &mdash; Gray-400 #A3A3A3</p>
+      </div>
+      <div class="dk sc">
+        <div class=sl>On Dark Background (Dark #1A1A1A)</div>
+        <p style="font-family:var(--fh);font-size:1.5rem;font-weight:400;color:#FAF8F5">Primary &mdash; Cream #FAF8F5</p>
+        <p style="font-family:var(--fh);font-size:1.25rem;font-weight:400;color:var(--color-gold-light);margin-top:.5rem">Secondary &mdash; Gold-Light #E2CC8A</p>
+        <p style="font-family:var(--fb);font-size:1rem;font-weight:400;color:var(--color-gold);margin-top:.5rem">Accent &mdash; Gold #C9A961</p>
+        <p style="font-family:var(--fb);font-size:.875rem;font-weight:400;color:var(--g400);margin-top:.5rem">Muted &mdash; Gray-400 #A3A3A3</p>
+        <p style="font-family:var(--fb);font-size:.75rem;font-weight:400;color:var(--g500);margin-top:.5rem">Disabled &mdash; Gray-500 #737373</p>
+      </div>
+      <div class=crow>
+        <div class=csw style="background:var(--color-cream)"><p style="font-family:var(--fb);font-size:var(--tsm);color:var(--color-dark)">Cream + Dark</p></div>
+        <div class=csw style="background:var(--color-cream)"><p style="font-family:var(--fb);font-size:var(--tsm);color:var(--color-brown)">Cream + Brown</p></div>
+        <div class=csw style="background:var(--color-cream)"><p style="font-family:var(--fb);font-size:var(--tsm);color:var(--color-gold-dark)">Cream + Gold-Dark</p></div>
+        <div class=csw style="background:var(--color-dark)"><p style="font-family:var(--fb);font-size:var(--tsm);color:var(--color-cream)">Dark + Cream</p></div>
+        <div class=csw style="background:var(--color-dark)"><p style="font-family:var(--fb);font-size:var(--tsm);color:var(--color-gold)">Dark + Gold</p></div>
+        <div class=csw style="background:var(--color-dark)"><p style="font-family:var(--fb);font-size:var(--tsm);color:var(--color-gold-light)">Dark + Gold-Light</p></div>
+      </div>
+    </section>
+
+    <!-- ═══ 09 BUTTON TYPOGRAPHY ═══ -->
+    <section class=sec id=s9>
+      <div class=sh><span class=sn2>09</span><h2>Button Typography</h2><span class=sd>Primary, secondary &amp; ghost</span></div>
+      <div class=sc>
+        <div class=sl>Button Sizes &mdash; Primary (Gold)</div>
+        <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-top:.5rem">
+          <a href=# class="btn bp blg">Add to Bag</a>
+          <a href=# class="btn bp">Add to Bag</a>
+          <a href=# class="btn bp bsm">Shop Now</a>
+        </div>
+        <div class=smt><span>Inter SemiBold 600</span><span>Letter-spacing 0.025em</span><span>Uppercase</span><span>Sizes: SM / MD / LG</span></div>
+      </div>
+      <div class=sc>
+        <div class=sl>Button Sizes &mdash; Secondary (Outline)</div>
+        <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-top:.5rem">
+          <a href=# class="btn bsec blg">View All</a>
+          <a href=# class="btn bsec">View All</a>
+          <a href=# class="btn bsec bsm">Details</a>
+        </div>
+        <div class=smt><span>Inter SemiBold 600</span><span>1.5px border</span><span>Color inversion on hover</span></div>
+      </div>
+      <div class=sc>
+        <div class=sl>Button &mdash; Ghost / Underline</div>
+        <div style="display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;margin-top:.5rem">
+          <a href=# class="btn bgh">Explore Collection</a>
+          <a href=# class="btn bgh bsm">Learn More</a>
+        </div>
+        <div class=smt><span>Inter SemiBold 600</span><span>Bottom border only</span><span>No background</span><span>Subtle hover state</span></div>
+      </div>
+      <div class="dk sc">
+        <div class=sl>Buttons on Dark Background</div>
+        <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-top:.5rem">
+          <a href=# class="btn bp" style="background:#fff;color:var(--color-dark)">Shop Now</a>
+          <a href=# class="btn bsec" style="border-color:#fff;color:#fff">View All</a>
+          <a href=# class="btn bgh" style="color:var(--color-gold-light);border-color:var(--color-gold-light)">Learn More</a>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══ 10 NAVIGATION TYPOGRAPHY ═══ -->
+    <section class=sec id=s10>
+      <div class=sh><span class=sn2>10</span><h2>Navigation Typography</h2><span class=sd>Nav links, breadcrumbs &amp; tabs</span></div>
+      <div class=sc>
+        <div class=sl>Navigation Links</div>
+        <div class=nvm>
+          <a href=#>New Arrivals</a>
+          <a href=#>Women</a>
+          <a href=# class=anv>Abayas</a>
+          <a href=#>Dresses</a>
+          <a href=#>Accessories</a>
+          <a href=#>Sale</a>
+        </div>
+        <div class=smt><span>Inter Medium 500</span><span>14px</span><span>Letter-spacing 0.025em</span><span>Gold on active</span></div>
+      </div>
+      <div class=sc>
+        <div class=sl>Breadcrumbs</div>
+        <div class=bcm>
+          <a href=#>Home</a><span>/</span>
+          <a href=#>Women</a><span>/</span>
+          <a href=#>Abayas</a><span>/</span>
+          <span class=cur>Black Embroidered Abaya</span>
+        </div>
+        <div class=smt><span>Inter Regular 400</span><span>12px</span><span>Gray-400 separators</span><span>Brown links</span><span>Dark current</span></div>
+      </div>
+      <div class=sc>
+        <div class=sl>Tabs</div>
+        <div class=tbs>
+          <button class=atb>Description</button>
+          <button>Size Guide</button>
+          <button>Shipping</button>
+          <button>Reviews (24)</button>
+        </div>
+        <div class=smt><span>Inter Medium 500</span><span>14px</span><span>Gold bottom border active</span><span>SemiBold 600 when active</span></div>
+      </div>
+    </section>
+
+    <!-- ═══ 11 FORM TYPOGRAPHY ═══ -->
+    <section class=sec id=s11>
+      <div class=sh><span class=sn2>11</span><h2>Form Typography</h2><span class=sd>Labels, inputs, errors &amp; helpers</span></div>
+      <div class=sc>
+        <div class=sl>Standard Form Fields</div>
+        <div class=fg>
+          <label class=fl2>Full Name</label>
+          <input type=text class=fi value="Fatima Al-Rashid" readonly>
+          <p class=fhint>As it appears on your ID</p>
+        </div>
+        <div class=fg>
+          <label class=fl2>Email Address</label>
+          <input type=email class=fi placeholder="Enter your email address">
+        </div>
+        <div class=fg>
+          <label class=fl2>Phone Number</label>
+          <input type=tel class=fi value="" placeholder="+971 50 123 4567">
+          <p class=ferr>Please enter a valid phone number</p>
+        </div>
+        <div class=fg>
+          <label class=fl2>Search Products</label>
+          <input type=search class=fi placeholder="Search for abayas, dresses, accessories..." style="max-width:500px">
+        </div>
+        <div class=smt style="margin-top:0"><span>Labels: Inter Medium 500, 14px</span><span>Input: Inter Regular 400, 16px</span><span>Placeholder: Gray-400</span><span>Hint: 12px Gray-500</span><span>Error: 12px, Red #DC2626</span></div>
+      </div>
+    </section>
+
+    <!-- ═══ 12 ECOMMERCE TYPOGRAPHY ═══ -->
+    <section class=sec id=s12>
+      <div class=sh><span class=sn2>12</span><h2>Ecommerce Typography</h2><span class=sd>Products, prices, ratings &amp; badges</span></div>
+      <div class=g2>
+        <div class=pm>
+          <span class="bdg bdg-s" style="margin-bottom:.75rem">-30% Sale</span>
+          <p class=pmt>Embroidered Silk Abaya</p>
+          <p class=pmc>Evening Collection</p>
+          <div class=pmp>
+            <span class=prc>AED 899</span>
+            <span class=pro>AED 1,299</span>
+            <span class=prd>Save AED 400</span>
+          </div>
+          <div class=pmr><span class=sts>★★★★☆</span> 4.2 (128 reviews)</div>
+        </div>
+        <div class=pm>
+          <span class="bdg bdg-n" style="margin-bottom:.75rem">New Arrival</span>
+          <p class=pmt>Luxury Kaftan Dress</p>
+          <p class=pmc>Exclusive Collection</p>
+          <div class=pmp>
+            <span class=prc>AED 1,599</span>
+          </div>
+          <div class=pmr><span class=sts>★★★★★</span> 5.0 (12 reviews)</div>
+        </div>
+      </div>
+      <div class=g2 style="margin-top:1.5rem">
+        <div class=pm>
+          <span class="bdg bdg-l" style="margin-bottom:.75rem">Limited Edition</span>
+          <p class=pmt>Handcrafted Jalabiya</p>
+          <p class=pmc>Premium Artisan</p>
+          <div class=pmp>
+            <span class=prc>AED 2,499</span>
+          </div>
+          <div class=pmr><span class=sts>★★★★☆</span> 4.8 (56 reviews)</div>
+        </div>
+        <div class=pm>
+          <div style="display:flex;gap:.5rem;margin-bottom:.75rem">
+            <span class="bdg bdg-n">New</span>
+            <span class="bdg bdg-s">-20%</span>
+          </div>
+          <p class=pmt>Pearl-Trimmed Sheath</p>
+          <p class=pmc>Classic Collection</p>
+          <div class=pmp>
+            <span class=prc>AED 639</span>
+            <span class=pro>AED 799</span>
+          </div>
+          <div class=pmr><span class=sts>★★★★☆</span> 4.5 (89 reviews)</div>
+        </div>
+      </div>
+      <div style="background:#fff;border:1px solid var(--g200);border-radius:12px;padding:1.5rem 2rem;margin-top:1.5rem">
+        <div class=sl>Ecommerce Type Specs</div>
+        <div style="font-family:var(--fm);font-size:12px;color:var(--g600);line-height:1.8;white-space:pre-wrap;background:var(--g100);padding:1.25rem;border-radius:8px">/* Product Title  */  Playfair Display  18px  Weight 500  Color #1A1A1A
+/* Category       */  Inter            12px  Weight 400  Uppercase, 0.05em
+/* Price Current  */  Inter            20px  Weight 700  Color #1A1A1A
+/* Price Original */  Inter            14px  Weight 400  Color #A3A3A3, line-through
+/* Price Discount */  Inter            12px  Weight 600  Color #DC2626
+/* Rating Stars   */  16px  Color #C9A961
+/* Rating Count   */  Inter  14px  Weight 400  Color #737373
+/* Badge          */  Inter  12px  Weight 600  Uppercase, 0.05em</div>
+      </div>
+    </section>
+
+
+    <!-- ═══ 13 ARABIC RTL TYPOGRAPHY ═══ -->
+    <section class=sec id=s13>
+      <div class=sh><span class=sn2>13</span><h2>Arabic RTL Typography</h2><span class=sd>Complete styles in Arabic RTL direction</span></div>
+      <div class=sc>
+        <div class=sl>H1 &mdash; Arabic Hero Title</div>
+        <h1 style="font-family:var(--fah);font-size:var(--t5xl);font-weight:300;color:var(--color-dark);line-height:1.15;direction:rtl;text-align:right">اكتشفي المجموعة الجديدة</h1>
+        <div class=smt><span>Noto Serif Arabic</span><span>48px</span><span>Weight 300</span><span>RTL</span><span>Line-height 1.15</span></div>
+      </div>
+      <div class=sc>
+        <div class=sl>H2 &mdash; Arabic Section Title</div>
+        <h2 style="font-family:var(--fah);font-size:var(--t4xl);font-weight:400;color:var(--color-dark);line-height:1.15;direction:rtl;text-align:right">ملابس السهرات النسائية</h2>
+        <div class=smt><span>Noto Serif Arabic</span><span>36px</span><span>Weight 400</span></div>
+      </div>
+      <div class=sc>
+        <div class=sl>H3 &mdash; Arabic Subsection</div>
+        <h3 style="font-family:var(--fah);font-size:var(--t2xl);font-weight:600;color:var(--color-dark);line-height:1.3;direction:rtl;text-align:right">العبايات المميزة</h3>
+        <div class=smt><span>Noto Serif Arabic</span><span>24px</span><span>Weight 600</span></div>
+      </div>
+      <div class=sc>
+        <div class=sl>Body Regular &mdash; Arabic Paragraph</div>
+        <p style="font-family:var(--fa);font-size:var(--tbase);font-weight:400;color:var(--color-dark);line-height:1.8;direction:rtl;text-align:right;max-width:600px">في شوسما نؤمن بأن الأناقة ليست مجرد مظهر بل هي تعبير عن الذات. مجموعتنا المختارة بعناية من الملابس الجاهزة تجمع بين الأناقة الخالدة والتصميم العصري لتقدم لك قطعاً تتجاوز الموضة.</p>
+        <div class=smt><span>Noto Sans Arabic</span><span>16px</span><span>Weight 400</span><span>Line-height 1.8</span><span>RTL direction</span></div>
+      </div>
+      <div class=sc>
+        <div class=sl>Body Small &mdash; Arabic Supporting</div>
+        <p style="font-family:var(--fa);font-size:var(--tsm);font-weight:400;color:var(--g500);line-height:1.6;direction:rtl;text-align:right">توصيل مجاني للطلبات فوق ٢٠٠ درهم. إرجاع سهل خلال ١٤ يوماً. جودة مضمونة.</p>
+        <div class=smt><span>Noto Sans Arabic</span><span>14px</span><span>Weight 400</span><span>Color Gray-500</span></div>
+      </div>
+      <div class=sc>
+        <div class=sl>Overline &mdash; Arabic Label</div>
+        <p style="font-family:var(--fa);font-size:var(--txs);font-weight:600;color:var(--color-gold-dark);line-height:1;letter-spacing:.05em;direction:rtl;text-align:right">الموسم الجديد</p>
+        <div class=smt><span>Noto Sans Arabic</span><span>12px</span><span>Weight 600</span><span>Color Gold-Dark</span></div>
+      </div>
+      <div class=sc>
+        <div class=sl>Arabic Font Weights</div>
+        <div style="direction:rtl;text-align:right;display:flex;flex-direction:column;gap:.75rem">
+          <p style="font-family:var(--fah);font-size:1.5rem;font-weight:300">الوزن ٣٠٠ &mdash; خفيف</p>
+          <p style="font-family:var(--fah);font-size:1.5rem;font-weight:400">الوزن ٤٠٠ &mdash; عادي</p>
+          <p style="font-family:var(--fah);font-size:1.5rem;font-weight:600">الوزن ٦٠٠ &mdash; شبه عريض</p>
+          <p style="font-family:var(--fah);font-size:1.5rem;font-weight:700">الوزن ٧٠٠ &mdash; عريض</p>
+        </div>
+        <div class=smt><span>Noto Serif Arabic</span><span>Weights 300, 400, 600, 700</span></div>
+      </div>
+      <div class=sc>
+        <div class=sl>Arabic Ecommerce &mdash; Product Card</div>
+        <div class=pm style="direction:rtl;text-align:right;max-width:300px">
+          <span class="bdg bdg-s" style="margin-bottom:.75rem">خصم ٣٠٪</span>
+          <p class=pmt style="font-family:var(--fah)">عباية حرير مطرزة</p>
+          <p class=pmc style="font-family:var(--fa)">مجموعة السهرات</p>
+          <div class=pmp style="justify-content:flex-start">
+            <span class=prc>٨٩٩ درهم</span>
+            <span class=pro>١٬٢٩٩ درهم</span>
+          </div>
+          <div class=pmr style="justify-content:flex-start"><span class=sts>★★★★☆</span> ٤.٢ (١٢٨ تقييم)</div>
+        </div>
+      </div>
+      <div class=sc>
+        <div class=sl>Arabic Navigation</div>
+        <div class=nvm style="direction:rtl;justify-content:flex-end">
+          <a href=#>وصل حديثاً</a>
+          <a href=# class=anv>نساء</a>
+          <a href=#>عبايات</a>
+          <a href=#>فساتين</a>
+          <a href=#>إكسسوارات</a>
+        </div>
+        <div class=smt><span>Noto Sans Arabic Medium 500</span><span>14px</span><span>RTL</span></div>
+      </div>
+      <div class=sc>
+        <div class=sl>Arabic Breadcrumb</div>
+        <div class=bcm style="direction:rtl;justify-content:flex-end">
+          <span class=cur>عباية سوداء مطرزة</span>
+          <span>/</span>
+          <a href=#>عبايات</a>
+          <span>/</span>
+          <a href=#>نساء</a>
+          <span>/</span>
+          <a href=#>الرئيسية</a>
+        </div>
+        <div class=smt><span>Noto Sans Arabic</span><span>12px</span><span>RTL reversed order</span></div>
+      </div>
+    </section>
+
+    <!-- ═══ 14 CSS VARIABLES ═══ -->
+    <section class=sec id=s14>
+      <div class=sh><span class=sn2>14</span><h2>CSS Variables</h2><span class=sd>Copy-ready design tokens</span></div>
+      <div class=cb2>
+        <button class=cpb onclick="copyCSS()">Copy</button>
+        <pre id=cssCode>:root {
+  /* ── Brand Colors ────────────────────────── */
+  --color-gold:        #C9A961;
+  --color-gold-dark:   #A07D3F;
+  --color-gold-light:  #E2CC8A;
+  --color-cream:       #FAF8F5;
+  --color-brown:       #5D4E37;
+  --color-dark:        #1A1A1A;
+  --color-white:       #FFFFFF;
+
+  /* ── Neutral Grays ────────────────────────── */
+  --color-gray-100:    #F5F5F5;
+  --color-gray-200:    #E8E8E8;
+  --color-gray-300:    #D4D4D4;
+  --color-gray-400:    #A3A3A3;
+  --color-gray-500:    #737373;
+  --color-gray-600:    #525252;
+
+  /* ── Semantic Colors ─────────────────────── */
+  --color-error:       #DC2626;
+  --color-success:     #16A34A;
+
+  /* ── Font Families ───────────────────────── */
+  --font-heading:        'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-body:           'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-arabic:         'Noto Sans Arabic', 'Segoe UI', Tahoma, sans-serif;
+  --font-arabic-heading: 'Noto Serif Arabic', 'Times New Roman', serif;
+  --font-mono:           'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono', monospace;
+
+  /* ── Type Scale (Major Third 1.25) ───────── */
+  --text-xs:    0.75rem;    /* 12px */
+  --text-sm:    0.875rem;   /* 14px */
+  --text-base:  1rem;       /* 16px */
+  --text-lg:    1.125rem;   /* 18px */
+  --text-xl:    1.25rem;    /* 20px */
+  --text-2xl:   1.5rem;     /* 24px */
+  --text-3xl:   1.875rem;   /* 30px */
+  --text-4xl:   2.25rem;    /* 36px */
+  --text-5xl:   3rem;       /* 48px */
+  --text-6xl:   3.75rem;    /* 60px */
+  --text-7xl:   4.5rem;     /* 72px */
+
+  /* ── Font Weights ────────────────────────── */
+  --font-light:    300;
+  --font-regular:  400;
+  --font-medium:   500;
+  --font-semibold: 600;
+  --font-bold:     700;
+
+  /* ── Line Heights ────────────────────────── */
+  --leading-none:     1;
+  --leading-tight:    1.15;
+  --leading-snug:     1.3;
+  --leading-normal:   1.5;
+  --leading-relaxed:  1.65;
+  --leading-loose:    1.8;
+
+  /* ── Letter Spacing ──────────────────────── */
+  --tracking-tighter:  -0.04em;
+  --tracking-tight:    -0.02em;
+  --tracking-normal:   0em;
+  --tracking-wide:     0.025em;
+  --tracking-wider:    0.05em;
+  --tracking-widest:   0.1em;
+  --tracking-overline: 0.15em;
+}</pre>
+      </div>
+    </section>
+
+    <footer class=pft>
+      <p>SHUSMA &mdash; READymADE GARMENTS TRADING LLC &mdash; Typography System v1.0</p>
+    </footer>
+  </main>
+
+  <script>
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('open');
+      document.getElementById('sidebarOverlay').classList.toggle('open');
+    }
+    function copyCSS() {
+      const css = document.getElementById('cssCode').textContent;
+      navigator.clipboard.writeText(css).then(() => {
+        const btn = document.querySelector('.cpb');
+        btn.textContent = 'Copied!';
+        setTimeout(() => btn.textContent = 'Copy', 2000);
+      });
+    }
+    // Active nav tracking
+    const sections = document.querySelectorAll('.sec');
+    const navLinks = document.querySelectorAll('.sbn a');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(l => l.classList.remove('active'));
+          const active = document.querySelector('.sbn a[href=#' + entry.target.id + ']');
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+    sections.forEach(s => observer.observe(s));
+  </script>
+</body>
+</html>

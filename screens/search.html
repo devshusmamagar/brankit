@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>SHUSMA — Search</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #FAF8F5;
+      color: #1A1A1A;
+      max-width: 375px;
+      margin: 0 auto;
+      min-height: 100vh;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+    button { border: none; background: none; cursor: pointer; font-family: inherit; }
+
+    /* ===== SEARCH HEADER ===== */
+    .search-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #FFFFFF;
+      border-bottom: 1px solid #E8E0D6;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .back-btn {
+      width: 36px; height: 36px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 10px;
+      flex-shrink: 0;
+    }
+    .back-btn:active { background: #F0ECE4; }
+    .back-btn svg { width: 22px; height: 22px; color: #1A1A1A; }
+    .search-input-wrap {
+      flex: 1;
+      height: 40px;
+      background: #FAF8F5;
+      border: 1.5px solid #C9A961;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      padding: 0 14px;
+      gap: 8px;
+    }
+    .search-input-wrap svg { width: 16px; height: 16px; color: #C9A961; flex-shrink: 0; }
+    .search-input {
+      flex: 1;
+      border: none;
+      background: none;
+      font-size: 14px;
+      font-family: inherit;
+      color: #1A1A1A;
+      outline: none;
+    }
+    .search-input::placeholder { color: #8B7D6B; }
+    .search-clear {
+      width: 20px; height: 20px;
+      background: #E8E0D6;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .search-clear svg { width: 10px; height: 10px; color: #5D4E37; }
+
+    /* ===== SECTION PADDING ===== */
+    .section { padding: 20px 16px 0; }
+    .section-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #8B7D6B;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 14px;
+    }
+
+    /* ===== RECENT SEARCHES ===== */
+    .recent-searches {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      background: #FFFFFF;
+      border-radius: 14px;
+      border: 1px solid #E8E0D6;
+      overflow: hidden;
+    }
+    .recent-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 13px 14px;
+      border-bottom: 1px solid #E8E0D6;
+      transition: background 0.15s;
+      cursor: pointer;
+    }
+    .recent-item:last-child { border-bottom: none; }
+    .recent-item:active { background: #FAF8F5; }
+    .recent-item svg {
+      width: 16px; height: 16px;
+      color: #8B7D6B;
+      flex-shrink: 0;
+    }
+    .recent-item span {
+      flex: 1;
+      font-size: 14px;
+      color: #5D4E37;
+    }
+    .recent-item .arrow {
+      width: 14px; height: 14px;
+      color: #E8E0D6;
+    }
+
+    /* ===== POPULAR SEARCHES ===== */
+    .popular-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .tag {
+      padding: 8px 16px;
+      background: #FFFFFF;
+      border: 1px solid #E8E0D6;
+      border-radius: 20px;
+      font-size: 13px;
+      color: #5D4E37;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .tag:active { border-color: #C9A961; color: #C9A961; }
+    .tag svg { width: 14px; height: 14px; color: #C9A961; }
+
+    /* ===== TRENDING CATEGORIES ===== */
+    .trending-cats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .trending-cat {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #FFFFFF;
+      border: 1px solid #E8E0D6;
+      border-radius: 14px;
+      padding: 12px 14px;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+    .trending-cat:active { border-color: #C9A961; }
+    .trending-cat-img {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: #F5F0E8;
+    }
+    .trending-cat-img img { width: 100%; height: 100%; object-fit: cover; }
+    .trending-cat-info {
+      min-width: 0;
+    }
+    .trending-cat-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: #1A1A1A;
+      margin-bottom: 2px;
+    }
+    .trending-cat-count {
+      font-size: 11px;
+      color: #8B7D6B;
+    }
+
+    /* ===== SEARCH RESULTS ===== */
+    .results-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 16px 10px;
+    }
+    .results-count {
+      font-size: 13px;
+      color: #8B7D6B;
+    }
+    .results-count strong {
+      color: #1A1A1A;
+      font-weight: 600;
+    }
+    .results-sort {
+      font-size: 12px;
+      color: #A07D3F;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .results-sort svg { width: 14px; height: 14px; }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      padding: 0 16px;
+    }
+    .product-card {
+      background: #FFFFFF;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid #E8E0D6;
+      transition: box-shadow 0.2s, transform 0.2s;
+      cursor: pointer;
+    }
+    .product-card:active { transform: scale(0.98); }
+    .product-image {
+      position: relative;
+      aspect-ratio: 3/4;
+      background: #F5F0E8;
+    }
+    .product-image img { width: 100%; height: 100%; object-fit: cover; }
+    .product-wishlist {
+      position: absolute;
+      top: 8px; right: 8px;
+      width: 28px; height: 28px;
+      background: rgba(255,255,255,0.9);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      backdrop-filter: blur(4px);
+    }
+    .product-wishlist svg { width: 14px; height: 14px; color: #8B7D6B; }
+    .product-badge {
+      position: absolute;
+      top: 8px; left: 8px;
+      padding: 3px 8px;
+      background: #C9A961;
+      color: #FFFFFF;
+      font-size: 9px;
+      font-weight: 700;
+      border-radius: 6px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .product-info { padding: 10px 10px 12px; }
+    .product-name {
+      font-size: 12px;
+      font-weight: 500;
+      color: #1A1A1A;
+      line-height: 1.4;
+      margin-bottom: 4px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .product-price {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .price-current {
+      font-size: 14px;
+      font-weight: 700;
+      color: #1A1A1A;
+    }
+    .price-original {
+      font-size: 11px;
+      color: #8B7D6B;
+      text-decoration: line-through;
+    }
+    .highlight {
+      color: #C9A961;
+      font-weight: 700;
+    }
+
+    .bottom-spacer { height: 40px; }
+  </style>
+</head>
+<body>
+
+  <!-- SEARCH HEADER -->
+  <header class="search-header">
+    <a href="index.html" class="back-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg>
+    </a>
+    <div class="search-input-wrap">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"/></svg>
+      <input type="text" class="search-input" value="embroidered kurta" autofocus>
+      <button class="search-clear">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- SEARCH RESULTS -->
+  <div class="results-header">
+    <span class="results-count"><strong>18</strong> results for "<span class="highlight">embroidered kurta</span>"</span>
+    <button class="results-sort">
+      Relevance
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+    </button>
+  </div>
+
+  <div class="products-grid">
+    <!-- Result 1 -->
+    <a href="product-detail.html" class="product-card">
+      <div class="product-image">
+        <img src="../hero-banner-2.png" alt="">
+        <span class="product-badge">New</span>
+        <button class="product-wishlist">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"/></svg>
+        </button>
+      </div>
+      <div class="product-info">
+        <div class="product-name"><span class="highlight">Embroidered</span> <span class="highlight">Kurta</span> Set with Gold Thread Work</div>
+        <div class="product-price">
+          <span class="price-current">AED 189</span>
+          <span class="price-original">AED 249</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Result 2 -->
+    <a href="product-detail.html" class="product-card">
+      <div class="product-image">
+        <img src="../category-women.png" alt="">
+        <button class="product-wishlist">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"/></svg>
+        </button>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Silk <span class="highlight">Embroidered</span> <span class="highlight">Kurta</span> Palazzo Set</div>
+        <div class="product-price">
+          <span class="price-current">AED 225</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Result 3 -->
+    <a href="product-detail.html" class="product-card">
+      <div class="product-image">
+        <img src="../hero-banner-1.png" alt="">
+        <span class="product-badge" style="background:#D4503A">-30%</span>
+        <button class="product-wishlist">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"/></svg>
+        </button>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Designer <span class="highlight">Embroidered</span> <span class="highlight">Kurta</span> for Women</div>
+        <div class="product-price">
+          <span class="price-current">AED 169</span>
+          <span class="price-original">AED 240</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Result 4 -->
+    <a href="product-detail.html" class="product-card">
+      <div class="product-image">
+        <img src="../hero-banner-2.png" alt="">
+        <button class="product-wishlist">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"/></svg>
+        </button>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Cotton <span class="highlight">Embroidered</span> <span class="highlight">Kurta</span> Shirt</div>
+        <div class="product-price">
+          <span class="price-current">AED 120</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Result 5 -->
+    <a href="product-detail.html" class="product-card">
+      <div class="product-image">
+        <img src="../category-women.png" alt="">
+        <span class="product-badge">Best</span>
+        <button class="product-wishlist">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"/></svg>
+        </button>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Luxury <span class="highlight">Embroidered</span> <span class="highlight">Kurta</span> Collection</div>
+        <div class="product-price">
+          <span class="price-current">AED 310</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Result 6 -->
+    <a href="product-detail.html" class="product-card">
+      <div class="product-image">
+        <img src="../hero-banner-1.png" alt="">
+        <button class="product-wishlist">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"/></svg>
+        </button>
+      </div>
+      <div class="product-info">
+        <div class="product-name"><span class="highlight">Embroidered</span> <span class="highlight">Kurta</span> with Mirror Work</div>
+        <div class="product-price">
+          <span class="price-current">AED 275</span>
+          <span class="price-original">AED 350</span>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <div class="bottom-spacer"></div>
+
+</body>
+</html>

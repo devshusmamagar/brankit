@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SHUSMA Brand Kit</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--gold:#C9A961;--dark-gold:#A07D3F;--light-gold:#E2CC8A;--cream:#FAF8F5;--brown:#5D4E37;--dark:#1A1A1A}
+body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--dark);line-height:1.6}
+.hero{background:linear-gradient(135deg,var(--dark) 0%,#2a2218 100%);padding:80px 40px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(201,169,97,0.1) 0%,transparent 60%);pointer-events:none}
+.hero h1{font-family:'Playfair Display',serif;font-size:48px;color:var(--gold);letter-spacing:12px;margin-bottom:8px;position:relative}
+.hero .sub{font-size:14px;color:rgba(201,169,97,0.6);letter-spacing:6px;text-transform:uppercase}
+.hero .tagline{font-family:'Playfair Display',serif;font-size:20px;color:var(--cream);margin-top:24px;opacity:0.8;position:relative}
+.hero .badge{display:inline-block;margin-top:20px;padding:6px 20px;border:1px solid rgba(201,169,97,0.3);color:var(--light-gold);font-size:11px;letter-spacing:3px;text-transform:uppercase;position:relative}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:24px;max-width:1400px;margin:48px auto;padding:0 40px}
+.card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 2px 20px rgba(90,78,55,0.06);transition:transform .3s,box-shadow .3s;text-decoration:none;color:inherit;display:block}
+.card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(90,78,55,0.12)}
+.card .thumb{height:180px;background:linear-gradient(135deg,#f5f0e8,#ede5d8);display:flex;align-items:center;justify-content:center;font-size:48px;color:var(--gold);position:relative;overflow:hidden}
+.card .thumb img{width:100%;height:100%;object-fit:cover}
+.card .thumb .num{position:absolute;top:12px;left:12px;background:var(--gold);color:var(--dark);width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+.card .body{padding:24px}
+.card .body h3{font-family:'Playfair Display',serif;font-size:20px;color:var(--dark);margin-bottom:8px}
+.card .body p{font-size:13px;color:var(--brown);opacity:0.7;line-height:1.7}
+.card .body .tags{display:flex;gap:6px;margin-top:12px;flex-wrap:wrap}
+.card .body .tags span{font-size:10px;padding:3px 10px;border-radius:20px;background:rgba(201,169,97,0.1);color:var(--dark-gold);font-weight:600;letter-spacing:0.5px;text-transform:uppercase}
+.palette{display:flex;justify-content:center;gap:12px;margin-top:40px;padding:0 40px;flex-wrap:wrap}
+.palette .swatch{width:60px;height:60px;border-radius:12px;box-shadow:0 2px 12px rgba(0,0,0,0.08);position:relative}
+.palette .swatch .tip{position:absolute;bottom:-24px;left:50%;transform:translateX(-50%);font-size:10px;color:var(--brown);opacity:0.6;white-space:nowrap;font-family:monospace}
+.footer{background:var(--dark);padding:40px;text-align:center;margin-top:80px}
+.footer h3{font-family:'Playfair Display',serif;color:var(--gold);letter-spacing:8px;font-size:20px}
+.footer p{font-size:12px;color:rgba(201,169,97,0.4);margin-top:8px;letter-spacing:2px}
+@media(max-width:768px){.hero h1{font-size:32px;letter-spacing:6px}.grid{padding:0 20px;gap:16px}.card .thumb{height:140px}}
+</style>
+</head>
+<body>
+<header class="hero">
+<h1>SHUSMA</h1>
+<div class="sub">Brand Kit v1.0</div>
+<div class="tagline">Complete Brand Identity System</div>
+<div class="badge">Luxury Fashion Ecommerce</div>
+</header>
+
+<div class="palette">
+<div class="swatch" style="background:#C9A961"><span class="tip">Gold</span></div>
+<div class="swatch" style="background:#A07D3F"><span class="tip">Dark Gold</span></div>
+<div class="swatch" style="background:#E2CC8A"><span class="tip">Light Gold</span></div>
+<div class="swatch" style="background:#FAF8F5;border:1px solid #e0d8cc"><span class="tip">Cream</span></div>
+<div class="swatch" style="background:#5D4E37"><span class="tip">Brown</span></div>
+<div class="swatch" style="background:#1A1A1A"><span class="tip">Dark</span></div>
+</div>
+
+<div class="grid">
+
+<a class="card" href="01-logo/primary/SHUSMA_Mark.png" target="_blank">
+<div class="thumb"><img src="01-logo/primary/SHUSMA_Mark.png" alt="Logo Mark"><span class="num">01</span></div>
+<div class="body"><h3>Logo System</h3><p>Primary mark, horizontal lockup, icon, favicons, monochrome, reversed, and app icon variants.</p><div class="tags"><span>7 variants</span><span>PNG</span><span>ICO</span><span>Favicon</span></div></div>
+</a>
+
+<a class="card" href="02-color-system/color-system.html" target="_blank">
+<div class="thumb" style="background:linear-gradient(135deg,#C9A961,#A07D3F,#5D4E37)"><span class="num">02</span></div>
+<div class="body"><h3>Color System</h3><p>Complete palette with tint/shade scales, gradients, contrast checker, dark mode, print CMYK, and CSS variables.</p><div class="tags"><span>11 colors</span><span>WCAG</span><span>Dark Mode</span><span>Print</span></div></div>
+</a>
+
+<a class="card" href="03-typography/typography-system.html" target="_blank">
+<div class="thumb" style="background:#FAF8F5;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:36px;color:var(--dark)">Aa<span class="num">03</span></div>
+<div class="body"><h3>Typography</h3><p>Bilingual type system with Playfair Display, Inter, Noto Serif/Noto Sans Arabic. Responsive scale, RTL specimens.</p><div class="tags"><span>4 fonts</span><span>EN+AR</span><span>RTL</span><span>Responsive</span></div></div>
+</a>
+
+<a class="card" href="04-graphics-kit/patterns/pattern-library.html" target="_blank">
+<div class="thumb" style="background:repeating-linear-gradient(45deg,transparent,transparent 10px,rgba(201,169,97,0.15) 10px,rgba(201,169,97,0.15) 20px)"><span class="num">04</span></div>
+<div class="body"><h3>Graphics Kit</h3><p>SVG patterns, textures (damask, linen, leather, silk), ecommerce icons, ornaments, and dividers.</p><div class="tags"><span>8 patterns</span><span>4 textures</span><span>12 icons</span><span>SVG</span></div></div>
+</a>
+
+<a class="card" href="05-brand-architecture/brand-architecture.html" target="_blank">
+<div class="thumb" style="background:linear-gradient(135deg,#1A1A1A,#5D4E37);display:flex;align-items:center;justify-content:center;color:var(--gold);font-family:'Playfair Display',serif;font-size:28px">Brand<span class="num">05</span></div>
+<div class="body"><h3>Brand Architecture</h3><p>Mission, vision, values, personality, voice, 3 target personas, positioning, and touchpoint map.</p><div class="tags"><span>Personas</span><span>Positioning</span><span>Voice</span></div></div>
+</a>
+
+<a class="card" href="06-error-pages/404.html" target="_blank">
+<div class="thumb" style="background:var(--cream);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:64px;color:var(--gold);font-weight:700">404<span class="num">06</span></div>
+<div class="body"><h3>Error Pages</h3><p>404 (animated shimmer), 500 (dark theme), and maintenance mode pages with premium brand styling.</p><div class="tags"><span>404</span><span>500</span><span>Maintenance</span><span>Responsive</span></div></div>
+</a>
+
+<a class="card" href="07-email-templates/welcome-email.html" target="_blank">
+<div class="thumb" style="background:linear-gradient(180deg,rgba(201,169,97,0.2),var(--cream));display:flex;align-items:center;justify-content:center;font-size:40px">✉<span class="num">07</span></div>
+<div class="body"><h3>Email Templates</h3><p>Welcome (bilingual), order confirmation, abandoned cart, and promotional sale emails. Table-based, 600px.</p><div class="tags"><span>4 templates</span><span>Email-ready</span><span>EN+AR</span></div></div>
+</a>
+
+<a class="card" href="08-social-media/social-media-guide.html" target="_blank">
+<div class="thumb"><img src="08-social-media/instagram/ig-post-new-collection.png" alt="Social Media"><span class="num">08</span></div>
+<div class="body"><h3>Social Media</h3><p>Instagram posts, stories, Facebook cover, Twitter/X header, WhatsApp status, and comprehensive guide.</p><div class="tags"><span>6 images</span><span>5 platforms</span><span>Guide</span></div></div>
+</a>
+
+<a class="card" href="09-packaging/packaging-guide.html" target="_blank">
+<div class="thumb"><img src="09-packaging/shopping-bag.png" alt="Packaging"><span class="num">09</span></div>
+<div class="body"><h3>Packaging Design</h3><p>Shopping bags, gift boxes, shipping materials, stationery set, and full packaging specification guide.</p><div class="tags"><span>4 images</span><span>Print Specs</span><span>Materials</span></div></div>
+</a>
+
+<a class="card" href="10-accessibility/accessibility-guide.html" target="_blank">
+<div class="thumb" style="background:var(--dark);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:40px;font-weight:700">A11y<span class="num">10</span></div>
+<div class="body"><h3>Accessibility Guide</h3><p>WCAG 2.1 AA compliance guide with contrast matrix, ARIA patterns, keyboard nav, RTL support, 35+ item checklist.</p><div class="tags"><span>WCAG 2.1</span><span>ARIA</span><span>RTL</span><span>Checklist</span></div></div>
+</a>
+
+<a class="card" href="11-marketing-templates/marketing-templates.html" target="_blank">
+<div class="thumb"><img src="11-marketing-templates/sale-banner.png" alt="Marketing"><span class="num">11</span></div>
+<div class="body"><h3>Marketing Templates</h3><p>Sale banners, loyalty card, gift card, lookbook, event invitation, QR promo, price tags, and store signage.</p><div class="tags"><span>8 templates</span><span>3 images</span><span>Print+Digital</span></div></div>
+</a>
+
+<a class="card" href="12-admin-console/admin-console.html" target="_blank">
+<div class="thumb" style="background:var(--dark);display:flex;align-items:center;justify-content:center"><div style="width:60%;background:#2a2218;border-radius:8px;padding:12px"><div style="height:6px;background:var(--gold);border-radius:3px;margin-bottom:8px;width:70%"></div><div style="height:4px;background:rgba(201,169,97,0.3);border-radius:2px;margin-bottom:6px"></div><div style="height:4px;background:rgba(201,169,97,0.2);border-radius:2px;width:80%"></div></div><span class="num">12</span></div>
+<div class="body"><h3>Admin Console</h3><p>Complete admin UI kit with sidebar, KPI cards, data tables, forms, modals, toasts, pagination, loading states.</p><div class="tags"><span>15 components</span><span>Dark UI</span><span>Interactive</span></div></div>
+</a>
+
+<a class="card" href="13-onboarding/onboarding-guide.html" target="_blank">
+<div class="thumb"><img src="13-onboarding/onboard-welcome.png" alt="Onboarding"><span class="num">13</span></div>
+<div class="body"><h3>Onboarding</h3><p>4 app onboarding screens (Welcome, Discover, Personalize, Shop) with animation specs and bilingual text.</p><div class="tags"><span>4 screens</span><span>Animation</span><span>EN+AR</span></div></div>
+</a>
+
+<a class="card" href="14-screens/index.html" target="_blank">
+<div class="thumb" style="background:linear-gradient(135deg,#FAF8F5,#E2CC8A);display:flex;align-items:center;justify-content:center;font-size:40px">📱<span class="num">14</span></div>
+<div class="body"><h3>Ecommerce Screens</h3><p>8 mobile-first screens: home, search, products, detail, cart, checkout, confirmation, and account pages.</p><div class="tags"><span>8 screens</span><span>Mobile-first</span><span>HTML</span></div></div>
+</a>
+
+<a class="card" href="15-brand-images/photography-guide.html" target="_blank">
+<div class="thumb"><img src="15-brand-images/lifestyle-1.png" alt="Brand Images"><span class="num">15</span></div>
+<div class="body"><h3>Brand Images</h3><p>5 lifestyle/editorial photographs and comprehensive photography style guide with technical specifications.</p><div class="tags"><span>5 images</span><span>Photography Guide</span><span>Editorial</span></div></div>
+</a>
+
+<a class="card" href="SHUSMA_Brand_Guidelines.html" target="_blank">
+<div class="thumb" style="background:linear-gradient(135deg,var(--gold),var(--dark-gold));display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Playfair Display',serif;font-size:20px;letter-spacing:4px">GUIDELINES<span class="num">★</span></div>
+<div class="body"><h3>Master Brand Guidelines</h3><p>Comprehensive brand guidelines document covering all aspects of the SHUSMA brand identity system.</p><div class="tags"><span>HTML</span><span>PDF</span><span>Complete</span></div></div>
+</a>
+
+</div>
+
+<footer class="footer">
+<h3>SHUSMA</h3>
+<p>Readymade Garments Trading LLC — Brand Kit v1.0</p>
+</footer>
+</body>
+</html>

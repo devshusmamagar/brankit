@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>SHUSMA — Order Confirmed</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #FAF8F5;
+      color: #1A1A1A;
+      max-width: 375px;
+      margin: 0 auto;
+      min-height: 100vh;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+    button { border: none; background: none; cursor: pointer; font-family: inherit; }
+
+    /* ===== CLOSE BUTTON ===== */
+    .top-bar {
+      padding: 12px 16px;
+      display: flex;
+      justify-content: flex-end;
+    }
+    .close-btn {
+      width: 36px; height: 36px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 10px;
+      color: #5D4E37;
+    }
+    .close-btn:active { background: #F0ECE4; }
+    .close-btn svg { width: 20px; height: 20px; }
+
+    /* ===== SUCCESS SECTION ===== */
+    .success-section {
+      text-align: center;
+      padding: 8px 32px 32px;
+    }
+    .success-icon-wrap {
+      width: 88px; height: 88px;
+      margin: 0 auto 20px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #C9A961 0%, #A07D3F 100%);
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .success-icon-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -8px;
+      border-radius: 50%;
+      border: 2px solid #E2CC8A;
+      opacity: 0.4;
+      animation: pulse-ring 2s ease-out infinite;
+    }
+    @keyframes pulse-ring {
+      0% { transform: scale(1); opacity: 0.4; }
+      100% { transform: scale(1.3); opacity: 0; }
+    }
+    .success-icon-wrap svg {
+      width: 40px; height: 40px;
+      color: #FFFFFF;
+      stroke-width: 2.5;
+    }
+    .success-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: #1A1A1A;
+      margin-bottom: 6px;
+    }
+    .success-subtitle {
+      font-size: 14px;
+      color: #8B7D6B;
+      line-height: 1.5;
+    }
+
+    /* ===== ORDER ID CARD ===== */
+    .order-id-card {
+      background: #FFFFFF;
+      border: 1px solid #E8E0D6;
+      border-radius: 16px;
+      margin: 0 16px 16px;
+      padding: 18px 16px;
+    }
+    .order-id-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      padding-bottom: 14px;
+      border-bottom: 1px dashed #E8E0D6;
+    }
+    .order-id-label {
+      font-size: 12px;
+      color: #8B7D6B;
+      font-weight: 500;
+    }
+    .order-id-value {
+      font-size: 14px;
+      font-weight: 700;
+      color: #1A1A1A;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .copy-btn {
+      padding: 4px 10px;
+      background: #FAF8F5;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #A07D3F;
+    }
+    .order-detail-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .order-detail-row:last-child { margin-bottom: 0; }
+    .order-detail-label {
+      font-size: 13px;
+      color: #8B7D6B;
+    }
+    .order-detail-value {
+      font-size: 13px;
+      font-weight: 600;
+      color: #1A1A1A;
+    }
+
+    /* ===== DELIVERY TIMELINE ===== */
+    .timeline-card {
+      background: #FFFFFF;
+      border: 1px solid #E8E0D6;
+      border-radius: 16px;
+      margin: 0 16px 16px;
+      padding: 20px 16px;
+    }
+    .timeline-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #1A1A1A;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .timeline-title svg { width: 18px; height: 18px; color: #C9A961; }
+    .timeline {
+      position: relative;
+      padding-left: 28px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 9px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: #E8E0D6;
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 20px;
+    }
+    .timeline-item:last-child { margin-bottom: 0; }
+    .timeline-dot {
+      position: absolute;
+      left: -28px;
+      top: 2px;
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      z-index: 1;
+    }
+    .timeline-dot.done {
+      background: #C9A961;
+    }
+    .timeline-dot.current {
+      background: #FFFFFF;
+      border: 2px solid #C9A961;
+    }
+    .timeline-dot.done svg { width: 10px; height: 10px; color: #FFFFFF; }
+    .timeline-dot.current::after {
+      content: '';
+      width: 8px; height: 8px;
+      background: #C9A961;
+      border-radius: 50%;
+    }
+    .timeline-dot.pending {
+      background: #FFFFFF;
+      border: 2px solid #E8E0D6;
+    }
+    .timeline-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: #1A1A1A;
+      margin-bottom: 2px;
+    }
+    .timeline-label.muted { color: #8B7D6B; }
+    .timeline-date {
+      font-size: 11px;
+      color: #8B7D6B;
+    }
+
+    /* ===== ORDER ITEMS ===== */
+    .items-card {
+      background: #FFFFFF;
+      border: 1px solid #E8E0D6;
+      border-radius: 16px;
+      margin: 0 16px 16px;
+      overflow: hidden;
+    }
+    .items-card-header {
+      padding: 14px 16px;
+      font-size: 15px;
+      font-weight: 700;
+      border-bottom: 1px solid #E8E0D6;
+    }
+    .order-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      border-bottom: 1px solid #E8E0D6;
+    }
+    .order-item:last-child { border-bottom: none; }
+    .order-item-img {
+      width: 52px; height: 52px;
+      border-radius: 10px;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: #F5F0E8;
+    }
+    .order-item-img img { width: 100%; height: 100%; object-fit: cover; }
+    .order-item-info { flex: 1; min-width: 0; }
+    .order-item-name {
+      font-size: 12px;
+      font-weight: 600;
+      color: #1A1A1A;
+      margin-bottom: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .order-item-meta {
+      font-size: 11px;
+      color: #8B7D6B;
+    }
+    .order-item-price {
+      font-size: 13px;
+      font-weight: 700;
+      color: #1A1A1A;
+      flex-shrink: 0;
+    }
+
+    /* ===== CTA BUTTONS ===== */
+    .cta-section {
+      padding: 0 16px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .btn-primary {
+      width: 100%;
+      height: 50px;
+      background: linear-gradient(135deg, #C9A961 0%, #A07D3F 100%);
+      color: #FFFFFF;
+      border-radius: 14px;
+      font-size: 15px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .btn-primary:active { opacity: 0.9; }
+    .btn-primary svg { width: 18px; height: 18px; }
+    .btn-secondary {
+      width: 100%;
+      height: 50px;
+      background: #FFFFFF;
+      color: #5D4E37;
+      border: 1.5px solid #E8E0D6;
+      border-radius: 14px;
+      font-size: 15px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .btn-secondary:active { background: #FAF8F5; }
+    .btn-secondary svg { width: 18px; height: 18px; }
+
+    /* ===== SHARE SECTION ===== */
+    .share-section {
+      text-align: center;
+      padding: 0 16px 40px;
+    }
+    .share-text {
+      font-size: 12px;
+      color: #8B7D6B;
+      margin-bottom: 12px;
+    }
+    .share-icons {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+    }
+    .share-icon {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      border: 1px solid #E8E0D6;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .share-icon:active { border-color: #C9A961; }
+    .share-icon svg { width: 20px; height: 20px; color: #5D4E37; }
+  </style>
+</head>
+<body>
+
+  <!-- CLOSE BUTTON -->
+  <div class="top-bar">
+    <a href="index.html" class="close-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/></svg>
+    </a>
+  </div>
+
+  <!-- SUCCESS -->
+  <div class="success-section">
+    <div class="success-icon-wrap">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+    </div>
+    <h1 class="success-title">Order Confirmed!</h1>
+    <p class="success-subtitle">Thank you for your purchase. Your order has been placed successfully and is being processed.</p>
+  </div>
+
+  <!-- ORDER ID -->
+  <div class="order-id-card">
+    <div class="order-id-row">
+      <span class="order-id-label">Order ID</span>
+      <div class="order-id-value">
+        #SHU-2025-48291
+        <button class="copy-btn">Copy</button>
+      </div>
+    </div>
+    <div class="order-detail-row">
+      <span class="order-detail-label">Payment</span>
+      <span class="order-detail-value">Visa •••• 4829</span>
+    </div>
+    <div class="order-detail-row">
+      <span class="order-detail-label">Delivery Address</span>
+      <span class="order-detail-value" style="text-align:right;max-width:200px;font-weight:400;color:#5D4E37">Apartment 402, Al Waheda Tower, Deira, Dubai</span>
+    </div>
+    <div class="order-detail-row">
+      <span class="order-detail-label">Total Paid</span>
+      <span class="order-detail-value" style="color:#C9A961;font-size:16px">AED 634.00</span>
+    </div>
+  </div>
+
+  <!-- DELIVERY TIMELINE -->
+  <div class="timeline-card">
+    <div class="timeline-title">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 0-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"/></svg>
+      Estimated Delivery
+    </div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot done">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+        </div>
+        <div class="timeline-label">Order Placed</div>
+        <div class="timeline-date">Jan 15, 2025 · 2:30 PM</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot current"></div>
+        <div class="timeline-label">Processing</div>
+        <div class="timeline-date">Estimated: Jan 16, 2025</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot pending"></div>
+        <div class="timeline-label muted">Shipped</div>
+        <div class="timeline-date">Expected: Jan 17, 2025</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot pending"></div>
+        <div class="timeline-label muted">Delivered</div>
+        <div class="timeline-date">Expected: Jan 18, 2025</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ORDER ITEMS -->
+  <div class="items-card">
+    <div class="items-card-header">Order Items (3)</div>
+    <div class="order-item">
+      <div class="order-item-img">
+        <img src="../hero-banner-2.png" alt="">
+      </div>
+      <div class="order-item-info">
+        <div class="order-item-name">Embroidered Kurta Set</div>
+        <div class="order-item-meta">Black · Size M · Qty: 1</div>
+      </div>
+      <div class="order-item-price">AED 189</div>
+    </div>
+    <div class="order-item">
+      <div class="order-item-img">
+        <img src="../category-women.png" alt="">
+      </div>
+      <div class="order-item-info">
+        <div class="order-item-name">Designer Silk Abaya</div>
+        <div class="order-item-meta">Brown · Size L · Qty: 1</div>
+      </div>
+      <div class="order-item-price">AED 350</div>
+    </div>
+    <div class="order-item">
+      <div class="order-item-img">
+        <img src="../category-kids.png" alt="">
+      </div>
+      <div class="order-item-info">
+        <div class="order-item-name">Kids Formal Kurta Set</div>
+        <div class="order-item-meta">Cream · Age 6-7 · Qty: 2</div>
+      </div>
+      <div class="order-item-price">AED 190</div>
+    </div>
+  </div>
+
+  <!-- CTA BUTTONS -->
+  <div class="cta-section">
+    <a href="account.html" class="btn-primary">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 0 0-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 0 1-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 0 0 3 15h-.75M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm3 0h.008v.008H18V10.5Zm-12 0h.008v.008H6V10.5Z"/></svg>
+      Track My Order
+    </a>
+    <a href="index.html" class="btn-secondary">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/></svg>
+      Continue Shopping
+    </a>
+  </div>
+
+  <!-- SHARE -->
+  <div class="share-section">
+    <div class="share-text">Share your order with friends</div>
+    <div class="share-icons">
+      <button class="share-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z"/></svg>
+      </button>
+      <button class="share-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5"/></svg>
+      </button>
+      <button class="share-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M24.003 12.004C24.003 5.376 18.628 0 12.003 0 5.375 0 0 5.376 0 12.004 0 17.79 3.87 22.68 9.187 24.004v-8.503h-2.78v-3.5h2.78v-2.625c0-2.753 1.64-4.277 4.125-4.277 1.196 0 2.44.215 2.44.215v2.7h-1.372c-1.352 0-1.773.842-1.773 1.706v2.031h3.036l-.485 3.5h-2.55V24c5.317-1.324 9.187-6.214 9.187-11.996Z"/></svg>
+      </button>
+    </div>
+  </div>
+
+</body>
+</html>
